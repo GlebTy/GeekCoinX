@@ -54,11 +54,12 @@ public class Bank {
         return numberCardBuffer.toString();
     }
 
-    // Сгенерировать номер счёта 35467095799843178451
+    // Сгенерировать номер счёта 35467095799843178451 (15738 538 9 4736 9745275)
     public String generateNumberAccount() {
-        byte lengthNumberAccount = 20;
+        byte lengthNumberAccount = 24;
         StringBuffer numberAccountBuffer = new StringBuffer();
-        for (byte i = 0; i < lengthNumberAccount; i++) {
+        for (byte i = 1; i < lengthNumberAccount; i++) {
+            if(i == 6 || i == 10 || i == 12 || i == 17) numberAccountBuffer.append(" ");
             numberAccountBuffer.append((byte) (Math.random() * 10));
         }
         return numberAccountBuffer.toString();
