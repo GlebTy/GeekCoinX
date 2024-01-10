@@ -55,6 +55,16 @@ public class SberPhysicalPersonProfile extends PhysicalPersonProfile {
     }
 
     @Override
+    public float getTotalPaymentsTransfersDayInUSD() {
+        return super.getTotalPaymentsTransfersDayInUSD();
+    }
+
+    @Override
+    public void setPercentOfCommissionForTransferInUsdOrOtherCurrency(float percentOfCommissionForTransferInUsdOrOtherCurrency) {
+        super.setPercentOfCommissionForTransferInUsdOrOtherCurrency(percentOfCommissionForTransferInUsdOrOtherCurrency);
+    }
+
+    @Override
     // Вывод всех операций по всем картам и счетам профиля физического лица в Сбере
     public void displayProfileTransactions() {
         // дополним метод уникальной информацией, присуще только Сберу

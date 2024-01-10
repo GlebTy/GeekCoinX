@@ -113,7 +113,7 @@ public class Card {
             payTransaction.setStatusOperation(authorizationStatusMessage);
         }
 
-        // внести в транзакцию баланс счёта картв после оплаты
+        // внести в транзакцию баланс счёта карты после оплаты
         payTransaction.setBalance(getPayCardAccount().getBalance());
 
         // добавить и привязать транзакцию оплаты к счёту карты
