@@ -2,6 +2,7 @@ package ru.geekstar;
 
 import ru.geekstar.Account.SberSavingsAccount;
 import ru.geekstar.Bank.Sberbank;
+import ru.geekstar.Card.CardMastercard;
 import ru.geekstar.Card.SberVisaGold;
 import ru.geekstar.PhysicalPerson.PhysicalPerson;
 
