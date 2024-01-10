@@ -54,8 +54,9 @@ public class Card {
 
     public void setNumberCard(String numberCard) {
         String number = numberCard.replace(" ", "");
-        String regex = "[0-9]+";
-        if (number.length() == 16 && number.matches(regex)) this.numberCard = numberCard;
+        String regex = "[0-9]{16}";
+
+        if (number.matches(regex)) this.numberCard = numberCard;
         else System.out.println("Недопустимый номер карты");
     }
 
