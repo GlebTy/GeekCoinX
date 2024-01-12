@@ -129,6 +129,11 @@ public class PhysicalPersonProfile extends ClientProfile {
     }
 
     @Override
+    public void setLimitCommissionTransferInRUB(float limitCommissionTransferInRUB) {
+        super.setLimitCommissionTransferInRUB(limitCommissionTransferInRUB);
+    }
+
+    @Override
     // Вывод всех операций по всем картам и счетам профиля физического лица
     public void displayProfileTransactions() {
         System.out.println("Платежей и переводов за текущие сутки выполнено на сумму: " + getTotalPaymentsTransfersDayInRUB() +

@@ -155,10 +155,10 @@ public class Bank {
         // если комиссия превышает лимит за перевод в рублях, то ограничим комиссию лимитом в рублях, то есть максимально возможной суммой комиссии установленной банком
         if (fromCurrencyCode.equals("RUB") && commission > clientProfile.getLimitCommissionTransferInRUB()) commission = clientProfile.getLimitCommissionTransferInRUB();
         // иначе если комиссия превышает лимит за перевод в $, то ограничим комиссию лимитом в $
-        else if (fromCurrencyCode.equals("USD") && commission > clientProfile.getLimitCommissionTransferInUsdOrEquivalentInOtherCurrency())
+        if (fromCurrencyCode.equals("USD") && commission > clientProfile.getLimitCommissionTransferInUsdOrEquivalentInOtherCurrency())
             commission = clientProfile.getLimitCommissionTransferInUsdOrEquivalentInOtherCurrency();
         // иначе если другая валюта, то по аналогии
-        else {
+        if (!fromCurrencyCode.equals("RUB") && !fromCurrencyCode.equals("USD")) {
             // рассчитать лимит комиссии в другой валюте путём конвертации лимита в $ в эквивалентную сумму в другой валюте
             float limitCommissionTransferInCurrency = convertToCurrencyExchangeRateBank(
                     clientProfile.getLimitCommissionTransferInUsdOrEquivalentInOtherCurrency(),
@@ -167,8 +167,8 @@ public class Bank {
             );
             // если комиссия превышает лимит за перевод в другой валюте, то ограничим комиссию лимитом в этой валюте
             if (commission > limitCommissionTransferInCurrency) commission = limitCommissionTransferInCurrency;
-        }
 
+        }
         return commission;
     }
 
