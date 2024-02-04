@@ -314,7 +314,7 @@ public class Card {
         depositingTransaction.setTypeOperation("Внесение наличных");
 
         // запросить разрешение банка на проведение операции с проверкой статуса карты
-        String authorization = bank.authorization((SberVisaGold) this, depositingTransaction.getTypeOperation(), sumDepositing, 0);
+        String authorization = bank.authorizationStatusCard((SberVisaGold) this);
         // извлекаем массив строк разделяя их символом @
         String[] authorizationData = authorization.split("@");
         // извлекаем код авторизации

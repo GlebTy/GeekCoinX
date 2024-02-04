@@ -65,9 +65,7 @@ public class Bank {
         }
         return numberAccountBuffer.toString();
     }
-
-    // Провести авторизацию и выдать разрешение на проведение операции
-    public String authorization(SberVisaGold card, String typeOperation, float sum, float commission) {
+    public String authorizationStatusCard(SberVisaGold card) {
         // сгенерировать код авторизации
         String authorizationCode = generateAuthorizationCode();
 
@@ -76,7 +74,32 @@ public class Bank {
         boolean statusCard = card.getStatusCard().equalsIgnoreCase("Активна") ? true : false;
         if (statusCard) {
             authorizationMessage = "Success: Карта активна";
+        }
+        else {
+            authorizationMessage = "Failed: Карта заблокирована";
+        }
 
+        return authorizationMessage + "@" + authorizationCode;
+        // вернуть код и сообщение о статусе авторизации
+
+    }
+
+
+    // Провести авторизацию и выдать разрешение на проведение операции
+    public String authorization(SberVisaGold card, String typeOperation, float sum, float commission) {
+
+        String authorizationStatusCard = authorizationStatusCard(card);
+
+        // извлекаем код авторизации
+        String authorizationCode = authorizationStatusCard.split("@")[0];
+
+        //извлекаем сообщение авторизации
+        String authorizationMessage = authorizationStatusCard.split("@")[1];
+
+        //извлекаем статус из сообщения авторизации
+        String authorizationStatus = authorizationMessage.substring(0,authorizationMessage.indexOf(":"));
+
+        if (authorizationStatus.equalsIgnoreCase("Success")) {
             // если тип операции покупка или перевод, то проверяем баланс и блокируем сумму покупки или перевода с комиссией
             if (typeOperation.contains("Покупка") || typeOperation.contains("Перевод")) {
                 // проверяем баланс и хватит ли нам денег с учётом комиссии
@@ -91,11 +114,12 @@ public class Bank {
                     } else authorizationMessage = "Failed: Превышен лимит по оплатам и переводам в сутки";
                 } else authorizationMessage = "Failed: Недостаточно средств, пополните карту";
             }
-        } else authorizationMessage = "Failed: Карта заблокирована";
+        }
 
-        // вернуть код и сообщение о статусе авторизации
-        return authorizationCode + "@" + authorizationMessage;
+        return authorizationMessage + "@" + authorizationCode;
     }
+
+
 
     private String generateAuthorizationCode() {
         byte lengthAuthorizationCode = 6;
