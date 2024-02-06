@@ -13,4 +13,5 @@ public class SberPayCardAccount extends PayCardAccount {
         // прибавим сумму перевода к общей сумме всех переводов клиентам Сбера без комиссии за месяц для контроля лимита
         getAccountHolder().updateTotalTransfersToClientSberWithoutCommissionMonthInRUB(toCard, sumTransfer);
     }
+
 }

@@ -105,6 +105,10 @@ public class PhysicalPerson {
         fromAccount.transferAccount2Card(toCard, sumTransfer);
     }
 
+    public void transferAccount2account(SberSavingsAccount fromAccount, SberSavingsAccount toAccount, float sumTransfer) {
+        fromAccount.transferAccount2Account(toAccount, sumTransfer);
+    }
+
     public void depositingCardFromCard(SberVisaGold toCard, SberVisaGold fromCard, float sumDepositing) {
         toCard.depositingCardFromCard(fromCard, sumDepositing);
     }
