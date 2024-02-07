@@ -127,6 +127,7 @@ public class PhysicalPerson {
 
     public void displayAccountTransactions(SberSavingsAccount account) {
         account.displayAccountTransactions();
+        //Игорь оно было сделано за меня, но я бы справился хахахахах
     }
 
     public void displayProfileTransactions() {
