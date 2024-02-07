@@ -160,6 +160,13 @@ public class Account {
                     depositingTransaction.setSum(sumTransfer);
                     depositingTransaction.setCurrencySymbol(toAccount.getCurrencySymbol());
 
+                    // определяем валюту счета зачисления
+                    String toCurrencyCode = toAccount.getCurrencyCode();
+                    // если валюты списания и зачисления не совпадают, то конвертировать сумму перевода в валюту карты зачисления по курсу банка
+                    if (!fromCurrencyCode.equalsIgnoreCase(toCurrencyCode)) sumTransfer = bank.convertToCurrencyExchangeRateBank(sumTransfer, fromCurrencyCode, toCurrencyCode);
+
+
+
                     // зачислить на счет
                     boolean topUpStatus = toAccount.topUp(sumTransfer);
                     if (topUpStatus) {
@@ -232,7 +239,10 @@ public class Account {
                     depositingTransaction.setSum(sumTransfer);
                     depositingTransaction.setCurrencySymbol(toCard.getPayCardAccount().getCurrencySymbol());
 
-                    // TODO: если валюты списания и зачисления не совпадают, то конвертировать сумму перевода в валюту карты зачисления по курсу банка
+                    // определяем валюту счёта зачисления
+                    String toCurrencyCode = toCard.getPayCardAccount().getCurrencyCode();
+                    // если валюты списания и зачисления не совпадают, то конвертировать сумму перевода в валюту счёта зачисления по курсу банка
+                    if (!fromCurrencyCode.equalsIgnoreCase(toCurrencyCode)) sumTransfer = bank.convertToCurrencyExchangeRateBank(sumTransfer, fromCurrencyCode, toCurrencyCode);
 
                     // зачислить на карту
                     boolean topUpStatus = toCard.getPayCardAccount().topUp(sumTransfer);

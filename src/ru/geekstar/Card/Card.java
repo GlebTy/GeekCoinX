@@ -199,7 +199,8 @@ public class Card {
                 depositingTransaction.setTypeOperation("Пополнение с карты");
                 depositingTransaction.setAuthorizationCode(authorizationCode);
 
-                // TODO: если валюты списания и зачисления не совпадают, то конвертируем сумму перевода в валюту карты зачисления по курсу банка
+                String toCurrencyCode = toCard.getPayCardAccount().getCurrencyCode();
+                if(!fromCurrencyCode.equalsIgnoreCase(toCurrencyCode)) sumTransfer = bank.convertToCurrencyExchangeRateBank(sumTransfer, fromCurrencyCode, toCurrencyCode);
 
                 // зачислить на карту
                 boolean topUpStatus = toCard.getPayCardAccount().topUp(sumTransfer);
@@ -273,7 +274,9 @@ public class Card {
                     depositingTransaction.setSum(sumTransfer);
                     depositingTransaction.setCurrencySymbol(toAccount.getCurrencySymbol());
 
-                    // TODO: если валюты списания и зачисления не совпадают, то конвертировать сумму перевода в валюту счёта зачисления по курсу банка
+                    String toCurrencyCode = toAccount.getCurrencyCode();
+                    if(!fromCurrencyCode.equalsIgnoreCase(toCurrencyCode)) sumTransfer = bank.convertToCurrencyExchangeRateBank(sumTransfer, fromCurrencyCode, toCurrencyCode);
+
 
                     // и зачислить на счёт
                     boolean topUpStatus = toAccount.topUp(sumTransfer);
