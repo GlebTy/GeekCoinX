@@ -11,11 +11,11 @@ public class PhysicalPersonProfile extends ClientProfile {
 
     private PhysicalPerson physicalPerson;
 
-    private SberVisaGold[] cards = new SberVisaGold[5];
+    private SberVisaGold[] cards = new SberVisaGold[50];
 
-    private SberPayCardAccount[] payCardAccounts = new SberPayCardAccount[5];
+    private SberPayCardAccount[] payCardAccounts = new SberPayCardAccount[50];
 
-    private SberSavingsAccount[] savingsAccounts = new SberSavingsAccount[15];
+    private SberSavingsAccount[] savingsAccounts = new SberSavingsAccount[50];
 
     private byte countCards;
 

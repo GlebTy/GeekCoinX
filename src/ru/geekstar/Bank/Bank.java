@@ -9,7 +9,7 @@ public class Bank {
 
     private String bankName;
 
-    private SberPhysicalPersonProfile[] clientProfiles = new SberPhysicalPersonProfile[5];
+    private SberPhysicalPersonProfile[] clientProfiles = new SberPhysicalPersonProfile[50];
 
     private int countClientProfiles;
 

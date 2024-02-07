@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 public class PayCardAccount extends Account {
 
-    private SberVisaGold[] cards = new SberVisaGold[2];
+    private SberVisaGold[] cards = new SberVisaGold[50];
 
     private PayTransaction[] payTransactions = new PayTransaction[50];
 
