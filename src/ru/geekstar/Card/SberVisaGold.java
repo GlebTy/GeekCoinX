@@ -5,9 +5,9 @@ import ru.geekstar.Account.SberSavingsAccount;
 public class SberVisaGold extends CardVisa {
 
     @Override
-    public void payByCard(float sumPay, String buyProductOrService) {
+    public void payByCard(float sumPay, String buyProductOrService, String pinCode) {
         // вызовем родительскую версию метода
-        super.payByCard(sumPay, buyProductOrService);
+        super.payByCard(sumPay, buyProductOrService, pinCode);
 
         // и дополним метод уникальным поведением: начислим сбербонусы, которые присуще только картам Сбера
 
