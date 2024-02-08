@@ -30,18 +30,18 @@ public class Main {
         I.registerToBank(sberbank);
         friend.registerToBank(sberbank);
 
-        SberVisaGold mySberVisaGold1 = I.openCard(sberbank, new SberVisaGold(), "RUB");
-        SberVisaGold mySberVisaGold2 = I.openCard(sberbank, new SberVisaGold(), "RUB");
+        SberVisaGold mySberVisaGold1 = I.openCard(sberbank, new SberVisaGold(), "RUB", "2864");
+        SberVisaGold mySberVisaGold2 = I.openCard(sberbank, new SberVisaGold(), "RUB", "1234");
 
         SberSavingsAccount mySberSavingsAccount1 = I.openAccount(sberbank, new SberSavingsAccount(), "RUB");
         SberSavingsAccount mySberSavingsAccount2 = I.openAccount(sberbank, new SberSavingsAccount(), "RUB");
 
-        SberVisaGold friendSberVisaGold1 = friend.openCard(sberbank, new SberVisaGold(), "RUB");
+        SberVisaGold friendSberVisaGold1 = friend.openCard(sberbank, new SberVisaGold(), "RUB", "9078");
 
         I.depositingCash2Card(mySberVisaGold1, 7600.50f);
 
-        I.payByCard(mySberVisaGold1, 100.50f, "ЖКХ");
-        I.payByCard(mySberVisaGold1, 110.00f, "Excursion", "Турция");
+        I.payByCard(mySberVisaGold1, 100.50f, "ЖКХ", "2864");
+        I.payByCard(mySberVisaGold1, 110.00f, "Excursion", "Турция", "2864");
 
         I.transferCard2Card(mySberVisaGold1, mySberVisaGold2, 250.00f);
         I.transferCard2Card(mySberVisaGold1, friendSberVisaGold1, 55.00f);

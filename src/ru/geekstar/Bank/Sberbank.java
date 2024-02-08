@@ -37,7 +37,7 @@ public class Sberbank extends Bank {
     }
 
     // Открыть карту
-    public SberVisaGold openCard(SberPhysicalPersonProfile clientProfile, SberVisaGold card, String currencyCode) {
+    public SberVisaGold openCard(SberPhysicalPersonProfile clientProfile, SberVisaGold card, String currencyCode, String pinCode) {
         // установить свойства карты
         card.setBank(this);
         card.setNumberCard(generateNumberCard());
@@ -52,6 +52,7 @@ public class Sberbank extends Bank {
         // привязать платёжный счёт к карте
         card.setPayCardAccount(payCardAccount);
         card.setStatusCard("Активна");
+        card.setPinCode(pinCode);
 
         // привязать карту к профилю клиента
         clientProfile.addCard(card);

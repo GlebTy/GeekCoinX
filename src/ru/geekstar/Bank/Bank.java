@@ -86,7 +86,7 @@ public class Bank {
 
 
     // Провести авторизацию и выдать разрешение на проведение операции
-    public String authorization(SberVisaGold card, String typeOperation, float sum, float commission) {
+    public String authorization(SberVisaGold card, String typeOperation, float sum, float commission, String pinCode) {
 
         String authorizationStatusCard = authorizationStatusCard(card);
 
@@ -100,24 +100,29 @@ public class Bank {
         String authorizationStatus = authorizationMessage.substring(0,authorizationMessage.indexOf(":"));
 
         if (authorizationStatus.equalsIgnoreCase("Success")) {
-            // если тип операции покупка или перевод, то проверяем баланс и блокируем сумму покупки или перевода с комиссией
-            if (typeOperation.contains("Покупка") || typeOperation.contains("Перевод")) {
-                // проверяем баланс и хватит ли нам денег с учётом комиссии
+            //тип операции может быть либо покупка, либо перевод, так как авторизацию при пополнении мы уже вынесли в метод authorizatipnStatusCard()
+
+            //если тип операции покупка и набранный пин-код не соответствует пин-коду карты, то авторизация завершается с ошибкой и операция не выполняется
+            if(typeOperation.contains("покупка") && !pinCode.equals(card.getPinCode())) {return authorizationCode + "@" + "Failed : неверный пин-код";}
+
+                // проверяем баланс, достаточно ли денег с учётом комиссии и блокируем сумму покупки или перевода с комиссией
                 boolean checkBalance = card.getPayCardAccount().checkBalance(sum + commission);
-                if (checkBalance) {
+                if(checkBalance) {
                     // проверяем не превышен ли лимит по оплатам и переводам в сутки
-                    boolean exceededLimitPaymentsTransfersDay = card.getCardHolder().exceededLimitPaymentsTransfersDay(sum, card.getPayCardAccount().getCurrencyCode());
-                    if (!exceededLimitPaymentsTransfersDay) {
+                    boolean exceededLimitPaymentsTransfersDay = card.getCardHolder().exceededLimitPaymentsTransfersDay(sum,card.getPayCardAccount().getCurrencyCode());
+                    if(!exceededLimitPaymentsTransfersDay) {
                         // блокируем сумму операции и комиссию на балансе счёта карты
                         boolean reserveAmountStatus = card.getPayCardAccount().blockSum(sum + commission);
-                        authorizationMessage = reserveAmountStatus ? "Success: Авторизация прошла успешно" : "Failed: Сбой авторизации";
-                    } else authorizationMessage = "Failed: Превышен лимит по оплатам и переводам в сутки";
-                } else authorizationMessage = "Failed: Недостаточно средств, пополните карту";
+                        authorizationMessage = reserveAmountStatus ? "Success: Авторизация прошла успешно, сумма операции заблокирована" : "Failed: Сбой авторизации";
+                    }
+                        else authorizationMessage = "Failed: Превышен лимит по оплатам и переводам в сутки";
+                }
+                     else authorizationMessage = "Failed: Недостаточно средств, пополните карту";
             }
+            return authorizationMessage + "@" + authorizationCode;
         }
 
-        return authorizationMessage + "@" + authorizationCode;
-    }
+
 
 
 

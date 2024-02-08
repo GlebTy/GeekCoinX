@@ -73,8 +73,8 @@ public class PhysicalPerson {
         setPhysicalPersonProfile(bank.registerClientProfile(this));
     }
 
-    public SberVisaGold openCard(Sberbank bank, SberVisaGold card, String currencyCode) {
-        return bank.openCard(physicalPersonProfile, card, currencyCode);
+    public SberVisaGold openCard(Sberbank bank, SberVisaGold card, String currencyCode, String pinCode) {
+        return bank.openCard(physicalPersonProfile, card, currencyCode, pinCode);
     }
 
     public SberSavingsAccount openAccount(Sberbank bank, SberSavingsAccount account, String currencyCode) {
@@ -85,12 +85,12 @@ public class PhysicalPerson {
         toCard.depositingCash2Card(sumDepositing);
     }
 
-    public void payByCard(SberVisaGold card, float sumPay, String buyProductOrService) {
-        card.payByCard(sumPay, buyProductOrService);
+    public void payByCard(SberVisaGold card, float sumPay, String buyProductOrService, String pinCode) {
+        card.payByCard(sumPay, buyProductOrService, pinCode);
     }
 
-    public void payByCard(SberVisaGold card, float sumPay, String buyProductOrService, String country) {
-        card.payByCard(sumPay, buyProductOrService, country);
+    public void payByCard(SberVisaGold card, float sumPay, String buyProductOrService, String country, String pinCode) {
+        card.payByCard(sumPay, buyProductOrService, country, pinCode);
     }
 
     public void transferCard2Card(SberVisaGold fromCard, SberVisaGold toCard, float sumTransfer) {
