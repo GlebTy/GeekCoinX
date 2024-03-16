@@ -2,6 +2,7 @@ package ru.geekstar.Bank;
 
 import ru.geekstar.Account.SberPayCardAccount;
 import ru.geekstar.Account.SberSavingsAccount;
+import ru.geekstar.Card.Card;
 import ru.geekstar.Card.SberVisaGold;
 import ru.geekstar.ClientProfile.SberPhysicalPersonProfile;
 import ru.geekstar.PhysicalPerson.PhysicalPerson;
@@ -37,7 +38,7 @@ public class Sberbank extends Bank {
     }
 
     // Открыть карту
-    public SberVisaGold openCard(SberPhysicalPersonProfile clientProfile, SberVisaGold card, String currencyCode, String pinCode) {
+    public Card openCard(SberPhysicalPersonProfile clientProfile, Card card, String currencyCode, String pinCode) {
         // установить свойства карты
         card.setBank(this);
         card.setNumberCard(generateNumberCard());

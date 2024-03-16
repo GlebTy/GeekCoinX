@@ -65,7 +65,7 @@ public class Bank {
         }
         return numberAccountBuffer.toString();
     }
-    public String authorizationStatusCard(SberVisaGold card) {
+    public String authorizationStatusCard(Card card) {
         // сгенерировать код авторизации
         String authorizationCode = generateAuthorizationCode();
 
@@ -79,14 +79,14 @@ public class Bank {
             authorizationMessage = "Failed: Карта заблокирована";
         }
 
-        return authorizationMessage + "@" + authorizationCode;
+        return authorizationCode + "@" + authorizationMessage;
         // вернуть код и сообщение о статусе авторизации
 
     }
 
 
     // Провести авторизацию и выдать разрешение на проведение операции
-    public String authorization(SberVisaGold card, String typeOperation, float sum, float commission, String pinCode) {
+    public String authorization(Card card, String typeOperation, float sum, float commission, String pinCode) {
 
         String authorizationStatusCard = authorizationStatusCard(card);
 
@@ -119,7 +119,7 @@ public class Bank {
                 }
                      else authorizationMessage = "Failed: Недостаточно средств, пополните карту";
             }
-            return authorizationMessage + "@" + authorizationCode;
+            return authorizationCode + "@" + authorizationMessage;
         }
 
 
@@ -142,7 +142,7 @@ public class Bank {
     }
 
     // Рассчитать комиссию за перевод на свою или чужую карту моего или другого банка
-    public float getCommission(SberPhysicalPersonProfile clientProfile, String fromCurrencyCode, float sum, SberVisaGold toCard) {
+    public float getCommission(SberPhysicalPersonProfile clientProfile, String fromCurrencyCode, float sum, Card toCard) {
         // запросить моя ли карта, на которую выполняем перевод
         boolean isMyCard = clientProfile.isClientCard(toCard);
         // запросить моего ли банка карта, на которую выполняем перевод
@@ -220,7 +220,7 @@ public class Bank {
     }
 
     // Проверить карта моего ли банка
-    public boolean isCardBank(SberVisaGold card) {
+    public boolean isCardBank(Card card) {
         if (card.getBank().getBankName().equals(getBankName())) return true;
         return false;
     }

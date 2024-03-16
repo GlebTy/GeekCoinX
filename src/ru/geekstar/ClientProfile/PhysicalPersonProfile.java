@@ -2,6 +2,7 @@ package ru.geekstar.ClientProfile;
 
 import ru.geekstar.Account.SberPayCardAccount;
 import ru.geekstar.Account.SberSavingsAccount;
+import ru.geekstar.Card.Card;
 import ru.geekstar.Card.SberVisaGold;
 import ru.geekstar.PhysicalPerson.PhysicalPerson;
 
@@ -11,7 +12,7 @@ public class PhysicalPersonProfile extends ClientProfile {
 
     private PhysicalPerson physicalPerson;
 
-    private SberVisaGold[] cards = new SberVisaGold[50];
+    private Card[] cards = new Card[50];
 
     private SberPayCardAccount[] payCardAccounts = new SberPayCardAccount[50];
 
@@ -32,11 +33,11 @@ public class PhysicalPersonProfile extends ClientProfile {
         this.physicalPerson = physicalPerson;
     }
 
-    public SberVisaGold[] getCards() {
+    public Card[] getCards() {
         return cards;
     }
 
-    public void setCards(SberVisaGold[] cards) {
+    public void setCards(Card[] cards) {
         this.cards = cards;
     }
 
@@ -92,12 +93,12 @@ public class PhysicalPersonProfile extends ClientProfile {
     }
 
     // Привязать карту к профилю клиента
-    public void addCard(SberVisaGold card) {
+    public void addCard(Card card) {
         cards[countCards++] = card;
     }
 
     // проверить привязана ли карта к профилю клиента
-    public boolean isClientCard(SberVisaGold card) {
+    public boolean isClientCard(Card card) {
         for (int idCard = 0; idCard < countCards; idCard++) {
             if (cards[idCard].equals(card)) return true;
         }
@@ -113,7 +114,7 @@ public class PhysicalPersonProfile extends ClientProfile {
     }
 
     // Прибавить сумму перевода на карту к общей сумме совершённых оплат и переводов в сутки, чтобы контролировать лимиты
-    public void updateTotalPaymentsTransfersDay(float sum, String fromCurrencyCode, SberVisaGold toCard) {
+    public void updateTotalPaymentsTransfersDay(float sum, String fromCurrencyCode, Card toCard) {
         // моя ли карта, на которую выполняем перевод
         boolean isMyCard = isClientCard(toCard);
         // если не моя карта, то обновляем общую сумму

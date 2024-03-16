@@ -14,7 +14,7 @@ public class SberVisaGold extends CardVisa {
     }
 
     @Override
-    public void transferCard2Card(SberVisaGold toCard, float sumTransfer) {
+    public void transferCard2Card(Card toCard, float sumTransfer) {
         // вызовем родительскую версию метода
         super.transferCard2Card(toCard, sumTransfer);
 

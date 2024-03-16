@@ -1,6 +1,7 @@
 package ru.geekstar.Transaction;
 
 import ru.geekstar.Account.SberSavingsAccount;
+import ru.geekstar.Card.Card;
 import ru.geekstar.Card.SberVisaGold;
 
 import java.time.LocalDateTime;
@@ -23,9 +24,9 @@ public class Transaction {
 
     private String statusOperation;
 
-    private SberVisaGold toCard;
+    private Card toCard;
 
-    private SberVisaGold fromCard;
+    private Card fromCard;
 
     private SberSavingsAccount toAccount;
 
@@ -96,19 +97,19 @@ public class Transaction {
         this.statusOperation = statusOperation;
     }
 
-    public SberVisaGold getToCard() {
+    public Card getToCard() {
         return toCard;
     }
 
-    public void setToCard(SberVisaGold toCard) {
+    public void setToCard(Card toCard) {
         this.toCard = toCard;
     }
 
-    public SberVisaGold getFromCard() {
+    public Card getFromCard() {
         return fromCard;
     }
 
-    public void setFromCard(SberVisaGold fromCard) {
+    public void setFromCard(Card fromCard) {
         this.fromCard = fromCard;
     }
 
@@ -142,7 +143,7 @@ public class Transaction {
         return sender;
     }
 
-    public String getNameCard(SberVisaGold card) {
+    public String getNameCard(Card card) {
         return card.getBank().getBankName() + "Карта " + card.getClass().getSimpleName() + " ⦁⦁" + card.getNumberCard().split(" ")[3];
     }
 
