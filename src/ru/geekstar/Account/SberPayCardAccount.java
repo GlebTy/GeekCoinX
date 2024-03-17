@@ -2,6 +2,7 @@ package ru.geekstar.Account;
 
 import ru.geekstar.Card.Card;
 import ru.geekstar.Card.SberVisaGold;
+import ru.geekstar.ClientProfile.SberPhysicalPersonProfile;
 
 public class SberPayCardAccount extends PayCardAccount {
 
@@ -12,7 +13,7 @@ public class SberPayCardAccount extends PayCardAccount {
 
         // и дополняем метод уникальным поведением
         // прибавим сумму перевода к общей сумме всех переводов клиентам Сбера без комиссии за месяц для контроля лимита
-        getAccountHolder().updateTotalTransfersToClientSberWithoutCommissionMonthInRUB(toCard, sumTransfer);
+        ((SberPhysicalPersonProfile)getAccountHolder()).updateTotalTransfersToClientSberWithoutCommissionMonthInRUB(toCard, sumTransfer);
     }
     @Override
     public void transferAccount2Account(SberSavingsAccount toAccount, float sumTransfer) {
@@ -21,6 +22,6 @@ public class SberPayCardAccount extends PayCardAccount {
 
         // и дополняем метод уникальным поведением
         // прибавим сумму перевода к общей сумме всех переводов клиентам Сбера без комиссии за месяц для контроля лимита
-        getAccountHolder().updateTotalTransfersToClientSberWithoutCommissionMonthInRUB(toAccount, sumTransfer);
+        ((SberPhysicalPersonProfile)getAccountHolder()).updateTotalTransfersToClientSberWithoutCommissionMonthInRUB(toAccount, sumTransfer);
     }
 }

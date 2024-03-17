@@ -3,6 +3,7 @@ package ru.geekstar.Bank;
 import ru.geekstar.Account.SberSavingsAccount;
 import ru.geekstar.Card.Card;
 import ru.geekstar.Card.SberVisaGold;
+import ru.geekstar.ClientProfile.PhysicalPersonProfile;
 import ru.geekstar.ClientProfile.SberPhysicalPersonProfile;
 
 public abstract class Bank {
@@ -136,13 +137,13 @@ public abstract class Bank {
     }
 
     // Рассчитать комиссию при оплате
-    public float getCommission(SberPhysicalPersonProfile cardHolder, float sumPay, String buyProductOrService) {
+    public float getCommission(PhysicalPersonProfile cardHolder, float sumPay, String buyProductOrService) {
         float commission = buyProductOrService.equalsIgnoreCase("ЖКХ") ? (sumPay/100) * cardHolder.getPercentOfCommissionForPayHousingCommunalServices() : 0;
         return commission;
     }
 
     // Рассчитать комиссию за перевод на свою или чужую карту моего или другого банка
-    public float getCommission(SberPhysicalPersonProfile clientProfile, String fromCurrencyCode, float sum, Card toCard) {
+    public float getCommission(PhysicalPersonProfile clientProfile, String fromCurrencyCode, float sum, Card toCard) {
         // запросить моя ли карта, на которую выполняем перевод
         boolean isMyCard = clientProfile.isClientCard(toCard);
         // запросить моего ли банка карта, на которую выполняем перевод
@@ -161,7 +162,7 @@ public abstract class Bank {
     }
 
     // Рассчитать комиссию за перевод на свою или чужую карту моего или другого банка
-    public float getCommission(SberPhysicalPersonProfile clientProfile, String fromCurrencyCode, float sum, SberSavingsAccount toAccount) {
+    public float getCommission(PhysicalPersonProfile clientProfile, String fromCurrencyCode, float sum, SberSavingsAccount toAccount) {
         // запросить мой ли счёт, на который выполняем перевод
         boolean isMyAccount = clientProfile.isClientAccount(toAccount);
         // запросить моего ли банка счёт, на который выполняем перевод
@@ -180,7 +181,7 @@ public abstract class Bank {
     }
 
     // Проверить превышен ли лимит на сумму комиссии? Если да, то ограничим сумму комиссии лимитом
-    private float exceededLimitCommission(SberPhysicalPersonProfile clientProfile, String fromCurrencyCode, float commission) {
+    private float exceededLimitCommission(PhysicalPersonProfile clientProfile, String fromCurrencyCode, float commission) {
         // если комиссия превышает лимит за перевод в рублях, то ограничим комиссию лимитом в рублях, то есть максимально возможной суммой комиссии установленной банком
         if (fromCurrencyCode.equals("RUB") && commission > clientProfile.getLimitCommissionTransferInRUB()) commission = clientProfile.getLimitCommissionTransferInRUB();
         // иначе если комиссия превышает лимит за перевод в $, то ограничим комиссию лимитом в $
@@ -202,12 +203,12 @@ public abstract class Bank {
     }
 
     // Рассчитать комиссию за перевод клиенту моего банка. Переопределим метод в дочерних классах конкретных банков
-    public float getCommissionOfTransferToClientBank(SberPhysicalPersonProfile clientProfile, float sum, String fromCurrencyCode) {
+    public float getCommissionOfTransferToClientBank(PhysicalPersonProfile clientProfile, float sum, String fromCurrencyCode) {
         return 0;
     }
 
     // Рассчитать комиссию за перевод клиенту другого банка
-    private float getCommissionOfTransferToClientAnotherBank(SberPhysicalPersonProfile clientProfile, float sum, String fromCurrencyCode) {
+    private float getCommissionOfTransferToClientAnotherBank(PhysicalPersonProfile clientProfile, float sum, String fromCurrencyCode) {
         // можно не инициализировать, так как в любом случае будет результат благодаря ветке else
         float commission;
         // рассчитаем комиссию за перевод в рублях

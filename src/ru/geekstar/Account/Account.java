@@ -3,6 +3,7 @@ package ru.geekstar.Account;
 import ru.geekstar.Bank.Sberbank;
 import ru.geekstar.Card.Card;
 import ru.geekstar.Card.SberVisaGold;
+import ru.geekstar.ClientProfile.PhysicalPersonProfile;
 import ru.geekstar.ClientProfile.SberPhysicalPersonProfile;
 import ru.geekstar.Transaction.DepositingTransaction;
 import ru.geekstar.Transaction.TransferTransaction;
@@ -14,7 +15,7 @@ public abstract class Account {
 
     private Sberbank bank;
 
-    private SberPhysicalPersonProfile accountHolder;
+    private PhysicalPersonProfile accountHolder;
 
     private String numberAccount;
 
@@ -41,11 +42,11 @@ public abstract class Account {
         this.bank = bank;
     }
 
-    public SberPhysicalPersonProfile getAccountHolder() {
+    public PhysicalPersonProfile getAccountHolder() {
         return accountHolder;
     }
 
-    public void setAccountHolder(SberPhysicalPersonProfile accountHolder) {
+    public void setAccountHolder(PhysicalPersonProfile accountHolder) {
         this.accountHolder = accountHolder;
     }
 
@@ -331,7 +332,7 @@ public abstract class Account {
     // Вывести транзакции по счёту
     public void displayAccountTransactions() {
         // сформировать общий массив транзакций перевода и пополнения в человекочитаемом формате
-        String[] allTransferDepositingTransactions = getAllTransferDepositingTransactions();
+        String[] allTransferDepositingTransactions = getAllAccountTransactions();
 
         // отсортировать транзакции по дате
         Arrays.sort(allTransferDepositingTransactions);
@@ -343,7 +344,7 @@ public abstract class Account {
 
     }
 
-    public String[] getAllTransferDepositingTransactions() {
+    public String[] getAllAccountTransactions() {
         // объявить массив транзакций перевода и пополнения по счёту длиной равной общему количеству транзакций
         String[] allTransferDepositingTransactions = new String[countTransferTransactions + countDepositingTransactions];
 
