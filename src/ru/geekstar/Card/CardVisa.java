@@ -1,6 +1,6 @@
 package ru.geekstar.Card;
 
-public class CardVisa extends Card {
+public abstract class CardVisa extends Card {
 
     private String currencyCodePaySystemUSD = "USD";
 

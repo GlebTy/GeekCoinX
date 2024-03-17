@@ -6,7 +6,7 @@ import ru.geekstar.Card.SberVisaGold;
 
 import java.time.LocalDateTime;
 
-public class Transaction {
+public abstract class Transaction {
 
     private LocalDateTime localDateTime;
 
@@ -152,7 +152,5 @@ public class Transaction {
     }
 
     // Вывести транзакции в строковом человекочитаемом формате
-    public String getStringTransaction() {
-        return null;
-    }
+    public abstract String getStringTransaction();
 }

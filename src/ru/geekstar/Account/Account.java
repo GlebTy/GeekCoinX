@@ -10,7 +10,7 @@ import ru.geekstar.Transaction.TransferTransaction;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
-public class Account {
+public abstract class Account {
 
     private Sberbank bank;
 

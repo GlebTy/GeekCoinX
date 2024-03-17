@@ -10,7 +10,7 @@ import ru.geekstar.Transaction.TransferTransaction;
 
 import java.time.LocalDateTime;
 
-public class Card {
+public abstract class Card {
 
     private Sberbank bank;
 
@@ -156,15 +156,11 @@ public class Card {
 
     // Конвертировать в валюту по курсу платёжной системы
     // Переопределим в дочерних классах, потому что у платёжных систем разные алгоритмы конвертации
-    public float convertToCurrencyExchangeRatePaySystem(float sum, String fromCurrencyCode, String toBillingCurrencyCode) {
-        return 0;
-    }
+    public abstract float convertToCurrencyExchangeRatePaySystem(float sum, String fromCurrencyCode, String toBillingCurrencyCode);
 
     // Запросить код валюты платёжной системы
     // Переопределим в дочерних классах, потому что нет общего алгоритма, так как у платёжных систем разные валюты
-    public String getCurrencyCodePaySystem(String country) {
-        return null;
-    }
+    public abstract String getCurrencyCodePaySystem(String country);
 
     // Перевести с карты на карту
     public void transferCard2Card(Card toCard, float sumTransfer) {

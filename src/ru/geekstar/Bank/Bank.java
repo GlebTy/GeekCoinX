@@ -5,7 +5,7 @@ import ru.geekstar.Card.Card;
 import ru.geekstar.Card.SberVisaGold;
 import ru.geekstar.ClientProfile.SberPhysicalPersonProfile;
 
-public class Bank {
+public abstract class Bank {
 
     private String bankName;
 
