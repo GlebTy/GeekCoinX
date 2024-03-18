@@ -1,5 +1,7 @@
 package ru.geekstar.Card;
 
+import ru.geekstar.Card.IPaySystem.IMastercard;
+
 public abstract class CardMastercard extends Card implements IMastercard {
 
 

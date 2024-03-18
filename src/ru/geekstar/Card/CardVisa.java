@@ -1,5 +1,7 @@
 package ru.geekstar.Card;
 
+import ru.geekstar.Card.IPaySystem.IVisa;
+
 public abstract class CardVisa extends Card implements IVisa {
 
 

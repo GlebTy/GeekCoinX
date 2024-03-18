@@ -1,4 +1,4 @@
-package ru.geekstar.Card;
+package ru.geekstar.Card.IPaySystem;
 
 public interface IVisa extends IPaySystem {
 
