@@ -1,8 +1,7 @@
 package ru.geekstar.Card;
 
-public abstract class CardVisa extends Card {
+public abstract class CardVisa extends Card implements IVisa {
 
-    private String currencyCodePaySystemUSD = "USD";
 
     @Override
     // Запросить код валюты платёжной системы
