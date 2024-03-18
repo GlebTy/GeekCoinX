@@ -5,7 +5,7 @@ import ru.geekstar.Card.Card;
 import ru.geekstar.ClientProfile.PhysicalPersonProfile;
 import ru.geekstar.PhysicalPerson.PhysicalPerson;
 
-public interface IServicePhysicalPerson {
+public interface IBankServicePhysicalPerson {
 
     PhysicalPersonProfile registerPhysicalPersonProfile (PhysicalPerson physicalPerson);
 
