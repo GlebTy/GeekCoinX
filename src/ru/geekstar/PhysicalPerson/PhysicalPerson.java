@@ -3,7 +3,10 @@ package ru.geekstar.PhysicalPerson;
 import ru.geekstar.Account.Account;
 import ru.geekstar.Account.SberSavingsAccount;
 import ru.geekstar.Bank.IBankServicePhysicalPerson;
+import ru.geekstar.Bank.Sberbank;
 import ru.geekstar.Card.Card;
+import ru.geekstar.Card.IMulticurrencyCard;
+import ru.geekstar.Card.SberMastercardTravel;
 import ru.geekstar.Card.SberVisaGold;
 import ru.geekstar.ClientProfile.PhysicalPersonProfile;
 
@@ -138,5 +141,13 @@ public class PhysicalPerson {
 
     public void displayProfileTransactions() {
         physicalPersonProfile.displayProfileTransactions();
+    }
+
+    public void addAccountToMulticurrencyCard(IBankServicePhysicalPerson bank, IMulticurrencyCard multicurrencyCard, String currencyCodeAccount) {
+        multicurrencyCard.addAccount(bank, physicalPersonProfile, currencyCodeAccount);
+    }
+
+    public void switchAccountOfMulticurrencyCard(IMulticurrencyCard multicurrencyCard, String currencyCodeAccount) {
+        multicurrencyCard.switchAccount(currencyCodeAccount);
     }
 }

@@ -38,14 +38,20 @@ public class Main {
         SberMastercardGold sberMastercardGold = (SberMastercardGold) I.openCard(sberbank, new SberMastercardGold(), "RUB", "9672");
         SberMastercardTravel sberMastercardtravel = (SberMastercardTravel) I.openCard(sberbank, new SberMastercardTravel(), "RUB", "7621");
 
+        I.addAccountToMulticurrencyCard(sberbank,sberMastercardtravel, "USD");
+        I.switchAccountOfMulticurrencyCard(sberMastercardtravel, "USD");
+
         SberSavingsAccount mySberSavingsAccount1 = (SberSavingsAccount) I.openAccount(sberbank, new SberSavingsAccount(), "RUB");
         SberSavingsAccount mySberSavingsAccount2 = (SberSavingsAccount) I.openAccount(sberbank, new SberSavingsAccount(), "RUB");
 
         SberVisaGold friendSberVisaGold1 = (SberVisaGold) friend.openCard(sberbank, new SberVisaGold(), "RUB", "9078");
 
+
+        I.depositingCash2Card(sberMastercardtravel, 10000.00f);
         I.depositingCash2Card(mySberVisaGold1, 7600.50f);
         I.depositingCash2Card(sberMastercardGold, 2000.00f);
 
+        I.payByCard(sberMastercardtravel, 3700.00f, "Bike", "Турция","7621");
         I.payByCard(mySberVisaGold1, 100.50f, "ЖКХ", "2864");
         I.payByCard(sberMastercardGold, 700.00f,"Пятерочка", "9672");
         I.payByCard(mySberVisaGold1, 110.00f, "Excursion", "Турция", "2864");

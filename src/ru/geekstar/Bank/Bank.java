@@ -101,7 +101,7 @@ public abstract class Bank {
         String authorizationStatus = authorizationMessage.substring(0,authorizationMessage.indexOf(":"));
 
         if (authorizationStatus.equalsIgnoreCase("Success")) {
-            //тип операции может быть либо покупка, либо перевод, так как авторизацию при пополнении мы уже вынесли в метод authorizatipnStatusCard()
+            //тип операции может быть либо покупка, либо перевод, так как авторизацию при пополнении мы уже вынесли в метод authorizationStatusCard()
 
             //если тип операции покупка и набранный пин-код не соответствует пин-коду карты, то авторизация завершается с ошибкой и операция не выполняется
             if(typeOperation.contains("покупка") && !pinCode.equals(card.getPinCode())) {return authorizationCode + "@" + "Failed : неверный пин-код";}
