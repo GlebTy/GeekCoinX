@@ -140,8 +140,8 @@ public class PhysicalPerson {
         physicalPersonProfile.displayProfileTransactions();
     }
 
-    public void addAccountToMulticurrencyCard(IBankServicePhysicalPerson bank, IMulticurrencyCard multicurrencyCard, String currencyCodeAccount) {
-        multicurrencyCard.addAccount(bank, physicalPersonProfile, currencyCodeAccount);
+    public void addAccountToMulticurrencyCard(IMulticurrencyCard multicurrencyCard, String currencyCodeAccount) {
+        multicurrencyCard.addAccount(currencyCodeAccount);
     }
 
     public void switchAccountOfMulticurrencyCard(IMulticurrencyCard multicurrencyCard, String currencyCodeAccount) {

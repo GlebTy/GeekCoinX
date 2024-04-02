@@ -12,7 +12,7 @@ public interface IMulticurrencyCard {
 
     void setMulticurrencyAccounts(ArrayList<PayCardAccount> multicurrencyAccounts);
 
-    void addAccount(IBankServicePhysicalPerson bank, PhysicalPersonProfile physicalPersonProfile, String currencyCodeAccount);
+    void addAccount(String currencyCodeAccount);
 
     void switchAccount(String currencyCodeAccount);
 
