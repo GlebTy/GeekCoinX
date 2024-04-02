@@ -129,7 +129,7 @@ public abstract class Card implements IPaySystem {
         payTransaction.setBalance(getPayCardAccount().getBalance());
 
         // добавить и привязать транзакцию оплаты к счёту карты
-        payCardAccount.addPayTransaction(payTransaction);
+        payCardAccount.getPayTransactions().add(payTransaction);
     }
 
     // Оплатить картой за рубежом

@@ -17,6 +17,8 @@ public class Sberbank extends Bank implements IBankServicePhysicalPerson {
         sberPhysicalPersonProfile.setBank(this);
         sberPhysicalPersonProfile.setPhysicalPerson(physicalPerson);
 
+        sberPhysicalPersonProfile.setPercentBonusOfSumpay(0.5f);
+
         // установить лимиты
         sberPhysicalPersonProfile.setLimitPaymentsTransfersDayInRUB(1000000.00f);
         sberPhysicalPersonProfile.setLimitPaymentsTransfersDayInUSD(50000.00f);
@@ -50,7 +52,7 @@ public class Sberbank extends Bank implements IBankServicePhysicalPerson {
         SberPayCardAccount payCardAccount = (SberPayCardAccount) openAccount(physicalPersonProfile, new SberPayCardAccount(), currencyCode);
 
         // привязать карту к платёжному счёту
-        payCardAccount.addCard(card);
+        payCardAccount.getCards().add(card); //addCard(card);
 
         // привязать платёжный счёт к карте
         card.setPayCardAccount(payCardAccount);

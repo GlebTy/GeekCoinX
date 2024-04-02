@@ -5,11 +5,29 @@ import ru.geekstar.Card.Card;
 import ru.geekstar.Card.SberVisaGold;
 
 public class SberPhysicalPersonProfile extends PhysicalPersonProfile {
+    private int bonuses;
+
+    private float percentBonusOfSumpay;
 
     private float limitTransfersToClientSberWithoutCommissionMonthInRUB;
 
     private float totalTransfersToClientSberWithoutCommissionMonthInRUB;
 
+    public float getPercentBonusOfSumpay() {
+        return percentBonusOfSumpay;
+    }
+
+    public int getBonuses() {
+        return bonuses;
+    }
+
+    public void setBonuses(int bonuses) {
+        this.bonuses = bonuses;
+    }
+
+    public void setPercentBonusOfSumpay(float percentBonusOfSumpay) {
+        this.percentBonusOfSumpay = percentBonusOfSumpay;
+    }
 
     public float getLimitTransfersToClientSberWithoutCommissionMonthInRUB() {
         return limitTransfersToClientSberWithoutCommissionMonthInRUB;
@@ -76,6 +94,8 @@ public class SberPhysicalPersonProfile extends PhysicalPersonProfile {
                 " без комиссии за текущий месяц: " + getTotalTransfersToClientSberWithoutCommissionMonthInRUB() + "₽ Доступный лимит: " +
                 (getLimitTransfersToClientSberWithoutCommissionMonthInRUB() - getTotalTransfersToClientSberWithoutCommissionMonthInRUB()) + "₽ из " +
                 getLimitTransfersToClientSberWithoutCommissionMonthInRUB() + "₽");
+
+        System.out.println(getBank().getBankName() + "Бонусов: " + getBonuses());
 
         // и вызываем родительскую версию метода
         super.displayProfileTransactions();

@@ -1,5 +1,7 @@
 package ru.geekstar.Transaction;
 
+import ru.geekstar.Card.Card;
+
 public class PayTransaction extends Transaction {
 
     private String buyProductOrService;

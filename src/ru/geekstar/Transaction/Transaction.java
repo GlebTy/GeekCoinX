@@ -1,5 +1,6 @@
 package ru.geekstar.Transaction;
 
+import ru.geekstar.Account.Account;
 import ru.geekstar.Account.SberSavingsAccount;
 import ru.geekstar.Card.Card;
 import ru.geekstar.Card.SberVisaGold;
@@ -28,9 +29,9 @@ public abstract class Transaction {
 
     private Card fromCard;
 
-    private SberSavingsAccount toAccount;
+    private Account toAccount;
 
-    private SberSavingsAccount fromAccount;
+    private Account fromAccount;
 
 
     public LocalDateTime getLocalDateTime() {
@@ -113,7 +114,7 @@ public abstract class Transaction {
         this.fromCard = fromCard;
     }
 
-    public SberSavingsAccount getToAccount() {
+    public Account getToAccount() {
         return toAccount;
     }
 
@@ -121,11 +122,11 @@ public abstract class Transaction {
         this.toAccount = toAccount;
     }
 
-    public SberSavingsAccount getFromAccount() {
+    public Account getFromAccount() {
         return fromAccount;
     }
 
-    public void setFromAccount(SberSavingsAccount fromAccount) {
+    public void setFromAccount(Account fromAccount) {
         this.fromAccount = fromAccount;
     }
 
@@ -147,7 +148,7 @@ public abstract class Transaction {
         return card.getBank().getBankName() + "Карта " + card.getClass().getSimpleName() + " ⦁⦁" + card.getNumberCard().split(" ")[3];
     }
 
-    public String getNameAccount(SberSavingsAccount account) {
+    public String getNameAccount(Account account) {
         return account.getBank().getBankName() + "Счёт ⦁⦁" + account.getNumberAccount().substring(16);
     }
 
