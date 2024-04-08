@@ -149,7 +149,7 @@ public abstract class Transaction {
     }
 
     public String getNameAccount(Account account) {
-        return account.getBank().getBankName() + "Счёт ⦁⦁" + account.getNumberAccount().substring(16);
+        return account.getBank().getBankName() + "Счёт ⦁⦁" + account.getNumberAccount().substring(19);
     }
 
     // Вывести транзакции в строковом человекочитаемом формате

@@ -62,7 +62,7 @@ public abstract class Bank {
         StringBuffer numberAccountBuffer = new StringBuffer();
         for (byte i = 1; i < lengthNumberAccount; i++) {
             if(i == 6 || i == 10 || i == 12 || i == 17) numberAccountBuffer.append(" ");
-            numberAccountBuffer.append((byte) (Math.random() * 10));
+            else numberAccountBuffer.append((byte) (Math.random() * 10));
         }
         return numberAccountBuffer.toString();
     }

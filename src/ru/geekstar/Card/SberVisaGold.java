@@ -41,6 +41,9 @@ public class SberVisaGold extends CardVisa implements IBonusCard {
             // 1 вариант - передали бонусов bonusesPay > чем 99% от суммы покупки sumPay
             // поэтому раситаем максимально возможную сумму равную 99% от стоимости покупки, которую можно оплатить бонусами
             int sumPay99 = (int) ((sumPay / 100) * 99);
+            // если вдруг мы передали больше бонусов, которыми хотим оплатить покупку, то есть их > масимально возможной суммы 99% от стоимости покупки,
+            // то кол-во бонусов, которыми мы хотим оплатить покупку делаем равной максимально возможной сумме 99% от стоимости покупки
+            if(bonusesPay > sumPay99) bonusesPay = sumPay99;
 
             // Этим условием мы автоматически решаем 2-й и 3-й варинты, потомучто иначе либо бонусы bonusesPay == 99% либо < 99%
             // и в обоих случаях мы просто списываем bonusesPay
@@ -51,14 +54,15 @@ public class SberVisaGold extends CardVisa implements IBonusCard {
             sumPay -= bonusesPay;
             payBonusTransaction.setStatusOperation("Оплата бонусами прошло успешно");
         }
-        else payBonusTransaction.setStatusOperation("Недостаточно болнусов");
+        else payBonusTransaction.setStatusOperation("Недостаточно бонусов");
 
         // вносим данные в транзакцию
         payBonusTransaction.setPayBonuses(bonusesPay);
         payBonusTransaction.setBalanceBonuses(balanceBonuses);
         this.getPayCardAccount().getPayTransactions().add(payBonusTransaction);
+
         // остаток оплачиваем картой
-        payByCard(sumPay, buyProductOrService, pinCode);
+         payByCard(sumPay, buyProductOrService, pinCode);
 
 
     }
