@@ -24,4 +24,14 @@ public class PayBonusTransaction extends PayTransaction {
         this.balanceBonuses = balanceBonuses;
     }
 
+    @Override
+    public String getStringTransaction() {
+        String consumer = getNameCard(getFromCard());
+
+        String transaction = getLocalDateTime() + " " + consumer + " " + getTypeOperation() + " " + getBuyProductOrService() + ": " + payBonuses +
+                " бонусов Статус: " + getStatusOperation() + " Доступно бонусов: " + balanceBonuses;
+
+        return transaction;
+
+    }
 }

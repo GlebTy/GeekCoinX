@@ -55,8 +55,8 @@ public class Main {
         I.payByCard(mySberVisaGold1, 100.50f, "ЖКХ", "2864");
         I.payByCard(sberMastercardGold, 700.00f,"Пятерочка", "9672");
         I.payByCard(mySberVisaGold1, 110.00f, "Excursion", "Турция", "2864");
-        I.payByCard(sberMastercardGold, 100.00f, "Attraction", "Турция","9672");
-        I.payByCardBonuses(mySberVisaGold1, 150.00f, 10, "Starbucks", "4156");
+        I.payByCard(sberMastercardGold, 200.00f, "Attraction", "Турция","9672");
+        I.payByCardBonuses(mySberVisaGold1, 150.00f, 1, "Starbucks", "2864");
 
         I.transferCard2Card(mySberVisaGold1, mySberVisaGold2, 250.00f);
         I.transferCard2Card(mySberVisaGold1, friendSberVisaGold1, 55.00f);
