@@ -3,6 +3,8 @@ package ru.geekstar;
 import ru.geekstar.Account.SberSavingsAccount;
 import ru.geekstar.Bank.Sberbank;
 import ru.geekstar.Card.CardMastercard;
+import ru.geekstar.Card.SberMastercardGold;
+import ru.geekstar.Card.SberMastercardTravel;
 import ru.geekstar.Card.SberVisaGold;
 import ru.geekstar.PhysicalPerson.PhysicalPerson;
 
@@ -27,38 +29,60 @@ public class Main {
         Sberbank sberbank = new Sberbank();
         sberbank.setBankName("Сбер");
 
-        I.registerToBank(sberbank);
-        friend.registerToBank(sberbank);
+        I.registerPhysicalPersonToBank(sberbank);
+        friend.registerPhysicalPersonToBank(sberbank);
 
-        SberVisaGold mySberVisaGold1 = I.openCard(sberbank, new SberVisaGold(), "RUB", "2864");
-        SberVisaGold mySberVisaGold2 = I.openCard(sberbank, new SberVisaGold(), "RUB", "1234");
+        SberVisaGold mySberVisaGold1 = (SberVisaGold) I.openCard(sberbank, new SberVisaGold(), "RUB", "2864");
+        SberVisaGold mySberVisaGold2 = (SberVisaGold) I.openCard(sberbank, new SberVisaGold(), "RUB", "1234");
 
-        SberSavingsAccount mySberSavingsAccount1 = I.openAccount(sberbank, new SberSavingsAccount(), "RUB");
-        SberSavingsAccount mySberSavingsAccount2 = I.openAccount(sberbank, new SberSavingsAccount(), "RUB");
+        SberMastercardGold sberMastercardGold = (SberMastercardGold) I.openCard(sberbank, new SberMastercardGold(), "RUB", "9672");
+        SberMastercardTravel sberMastercardtravel = (SberMastercardTravel) I.openCard(sberbank, new SberMastercardTravel(), "RUB", "7621");
 
-        SberVisaGold friendSberVisaGold1 = friend.openCard(sberbank, new SberVisaGold(), "RUB", "9078");
+        I.addAccountToMulticurrencyCard(sberMastercardtravel, "USD");
+        I.switchAccountOfMulticurrencyCard(sberMastercardtravel, "USD");
 
+        SberSavingsAccount mySberSavingsAccount1 = (SberSavingsAccount) I.openAccount(sberbank, new SberSavingsAccount(), "RUB");
+        SberSavingsAccount mySberSavingsAccount2 = (SberSavingsAccount) I.openAccount(sberbank, new SberSavingsAccount(), "RUB");
+
+        SberVisaGold friendSberVisaGold1 = (SberVisaGold) friend.openCard(sberbank, new SberVisaGold(), "RUB", "9078");
+
+
+        I.depositingCash2Card(sberMastercardtravel, 10000.00f);
         I.depositingCash2Card(mySberVisaGold1, 7600.50f);
+        I.depositingCash2Card(sberMastercardGold, 2000.00f);
 
+        I.payByCard(sberMastercardtravel, 3700.00f, "Bike", "Турция","7621");
         I.payByCard(mySberVisaGold1, 100.50f, "ЖКХ", "2864");
+        I.payByCard(sberMastercardGold, 700.00f,"Пятерочка", "9672");
         I.payByCard(mySberVisaGold1, 110.00f, "Excursion", "Турция", "2864");
+        I.payByCard(sberMastercardGold, 100.00f, "Attraction", "Турция","9672");
+        I.payByCardBonuses(mySberVisaGold1, 150.00f, 10, "Starbucks", "4156");
 
         I.transferCard2Card(mySberVisaGold1, mySberVisaGold2, 250.00f);
         I.transferCard2Card(mySberVisaGold1, friendSberVisaGold1, 55.00f);
+        I.transferCard2Card(sberMastercardGold, mySberVisaGold1, 100.00f);
+        I.transferCard2Card(mySberVisaGold1, sberMastercardGold, 50.00f);
 
         I.transferCard2Account(mySberVisaGold1, mySberSavingsAccount1, 95.00f);
+        I.transferCard2Account(sberMastercardGold, mySberSavingsAccount1, 70.00f);
+
 
         I.transferAccount2Card(mySberSavingsAccount1, mySberVisaGold1, 15.00f);
+        I.transferAccount2Card(mySberSavingsAccount1, sberMastercardGold, 33.00f);
         I.transferAccount2Account(mySberSavingsAccount1, mySberSavingsAccount2, 30.00f);
 
         I.depositingCardFromCard(mySberVisaGold1, mySberVisaGold2, 145.00f);
+        I.depositingCardFromCard(sberMastercardGold, mySberVisaGold1, 80.00f);
+        I.depositingCardFromAccount(sberMastercardGold, mySberSavingsAccount1, 111.00f);
         I.depositingCardFromAccount(mySberVisaGold1, mySberSavingsAccount1, 75.00f);
 
         I.depositingAccountFromCard(mySberSavingsAccount1, mySberVisaGold1, 350.00f);
+        I.depositingAccountFromCard(mySberSavingsAccount1, sberMastercardGold, 390.00f);
         I.depositingAccountFromAccount(mySberSavingsAccount1, mySberSavingsAccount2, 50.00f);
+
 /*
-        System.out.println("Вывод операций по карте " + mySberVisaGold1.getNumberCard());
-        I.displayCardTransactions(mySberVisaGold1);
+        System.out.println("Вывод операций по карте " + sberMastercardGold.getNumberCard());
+        I.displayCardTransactions(sberMastercardGold);
 
         System.out.println("\nВывод операций по карте друга " + friendSberVisaGold1.getNumberCard());
         I.displayCardTransactions(friendSberVisaGold1);

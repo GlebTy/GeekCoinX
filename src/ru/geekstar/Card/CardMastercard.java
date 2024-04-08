@@ -1,10 +1,8 @@
 package ru.geekstar.Card;
 
-public class CardMastercard extends Card {
+import ru.geekstar.Card.IPaySystem.IMastercard;
 
-    private String currencyCodePaySystemUSD = "USD";
-
-    private String currencyCodePaySystemEurozone = "EUR";
+public abstract class CardMastercard extends Card implements IMastercard {
 
 
     @Override

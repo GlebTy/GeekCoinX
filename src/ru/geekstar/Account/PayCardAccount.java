@@ -1,15 +1,17 @@
 package ru.geekstar.Account;
 
+import ru.geekstar.Card.Card;
 import ru.geekstar.Card.SberVisaGold;
 import ru.geekstar.Transaction.PayTransaction;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
-public class PayCardAccount extends Account {
+public abstract class PayCardAccount extends Account {
 
-    private SberVisaGold[] cards = new SberVisaGold[50];
+    private ArrayList<Card> cards = new ArrayList<>();
 
-    private PayTransaction[] payTransactions = new PayTransaction[50];
+    private ArrayList<PayTransaction> payTransactions = new ArrayList<>();
 
     private float blockedSum;
 
@@ -17,20 +19,19 @@ public class PayCardAccount extends Account {
 
     private int countPayTransactions;
 
-
-    public SberVisaGold[] getCards() {
+    public ArrayList<Card> getCards() {
         return cards;
     }
 
-    public void setCards(SberVisaGold[] cards) {
+    public void setCards(ArrayList<Card> cards) {
         this.cards = cards;
     }
 
-    public PayTransaction[] getPayTransactions() {
+    public ArrayList<PayTransaction> getPayTransactions() {
         return payTransactions;
     }
 
-    public void setPayTransactions(PayTransaction[] payTransactions) {
+    public void setPayTransactions(ArrayList<PayTransaction> payTransactions) {
         this.payTransactions = payTransactions;
     }
 
@@ -58,10 +59,6 @@ public class PayCardAccount extends Account {
         this.countPayTransactions = countPayTransactions;
     }
 
-    // Привязать карту к платёжному счёту
-    public void addCard(SberVisaGold card) {
-        cards[countCards++] = card;
-    }
 
     // Блокировать сумму на счёте карты
     public boolean blockSum(float sum) {
@@ -78,16 +75,12 @@ public class PayCardAccount extends Account {
         return true;
     }
 
-    // Добавить транзакцию об оплате
-    public void addPayTransaction(PayTransaction payTransaction) {
-        payTransactions[countPayTransactions++] = payTransaction;
-    }
 
     @Override
     // Вывести транзакции по счёту
     public void displayAccountTransactions() {
         // сформировать общий массив транзакций по платёжному счёту в человекочитаемом формате
-        String[] allPayCardAccountTransactions = getAllPayCardAccountTransactions();
+        String[] allPayCardAccountTransactions = getAllAccountTransactions();
 
         // отсортировать транзакции по дате
         Arrays.sort(allPayCardAccountTransactions);
@@ -99,9 +92,9 @@ public class PayCardAccount extends Account {
 
     }
 
-    public String[] getAllPayCardAccountTransactions() {
+    public String[] getAllAccountTransactions() {
         // сформировать общий массив транзакций перевода и пополнения в человекочитаемом формате
-        String[] allTransferDepositingTransactions = getAllTransferDepositingTransactions();
+        String[] allTransferDepositingTransactions = super.getAllAccountTransactions();
         // сформировать массив транзакций оплаты в человекочитаемом формате
         String[] allPayTransactions = getAllPayTransactions();
 
@@ -120,12 +113,12 @@ public class PayCardAccount extends Account {
 
     private String[] getAllPayTransactions() {
         // объявить массив транзакций оплаты по платёжному счёту длиной равной количеству транзакций
-        String[] allPayTransactions = new String[countPayTransactions];
+        String[] allPayTransactions = new String[payTransactions.size()];
 
         int countAllPayTransactions = 0;
         // перебираем транзакции оплаты и добавляем их в массив в человекочитаемом формате
-        for (int idTransaction = 0; idTransaction < countPayTransactions; idTransaction++) {
-            allPayTransactions[countAllPayTransactions++] = payTransactions[idTransaction].getStringTransaction();
+        for (int idTransaction = 0; idTransaction < payTransactions.size(); idTransaction++) {
+            allPayTransactions[countAllPayTransactions++] = payTransactions.get(idTransaction).getStringTransaction();
         }
 
         return allPayTransactions;

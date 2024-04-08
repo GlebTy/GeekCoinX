@@ -1,14 +1,33 @@
 package ru.geekstar.ClientProfile;
 
 import ru.geekstar.Account.SberSavingsAccount;
+import ru.geekstar.Card.Card;
 import ru.geekstar.Card.SberVisaGold;
 
 public class SberPhysicalPersonProfile extends PhysicalPersonProfile {
+    private int bonuses;
+
+    private float percentBonusOfSumpay;
 
     private float limitTransfersToClientSberWithoutCommissionMonthInRUB;
 
     private float totalTransfersToClientSberWithoutCommissionMonthInRUB;
 
+    public float getPercentBonusOfSumpay() {
+        return percentBonusOfSumpay;
+    }
+
+    public int getBonuses() {
+        return bonuses;
+    }
+
+    public void setBonuses(int bonuses) {
+        this.bonuses = bonuses;
+    }
+
+    public void setPercentBonusOfSumpay(float percentBonusOfSumpay) {
+        this.percentBonusOfSumpay = percentBonusOfSumpay;
+    }
 
     public float getLimitTransfersToClientSberWithoutCommissionMonthInRUB() {
         return limitTransfersToClientSberWithoutCommissionMonthInRUB;
@@ -39,7 +58,7 @@ public class SberPhysicalPersonProfile extends PhysicalPersonProfile {
     }
 
     // Прибавить сумму перевода на карту к общей сумме всех переводов на карты клиентам Сбера без комиссии за месяц, чтобы контролировать лимит
-    public void updateTotalTransfersToClientSberWithoutCommissionMonthInRUB(SberVisaGold toCard, float sumTransfer) {
+    public void updateTotalTransfersToClientSberWithoutCommissionMonthInRUB(Card toCard, float sumTransfer) {
         boolean isMyCard = isClientCard(toCard);
         boolean isCardMyBank = getBank().isCardBank(toCard);
         // если карта не моя, но моего банка, то есть клиент Сбера, то суммируем
@@ -75,6 +94,8 @@ public class SberPhysicalPersonProfile extends PhysicalPersonProfile {
                 " без комиссии за текущий месяц: " + getTotalTransfersToClientSberWithoutCommissionMonthInRUB() + "₽ Доступный лимит: " +
                 (getLimitTransfersToClientSberWithoutCommissionMonthInRUB() - getTotalTransfersToClientSberWithoutCommissionMonthInRUB()) + "₽ из " +
                 getLimitTransfersToClientSberWithoutCommissionMonthInRUB() + "₽");
+
+        System.out.println(getBank().getBankName() + "Бонусов: " + getBonuses());
 
         // и вызываем родительскую версию метода
         super.displayProfileTransactions();
