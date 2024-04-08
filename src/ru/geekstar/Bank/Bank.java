@@ -203,9 +203,7 @@ public abstract class Bank {
     }
 
     // Рассчитать комиссию за перевод клиенту моего банка. Переопределим метод в дочерних классах конкретных банков
-    public float getCommissionOfTransferToClientBank(PhysicalPersonProfile clientProfile, float sum, String fromCurrencyCode) {
-        return 0;
-    }
+    public abstract float getCommissionOfTransferToClientBank(PhysicalPersonProfile clientProfile, float sum, String fromCurrencyCode);
 
     // Рассчитать комиссию за перевод клиенту другого банка
     private float getCommissionOfTransferToClientAnotherBank(PhysicalPersonProfile clientProfile, float sum, String fromCurrencyCode) {
@@ -249,9 +247,7 @@ public abstract class Bank {
     }
 
     // Предоставить обменный курс валют банка. Переопределим в каждом банке, потому что у каждого банка свой курс
-    public float getExchangeRateBank(String currency, String currencyExchangeRate) {
-        return 0;
-    }
+    public abstract float getExchangeRateBank(String currency, String currencyExchangeRate);
 
     public float round(float sum) {
         return Math.round(sum * 100) / 100;
