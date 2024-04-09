@@ -16,7 +16,7 @@ public class SberPayCardAccount extends PayCardAccount {
         ((SberPhysicalPersonProfile)getAccountHolder()).updateTotalTransfersToClientSberWithoutCommissionMonthInRUB(toCard, sumTransfer);
     }
     @Override
-    public void transferAccount2Account(SberSavingsAccount toAccount, float sumTransfer) {
+    public void transferAccount2Account(Account toAccount, float sumTransfer) {
         // вызываем родительскую версию метода
         super.transferAccount2Account(toAccount, sumTransfer);
 

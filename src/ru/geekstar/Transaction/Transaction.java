@@ -118,7 +118,7 @@ public abstract class Transaction {
         return toAccount;
     }
 
-    public void setToAccount(SberSavingsAccount toAccount) {
+    public void setToAccount(Account toAccount) {
         this.toAccount = toAccount;
     }
 

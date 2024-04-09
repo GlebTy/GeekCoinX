@@ -1,5 +1,6 @@
 package ru.geekstar.Card;
 
+import ru.geekstar.Account.Account;
 import ru.geekstar.Account.PayCardAccount;
 import ru.geekstar.Account.SberPayCardAccount;
 import ru.geekstar.Account.SberSavingsAccount;
@@ -237,7 +238,7 @@ public abstract class Card implements IPaySystem {
     }
 
     // Перевести с карты на счёт
-    public void transferCard2Account(SberSavingsAccount toAccount, float sumTransfer) {
+    public void transferCard2Account(Account toAccount, float sumTransfer) {
         // инициализировать транзакцию перевода
         TransferTransaction transferTransaction = new TransferTransaction();
         transferTransaction.setLocalDateTime(LocalDateTime.now());
@@ -356,7 +357,7 @@ public abstract class Card implements IPaySystem {
     }
 
     // Пополнить карту со счёта
-    public void depositingCardFromAccount(SberSavingsAccount fromAccount, float sumDepositing) {
+    public void depositingCardFromAccount(Account fromAccount, float sumDepositing) {
         // то есть перевести со счёта на карту
         fromAccount.transferAccount2Card(this, sumDepositing);
     }

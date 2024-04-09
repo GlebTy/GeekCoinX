@@ -99,23 +99,23 @@ public class PhysicalPerson {
         fromCard.transferCard2Card(toCard, sumTransfer);
     }
 
-    public void transferCard2Account(Card fromCard, SberSavingsAccount toAccount, float sumTransfer) {
+    public void transferCard2Account(Card fromCard, Account toAccount, float sumTransfer) {
         fromCard.transferCard2Account(toAccount, sumTransfer);
     }
 
-    public void transferAccount2Card(SberSavingsAccount fromAccount, Card toCard, float sumTransfer) {
+    public void transferAccount2Card(Account fromAccount, Card toCard, float sumTransfer) {
         fromAccount.transferAccount2Card(toCard, sumTransfer);
     }
 
-    public void transferAccount2Account(SberSavingsAccount fromAccount, SberSavingsAccount toAccount, float sumTransfer) {
+    public void transferAccount2Account(Account fromAccount, SberSavingsAccount toAccount, float sumTransfer) {
         fromAccount.transferAccount2Account(toAccount, sumTransfer);
     }
 
-    public void depositingCardFromCard(Card toCard, SberVisaGold fromCard, float sumDepositing) {
+    public void depositingCardFromCard(Card toCard, Card fromCard, float sumDepositing) {
         toCard.depositingCardFromCard(fromCard, sumDepositing);
     }
 
-    public void depositingCardFromAccount(Card toCard, SberSavingsAccount fromAccount, float sumDepositing) {
+    public void depositingCardFromAccount(Card toCard, Account fromAccount, float sumDepositing) {
         toCard.depositingCardFromAccount(fromAccount, sumDepositing);
     }
 
@@ -133,7 +133,6 @@ public class PhysicalPerson {
 
     public void displayAccountTransactions(SberSavingsAccount account) {
         account.displayAccountTransactions();
-        //Игорь оно было сделано за меня, но я бы справился хахахахах
     }
 
     public void displayProfileTransactions() {

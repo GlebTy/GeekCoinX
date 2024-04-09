@@ -1,5 +1,6 @@
 package ru.geekstar.ClientProfile;
 
+import ru.geekstar.Account.Account;
 import ru.geekstar.Account.SberSavingsAccount;
 import ru.geekstar.Card.Card;
 import ru.geekstar.Card.SberVisaGold;
@@ -66,7 +67,7 @@ public class SberPhysicalPersonProfile extends PhysicalPersonProfile {
     }
 
     // Прибавить сумму перевода на счёт к общей сумме всех переводов на счета клиентам Сбера без комиссии за месяц, чтобы контролировать лимит
-    public void updateTotalTransfersToClientSberWithoutCommissionMonthInRUB(SberSavingsAccount toAccount, float sumTransfer) {
+    public void updateTotalTransfersToClientSberWithoutCommissionMonthInRUB(Account toAccount, float sumTransfer) {
         boolean isMyAccount = isClientAccount(toAccount);
         boolean isAccountMyBank = getBank().isAccountBank(toAccount);
         // если счёт не мой, но моего банка, то есть клиент Сбера, то суммируем
