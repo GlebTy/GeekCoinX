@@ -1,6 +1,7 @@
 package ru.geekstar.Bank;
 
 import ru.geekstar.Account.Account;
+import ru.geekstar.Account.PayCardAccount;
 import ru.geekstar.Account.SberPayCardAccount;
 import ru.geekstar.Card.Card;
 import ru.geekstar.ClientProfile.PhysicalPersonProfile;
@@ -49,7 +50,7 @@ public class Sberbank extends Bank implements IBankServicePhysicalPerson {
         card.setCardHolder(physicalPersonProfile);
 
         //открыть платёжный счёт
-        SberPayCardAccount payCardAccount = (SberPayCardAccount) openAccount(physicalPersonProfile, new SberPayCardAccount(), currencyCode);
+        PayCardAccount payCardAccount = (PayCardAccount) openAccount(physicalPersonProfile, new SberPayCardAccount(), currencyCode);
 
         // привязать карту к платёжному счёту
         payCardAccount.getCards().add(card); //addCard(card);

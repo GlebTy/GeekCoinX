@@ -1,5 +1,6 @@
 package ru.geekstar.Bank;
 
+import ru.geekstar.Account.Account;
 import ru.geekstar.Account.SberSavingsAccount;
 import ru.geekstar.Card.Card;
 import ru.geekstar.Card.SberVisaGold;
@@ -162,7 +163,7 @@ public abstract class Bank {
     }
 
     // Рассчитать комиссию за перевод на свою или чужую карту моего или другого банка
-    public float getCommission(PhysicalPersonProfile clientProfile, String fromCurrencyCode, float sum, SberSavingsAccount toAccount) {
+    public float getCommission(PhysicalPersonProfile clientProfile, String fromCurrencyCode, float sum, Account toAccount) {
         // запросить мой ли счёт, на который выполняем перевод
         boolean isMyAccount = clientProfile.isClientAccount(toAccount);
         // запросить моего ли банка счёт, на который выполняем перевод
@@ -227,7 +228,7 @@ public abstract class Bank {
     }
 
     // Проверить счёт моего ли банка
-    public boolean isAccountBank(SberSavingsAccount account) {
+    public boolean isAccountBank(Account account) {
         if (account.getBank().getBankName().equals(getBankName())) return true;
         return false;
     }

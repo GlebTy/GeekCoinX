@@ -123,11 +123,11 @@ public abstract class Account {
         this.countDepositingTransactions = countDepositingTransactions;
     }
 
-    public void transferAccount2Account(SberSavingsAccount toAccount, float sumTransfer) {
+    public void transferAccount2Account(Account toAccount, float sumTransfer) {
         // инициализировать транзакцию перевода
         TransferTransaction transferTransaction = new TransferTransaction();
         transferTransaction.setLocalDateTime(LocalDateTime.now());
-        transferTransaction.setFromAccount((SberSavingsAccount) this);
+        transferTransaction.setFromAccount(this);
         transferTransaction.setToAccount(toAccount);
         transferTransaction.setSum(sumTransfer);
         transferTransaction.setCurrencySymbol(currencySymbol);
@@ -281,13 +281,13 @@ public abstract class Account {
     // Пополнить счёт с карты
     public void depositingAccountFromCard(Card fromCard, float sumDepositing) {
         // то есть перевести с карты на счёт
-        fromCard.transferCard2Account((SberSavingsAccount) this, sumDepositing);
+        fromCard.transferCard2Account(this, sumDepositing);
     }
 
     // Пополнить счёт со счета
-    public void depositingAccountFromAccount(SberSavingsAccount fromAccount, float sumDepositing) {
+    public void depositingAccountFromAccount(Account fromAccount, float sumDepositing) {
         // то есть перевести со счета на счёт
-        fromAccount.transferAccount2Account((SberSavingsAccount) this, sumDepositing);
+        fromAccount.transferAccount2Account(this, sumDepositing);
     }
 
     // Пополнить баланс

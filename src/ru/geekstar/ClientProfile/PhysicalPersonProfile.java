@@ -99,7 +99,7 @@ public abstract class PhysicalPersonProfile extends ClientProfile {
     }
 
     // Прибавить сумму перевода на счёт к общей сумме совершённых оплат и переводов в сутки, чтобы контролировать лимиты
-    public void updateTotalPaymentsTransfersDay(float sum, String fromCurrencyCode, SberSavingsAccount toAccount) {
+    public void updateTotalPaymentsTransfersDay(float sum, String fromCurrencyCode, Account toAccount) {
         // мой ли счёт, на который выполняем перевод
         boolean isMyAccount = isClientAccount(toAccount);
         // если не мой счёт, то обновляем общую сумму

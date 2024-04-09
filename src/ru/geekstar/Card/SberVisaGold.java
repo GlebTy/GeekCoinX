@@ -1,5 +1,6 @@
 package ru.geekstar.Card;
 
+import ru.geekstar.Account.Account;
 import ru.geekstar.Account.SberSavingsAccount;
 import ru.geekstar.ClientProfile.SberPhysicalPersonProfile;
 import ru.geekstar.Transaction.PayBonusTransaction;
@@ -83,7 +84,7 @@ public class SberVisaGold extends CardVisa implements IBonusCard {
     }
 
     @Override
-    public void transferCard2Account(SberSavingsAccount toAccount, float sumTransfer) {
+    public void transferCard2Account(Account toAccount, float sumTransfer) {
         // вызовем родительскую версию метода
         super.transferCard2Account(toAccount, sumTransfer);
 
