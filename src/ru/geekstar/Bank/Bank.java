@@ -4,6 +4,7 @@ import ru.geekstar.Account.Account;
 import ru.geekstar.Account.SberSavingsAccount;
 import ru.geekstar.Card.Card;
 import ru.geekstar.Card.SberVisaGold;
+import ru.geekstar.ClientProfile.ClientProfile;
 import ru.geekstar.ClientProfile.PhysicalPersonProfile;
 import ru.geekstar.ClientProfile.SberPhysicalPersonProfile;
 
@@ -11,7 +12,7 @@ public abstract class Bank {
 
     private String bankName;
 
-    private SberPhysicalPersonProfile[] clientProfiles = new SberPhysicalPersonProfile[50];
+    private ClientProfile[] clientProfiles = new ClientProfile[50];
 
     private int countClientProfiles;
 
@@ -24,11 +25,11 @@ public abstract class Bank {
         this.bankName = bankName;
     }
 
-    public SberPhysicalPersonProfile[] getClientProfiles() {
+    public ClientProfile[] getClientProfiles() {
         return clientProfiles;
     }
 
-    public void setClientProfiles(SberPhysicalPersonProfile[] clientProfiles) {
+    public void setClientProfiles(ClientProfile[] clientProfiles) {
         this.clientProfiles = clientProfiles;
     }
 
@@ -41,7 +42,7 @@ public abstract class Bank {
     }
 
     // Добавить профиль клиента
-    public void addClientProfile(SberPhysicalPersonProfile clientProfile) {
+    public void addClientProfile(ClientProfile clientProfile) {
         clientProfiles[countClientProfiles++] = clientProfile;
     }
 
