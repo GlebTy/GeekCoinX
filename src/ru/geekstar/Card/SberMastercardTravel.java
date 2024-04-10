@@ -3,6 +3,7 @@ package ru.geekstar.Card;
 import ru.geekstar.Account.PayCardAccount;
 import ru.geekstar.Account.SberPayCardAccount;
 import ru.geekstar.Bank.IBankServicePhysicalPerson;
+import ru.geekstar.Bank.Sberbank;
 import ru.geekstar.ClientProfile.PhysicalPersonProfile;
 
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public class SberMastercardTravel extends CardMastercard implements IMulticurren
     @Override
     public void addAccount(String currencyCodeAccount) {
         // открываем новый счет
-        PayCardAccount PayCardAccount = (PayCardAccount) this.getBank().openAccount(this.getCardHolder(), new SberPayCardAccount(), currencyCodeAccount);
+        PayCardAccount PayCardAccount = (PayCardAccount) ((Sberbank) this.getBank()).openAccount(this.getCardHolder(), new SberPayCardAccount(), currencyCodeAccount);
         // связывем созданный счет с картой
         PayCardAccount.getCards().add(this);
         // добавляем созданный счет в массив мултивалютных карт

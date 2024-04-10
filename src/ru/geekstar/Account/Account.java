@@ -1,5 +1,6 @@
 package ru.geekstar.Account;
 
+import ru.geekstar.Bank.Bank;
 import ru.geekstar.Bank.Sberbank;
 import ru.geekstar.Card.Card;
 import ru.geekstar.Card.SberVisaGold;
@@ -13,7 +14,7 @@ import java.util.Arrays;
 
 public abstract class Account {
 
-    private Sberbank bank;
+    private Bank bank;
 
     private PhysicalPersonProfile accountHolder;
 
@@ -34,11 +35,11 @@ public abstract class Account {
     private int countDepositingTransactions;
 
 
-    public Sberbank getBank() {
+    public Bank getBank() {
         return bank;
     }
 
-    public void setBank(Sberbank bank) {
+    public void setBank(Bank bank) {
         this.bank = bank;
     }
 
