@@ -4,6 +4,7 @@ import ru.geekstar.Account.Account;
 import ru.geekstar.Account.PayCardAccount;
 import ru.geekstar.Account.SberPayCardAccount;
 import ru.geekstar.Account.SberSavingsAccount;
+import ru.geekstar.Bank.Bank;
 import ru.geekstar.Bank.Sberbank;
 import ru.geekstar.Card.IPaySystem.IPaySystem;
 import ru.geekstar.ClientProfile.PhysicalPersonProfile;
@@ -15,7 +16,7 @@ import java.time.LocalDateTime;
 
 public abstract class Card implements IPaySystem {
 
-    private Sberbank bank;
+    private Bank bank;
 
     private PhysicalPersonProfile cardHolder;
 
@@ -35,11 +36,11 @@ public abstract class Card implements IPaySystem {
         this.pinCode = pinCode;
     }
 
-    public Sberbank getBank() {
+    public Bank getBank() {
         return bank;
     }
 
-    public void setBank(Sberbank bank) {
+    public void setBank(Bank bank) {
         this.bank = bank;
     }
 
