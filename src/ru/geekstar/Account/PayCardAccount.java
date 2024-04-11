@@ -15,10 +15,6 @@ public abstract class PayCardAccount extends Account {
 
     private float blockedSum;
 
-    private byte countCards;
-
-    private int countPayTransactions;
-
     public ArrayList<Card> getCards() {
         return cards;
     }
@@ -41,22 +37,6 @@ public abstract class PayCardAccount extends Account {
 
     public void setBlockedSum(float blockedSum) {
         this.blockedSum = blockedSum;
-    }
-
-    public byte getCountCards() {
-        return countCards;
-    }
-
-    public void setCountCards(byte countCards) {
-        this.countCards = countCards;
-    }
-
-    public int getCountPayTransactions() {
-        return countPayTransactions;
-    }
-
-    public void setCountPayTransactions(int countPayTransactions) {
-        this.countPayTransactions = countPayTransactions;
     }
 
 
