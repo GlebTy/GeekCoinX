@@ -212,7 +212,7 @@ public abstract class Card implements IPaySystem {
                     // внести в транзакцию пополнения баланс карты после пополнения
                     depositingTransaction.setBalance(toCard.getPayCardAccount().getBalance());
                     // добавить и привязать транзакцию пополнения к счёту карты зачисления
-                    toCard.getPayCardAccount().addDepositingTransaction(depositingTransaction);
+                    toCard.getPayCardAccount().getDepositingTransactions().add(depositingTransaction);
 
                     // внести в транзакцию перевода статус перевода
                     transferTransaction.setStatusOperation("Перевод прошёл успешно");
@@ -234,7 +234,7 @@ public abstract class Card implements IPaySystem {
         transferTransaction.setBalance(getPayCardAccount().getBalance());
 
         // добавить и привязать транзакцию перевода к счёту карты списания
-        payCardAccount.addTransferTransaction(transferTransaction);
+        payCardAccount.getTransferTransactions().add(transferTransaction);
 
     }
 
@@ -288,7 +288,7 @@ public abstract class Card implements IPaySystem {
                         // внести в транзакцию пополнения баланс счёта после зачисления
                         depositingTransaction.setBalance(toAccount.getBalance());
                         // добавить и привязать транзакцию пополнения к счёту зачисления
-                        toAccount.addDepositingTransaction(depositingTransaction);
+                        toAccount.getDepositingTransactions().add(depositingTransaction);
 
                         // внести в транзакцию перевода статус перевода
                         transferTransaction.setStatusOperation("Перевод прошёл успешно");
@@ -305,7 +305,7 @@ public abstract class Card implements IPaySystem {
         // внести в транзакцию баланс карты после списания
         transferTransaction.setBalance(getPayCardAccount().getBalance());
         // добавить и привязать транзакцию перевода к счёту карты списания
-        payCardAccount.addTransferTransaction(transferTransaction);
+        payCardAccount.getTransferTransactions().add(transferTransaction);
     }
 
     // Внести наличные на карту
@@ -348,7 +348,7 @@ public abstract class Card implements IPaySystem {
         depositingTransaction.setBalance(getPayCardAccount().getBalance());
 
         // добавить и привязать транзакцию пополнения к счёту карты зачисления
-        payCardAccount.addDepositingTransaction(depositingTransaction);
+        payCardAccount.getDepositingTransactions().add(depositingTransaction);
     }
 
     // Пополнить карту с карты

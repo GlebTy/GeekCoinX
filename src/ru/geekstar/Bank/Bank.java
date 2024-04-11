@@ -8,11 +8,13 @@ import ru.geekstar.ClientProfile.ClientProfile;
 import ru.geekstar.ClientProfile.PhysicalPersonProfile;
 import ru.geekstar.ClientProfile.SberPhysicalPersonProfile;
 
+import java.util.ArrayList;
+
 public abstract class Bank {
 
     private String bankName;
 
-    private ClientProfile[] clientProfiles = new ClientProfile[50];
+    private ArrayList<ClientProfile> clientProfiles = new ArrayList<>();
 
     private int countClientProfiles;
 
@@ -25,26 +27,14 @@ public abstract class Bank {
         this.bankName = bankName;
     }
 
-    public ClientProfile[] getClientProfiles() {
+    public ArrayList<ClientProfile> getClientProfiles() {
         return clientProfiles;
     }
 
-    public void setClientProfiles(ClientProfile[] clientProfiles) {
+    public void setClientProfiles(ArrayList<ClientProfile> clientProfiles) {
         this.clientProfiles = clientProfiles;
     }
 
-    public int getCountClientProfiles() {
-        return countClientProfiles;
-    }
-
-    public void setCountClientProfiles(int countClientProfiles) {
-        this.countClientProfiles = countClientProfiles;
-    }
-
-    // Добавить профиль клиента
-    public void addClientProfile(ClientProfile clientProfile) {
-        clientProfiles[countClientProfiles++] = clientProfile;
-    }
 
     // Сгенерировать номер карты 3546 0957 9843 7845
     public String generateNumberCard() {

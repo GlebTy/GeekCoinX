@@ -7,20 +7,16 @@ import ru.geekstar.Card.Card;
 import ru.geekstar.Card.SberVisaGold;
 import ru.geekstar.PhysicalPerson.PhysicalPerson;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public abstract class PhysicalPersonProfile extends ClientProfile {
 
     private PhysicalPerson physicalPerson;
 
-    private Card[] cards = new Card[50];
+    private ArrayList<Card> cards = new ArrayList<>();
 
-    private Account[] accounts = new Account[50];
-
-    private byte countCards;
-
-    private byte countAccounts;
-
+    private ArrayList<Account> accounts = new ArrayList<>();
 
 
     public PhysicalPerson getPhysicalPerson() {
@@ -31,61 +27,34 @@ public abstract class PhysicalPersonProfile extends ClientProfile {
         this.physicalPerson = physicalPerson;
     }
 
-    public Card[] getCards() {
+    public ArrayList<Card> getCards() {
         return cards;
     }
 
-    public void setCards(Card[] cards) {
+    public void setCards(ArrayList<Card> cards) {
         this.cards = cards;
     }
 
-    public Account[] getAccounts() {
+    public ArrayList<Account> getAccounts() {
         return accounts;
     }
 
-    public void setAccounts(Account[] accounts) {
+    public void setAccounts(ArrayList<Account> accounts) {
         this.accounts = accounts;
-    }
-
-    public byte getCountCards() {
-        return countCards;
-    }
-
-    public void setCountCards(byte countCards) {
-        this.countCards = countCards;
-    }
-
-    public byte getCountAccounts() {
-        return countAccounts;
-    }
-
-    public void setCountAccounts(byte countAccounts) {
-        this.countAccounts = countAccounts;
-    }
-
-
-    // Привязать  счёт к профилю клиента
-    public void addAccount(Account account) {
-        accounts[countAccounts++] = account;
-    }
-
-    // Привязать карту к профилю клиента
-    public void addCard(Card card) {
-        cards[countCards++] = card;
     }
 
     // проверить привязана ли карта к профилю клиента
     public boolean isClientCard(Card card) {
-        for (int idCard = 0; idCard < countCards; idCard++) {
-            if (cards[idCard].equals(card)) return true;
+        for (int idCard = 0; idCard < cards.size(); idCard++) {
+            if (cards.get(idCard).equals(card)) return true;
         }
         return false;
     }
 
     // проверить привязан ли счёт к профилю клиента
     public boolean isClientAccount(Account account) {
-        for (int idAccount = 0; idAccount < countAccounts; idAccount++) {
-            if (accounts[idAccount].equals(account)) return true;
+        for (int idAccount = 0; idAccount < accounts.size(); idAccount++) {
+            if (accounts.get(idAccount).equals(account)) return true;
         }
         return false;
     }
@@ -122,8 +91,8 @@ public abstract class PhysicalPersonProfile extends ClientProfile {
         int countAllTransactions = 0;
 
         // подсчитать общее количество всех транзакций по всем счетам
-        for (int idAccount = 0; idAccount < countAccounts; idAccount++) {
-            countAllTransactions += accounts[idAccount].getAllAccountTransactions().length;
+        for (int idAccount = 0; idAccount < accounts.size(); idAccount++) {
+            countAllTransactions += accounts.get(idAccount).getAllAccountTransactions().length;
         }
 
 
@@ -132,8 +101,8 @@ public abstract class PhysicalPersonProfile extends ClientProfile {
 
         // теперь нужно перебрать все счета
         int destPos = 0;
-        for (int idAccount = 0; idAccount < countAccounts; idAccount++) {
-            String[] allAccountTransactions = accounts[idAccount].getAllAccountTransactions();
+        for (int idAccount = 0; idAccount < accounts.size(); idAccount++) {
+            String[] allAccountTransactions = accounts.get(idAccount).getAllAccountTransactions();
             System.arraycopy(allAccountTransactions, 0, allTransactions, destPos, allAccountTransactions.length);
             destPos += allAccountTransactions.length;
         }
