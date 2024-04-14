@@ -85,7 +85,7 @@ public class Sberbank extends Bank implements IBankServicePhysicalPerson {
     @Override
     // Предоставить обменный курс валют Сбера
     public float getExchangeRateBank(String currency, String currencyExchangeRate) {
-        // TODO: Запрос к API банка
+        // TODO: Запрос к API банк89.
         float exchangeRateBank = 0;
         // курс доллара к рублю
         if (currency.equals("USD") && currencyExchangeRate.equals("RUB")) exchangeRateBank = 60.48f;
