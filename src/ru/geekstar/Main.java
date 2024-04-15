@@ -1,5 +1,6 @@
 package ru.geekstar;
 
+import ru.geekstar.Account.SberPayCardAccount;
 import ru.geekstar.Account.SberSavingsAccount;
 import ru.geekstar.Bank.Sberbank;
 import ru.geekstar.Bank.Tinkoff;
@@ -37,11 +38,11 @@ public class Main {
         I.registerPhysicalPersonToBank(sberbank);
         friend.registerPhysicalPersonToBank(sberbank);
 
-        SberVisaGold mySberVisaGold1 = (SberVisaGold) I.openCard(sberbank, new SberVisaGold(), "RUB", "2864");
-        SberVisaGold mySberVisaGold2 = (SberVisaGold) I.openCard(sberbank, new SberVisaGold(), "RUB", "1234");
+        SberVisaGold mySberVisaGold1 = (SberVisaGold) I.openCard(sberbank, new SberVisaGold(), new SberPayCardAccount(), "RUB", "2864");
+        SberVisaGold mySberVisaGold2 = (SberVisaGold) I.openCard(sberbank, new SberVisaGold(), new SberPayCardAccount(), "RUB", "1234");
 
-        SberMastercardGold sberMastercardGold = (SberMastercardGold) I.openCard(sberbank, new SberMastercardGold(), "RUB", "9672");
-        SberMastercardTravel sberMastercardtravel = (SberMastercardTravel) I.openCard(sberbank, new SberMastercardTravel(), "RUB", "7621");
+        SberMastercardGold sberMastercardGold = (SberMastercardGold) I.openCard(sberbank, new SberMastercardGold(), new SberPayCardAccount(), "RUB", "9672");
+        SberMastercardTravel sberMastercardtravel = (SberMastercardTravel) I.openCard(sberbank, new SberMastercardTravel(), new SberPayCardAccount(), "RUB", "7621");
 
         I.addAccountToMulticurrencyCard(sberMastercardtravel, "USD");
         I.switchAccountOfMulticurrencyCard(sberMastercardtravel, "USD");
@@ -49,7 +50,7 @@ public class Main {
         SberSavingsAccount mySberSavingsAccount1 = (SberSavingsAccount) I.openAccount(sberbank, new SberSavingsAccount(), "RUB");
         SberSavingsAccount mySberSavingsAccount2 = (SberSavingsAccount) I.openAccount(sberbank, new SberSavingsAccount(), "RUB");
 
-        SberVisaGold friendSberVisaGold1 = (SberVisaGold) friend.openCard(sberbank, new SberVisaGold(), "RUB", "9078");
+        SberVisaGold friendSberVisaGold1 = (SberVisaGold) friend.openCard(sberbank, new SberVisaGold(), new SberPayCardAccount(), "RUB", "9078");
 
 
         I.depositingCash2Card(sberMastercardtravel, 10000.00f);
@@ -103,5 +104,7 @@ public class Main {
         I.displayProfileTransactions(sberbank);
         friend.displayProfileTransactions(sberbank);
 
+        I.displayAllProfileTransactions();
+        friend.displayAllProfileTransactions();
     }
 }
