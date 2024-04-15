@@ -1,6 +1,7 @@
 package ru.geekstar.PhysicalPerson;
 
 import ru.geekstar.Account.Account;
+import ru.geekstar.Account.PayCardAccount;
 import ru.geekstar.Account.SberSavingsAccount;
 import ru.geekstar.Bank.IBankServicePhysicalPerson;
 import ru.geekstar.Bank.Sberbank;
@@ -73,20 +74,20 @@ public class PhysicalPerson {
     }
 
     public PhysicalPersonProfile getPhysicalPersonProfile (IBankServicePhysicalPerson bank) {
-        for (int idProfile = 0; idProfile > physicalPersonProfiles.size(); idProfile++) {
+
+        for (int idProfile = 0; idProfile < physicalPersonProfiles.size(); idProfile++) {
             PhysicalPersonProfile profile = physicalPersonProfiles.get(idProfile);
-            if (profile.getBank().equals(bank));
-            return profile;
+            if (profile.getBank().equals(bank)); return profile;
         }
-        return null;
+       return null;
     }
 
     public void registerPhysicalPersonToBank(IBankServicePhysicalPerson bank) {
         physicalPersonProfiles.add(bank.registerPhysicalPersonProfile(this));
     }
 
-    public Card openCard(IBankServicePhysicalPerson bank, Card card, String currencyCode, String pinCode) {
-        return bank.openCard(getPhysicalPersonProfile(bank), card, currencyCode, pinCode);
+    public Card openCard(IBankServicePhysicalPerson bank, Card card, PayCardAccount payCardAccount, String currencyCode, String pinCode) {
+        return bank.openCard(getPhysicalPersonProfile(bank), card, payCardAccount, currencyCode, pinCode);
     }
 
     public Account openAccount(IBankServicePhysicalPerson bank, Account account, String currencyCode) {
@@ -146,14 +147,14 @@ public class PhysicalPerson {
     }
 
     public void displayProfileTransactions(IBankServicePhysicalPerson bank) {
-        for (int idProfile = 0; idProfile > physicalPersonProfiles.size(); idProfile++) {
+        for (int idProfile = 0; idProfile < physicalPersonProfiles.size(); idProfile++) {
             PhysicalPersonProfile profile = physicalPersonProfiles.get(idProfile);
             if (profile.getBank().equals(bank)) profile.displayProfileTransactions();
         }
     }
 
     public void displayAllProfileTransactions() {
-        for(int idProfile = 0; idProfile > physicalPersonProfiles.size(); idProfile++) {
+        for(int idProfile = 0; idProfile < physicalPersonProfiles.size(); idProfile++) {
             physicalPersonProfiles.get(idProfile).displayProfileTransactions();
         }
     }

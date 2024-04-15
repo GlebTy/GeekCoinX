@@ -11,7 +11,7 @@ public interface IBankServicePhysicalPerson {
 
     PhysicalPersonProfile registerPhysicalPersonProfile (PhysicalPerson physicalPerson);
 
-    default Card openCard(PhysicalPersonProfile physicalPersonProfile, Card card, String currencyCode, String pinCode) {
+    default Card openCard(PhysicalPersonProfile physicalPersonProfile, Card card, PayCardAccount payCardAccount, String currencyCode, String pinCode) {
 
             //установить свойства карты
             card.setBank(physicalPersonProfile.getBank());
@@ -19,13 +19,13 @@ public interface IBankServicePhysicalPerson {
             card.setCardHolder(physicalPersonProfile);
 
             //открыть платежный счет
-            PayCardAccount payCardAccount = (PayCardAccount) openAccount(physicalPersonProfile, new TinkoffPayCardAccount(), currencyCode);
+            PayCardAccount bankPayCardAccount = (PayCardAccount) openAccount(physicalPersonProfile, payCardAccount, currencyCode);
 
             //привязать карту к платежному счету
-            payCardAccount.getCards().add(card);
+            bankPayCardAccount.getCards().add(card);
 
             //привязать платежный счет к карте
-            card.setPayCardAccount(payCardAccount);
+            card.setPayCardAccount(bankPayCardAccount);
             card.setStatusCard("Активна");
             card.setPinCode(pinCode);
 
