@@ -2,6 +2,7 @@ package ru.geekstar;
 
 import ru.geekstar.Account.SberSavingsAccount;
 import ru.geekstar.Bank.Sberbank;
+import ru.geekstar.Bank.Tinkoff;
 import ru.geekstar.Card.CardMastercard;
 import ru.geekstar.Card.SberMastercardGold;
 import ru.geekstar.Card.SberMastercardTravel;
@@ -29,6 +30,10 @@ public class Main {
         Sberbank sberbank = new Sberbank();
         sberbank.setBankName("Сбер");
 
+        Tinkoff tinkoff = new Tinkoff();
+        tinkoff.setBankName("Тинькофф");
+
+        I.registerPhysicalPersonToBank(tinkoff);
         I.registerPhysicalPersonToBank(sberbank);
         friend.registerPhysicalPersonToBank(sberbank);
 
@@ -95,8 +100,8 @@ public class Main {
 */
 
         // Вывод всех операций по всем картам и счетам профиля клиента с сортировкой по дате и времени
-        I.displayProfileTransactions();
-        friend.displayProfileTransactions();
+        I.displayProfileTransactions(sberbank);
+        friend.displayProfileTransactions(sberbank);
 
     }
 }

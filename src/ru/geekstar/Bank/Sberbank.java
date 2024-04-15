@@ -41,47 +41,6 @@ public class Sberbank extends Bank implements IBankServicePhysicalPerson {
         return sberPhysicalPersonProfile;
     }
 
-    // Открыть карту
-    @Override
-    public Card openCard(PhysicalPersonProfile physicalPersonProfile, Card card, String currencyCode, String pinCode) {
-        // установить свойства карты
-        card.setBank(this);
-        card.setNumberCard(generateNumberCard());
-        card.setCardHolder(physicalPersonProfile);
-
-        //открыть платёжный счёт
-        PayCardAccount payCardAccount = (PayCardAccount) openAccount(physicalPersonProfile, new SberPayCardAccount(), currencyCode);
-
-        // привязать карту к платёжному счёту
-        payCardAccount.getCards().add(card); //addCard(card);
-
-        // привязать платёжный счёт к карте
-        card.setPayCardAccount(payCardAccount);
-        card.setStatusCard("Активна");
-        card.setPinCode(pinCode);
-
-        // привязать карту к профилю клиента
-        physicalPersonProfile.getCards().add(card);
-
-        return card;
-    }
-
-    // Открыть платёжный счёт
-    @Override
-    public Account openAccount(PhysicalPersonProfile physicalPersonProfile, Account account, String currencyCode) {
-        // установить свойства платёжного счёта
-        account.setBank(this);
-        account.setNumberAccount(generateNumberAccount());
-        account.setAccountHolder(physicalPersonProfile);
-        account.setCurrencyCode(currencyCode);
-        account.setCurrencySymbol(currencyCode);
-
-        // привязать платёжный счёт к профилю клиента
-        physicalPersonProfile.getAccounts().add(account);
-
-        return account;
-    }
-
     @Override
     // Предоставить обменный курс валют Сбера
     public float getExchangeRateBank(String currency, String currencyExchangeRate) {
