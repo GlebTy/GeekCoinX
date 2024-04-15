@@ -38,45 +38,6 @@ public class Tinkoff extends Bank implements IBankServicePhysicalPerson {
     }
 
     @Override
-    public Card openCard(PhysicalPersonProfile physicalPersonProfile, Card card, String currencyCode, String pinCode) {
-        //установить свойства карты
-        card.setBank(this);
-        card.setNumberCard(generateNumberCard());
-        card.setCardHolder(physicalPersonProfile);
-
-        //открыть платежный счет
-        PayCardAccount payCardAccount = (PayCardAccount) openAccount(physicalPersonProfile, new TinkoffPayCardAccount(), currencyCode);
-
-        //привязать карту к платежному счету
-        payCardAccount.getCards().add(card);
-
-        //привязать платежный счет к карте
-        card.setPayCardAccount(payCardAccount);
-        card.setStatusCard("Активна");
-        card.setPinCode(pinCode);
-
-        //привязать карту к профилю клиента
-        physicalPersonProfile.getCards().add(card);
-
-        return card;
-    }
-
-    @Override
-    public Account openAccount(PhysicalPersonProfile physicalPersonProfile, Account account, String currencyCode) {
-        //становить свойства платежного счета
-        account.setBank(this);
-        account.setNumberAccount(generateNumberAccount());
-        account.setAccountHolder(physicalPersonProfile);
-        account.setCurrencyCode(currencyCode);
-        account.setCurrencySymbol(currencyCode);
-
-        //привязать платежный счет к профилю клиента
-        physicalPersonProfile.getAccounts().add(account);
-
-        return account;
-    }
-
-    @Override
     public float getCommissionOfTransferToClientBank(PhysicalPersonProfile clientProfile, float sum, String fromCurrencyCode) {
         return 0;
     }
@@ -90,6 +51,7 @@ public class Tinkoff extends Bank implements IBankServicePhysicalPerson {
 
         //курс доллара к рублю
         if(currency.equals("EUR") && currencyExchangeRate.equals("RUB")) exchangeRateBank = 89.65f;
+        return exchangeRateBank;
 
 
     }
