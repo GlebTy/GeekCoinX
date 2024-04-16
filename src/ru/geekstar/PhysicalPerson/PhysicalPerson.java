@@ -77,7 +77,7 @@ public class PhysicalPerson {
 
         for (int idProfile = 0; idProfile < physicalPersonProfiles.size(); idProfile++) {
             PhysicalPersonProfile profile = physicalPersonProfiles.get(idProfile);
-            if (profile.getBank().equals(bank)); return profile;
+            if (profile.getBank().equals(bank)) return profile;
         }
        return null;
     }
