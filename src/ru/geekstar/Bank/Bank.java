@@ -232,10 +232,11 @@ public abstract class Bank {
 
     // Конвертировать в валюту по курсу банка
     public float convertToCurrencyExchangeRateBank(float sum, String fromCurrencyCode, String toCurrencyCode) {
-        float exchangeRateToCardCurrency = getExchangeRateBank(fromCurrencyCode, toCurrencyCode);
-        float sumInCardCurrency = sum * exchangeRateToCardCurrency;
-
-        return sumInCardCurrency;
+        if(!fromCurrencyCode.equalsIgnoreCase(toCurrencyCode)) {
+            float exchangeRateToCardCurrency = getExchangeRateBank(fromCurrencyCode, toCurrencyCode);
+            sum *= exchangeRateToCardCurrency;
+        }
+        return sum;
     }
 
     // Предоставить обменный курс валют банка. Переопределим в каждом банке, потому что у каждого банка свой курс
