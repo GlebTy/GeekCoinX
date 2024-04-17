@@ -101,8 +101,8 @@ public class Main {
 */
 
         // Вывод всех операций по всем картам и счетам профиля клиента с сортировкой по дате и времени
-        I.displayProfileTransactions(sberbank);
-        friend.displayProfileTransactions(sberbank);
+        // I.displayProfileTransactions(sberbank);
+        // friend.displayProfileTransactions(sberbank);
 
         I.displayAllProfileTransactions();
         friend.displayAllProfileTransactions();
