@@ -227,6 +227,7 @@ public abstract class Bank {
         String currencyPayCode = null;
         if (country.equalsIgnoreCase("Турция")) currencyPayCode = "TRY";
         if (country.equalsIgnoreCase("Франция")) currencyPayCode = "EUR";
+        if (country.equalsIgnoreCase("Казахстан")) currencyPayCode = "KZT";
         return currencyPayCode;
     }
 

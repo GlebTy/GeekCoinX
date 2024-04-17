@@ -2,7 +2,7 @@ package ru.geekstar.Card;
 
 import ru.geekstar.Card.IPaySystem.IMir;
 
-public class CardMir extends Card implements IMir {
+abstract class CardMir extends Card implements IMir {
 
     @Override
     // Запросить код валюты платёжной системы
