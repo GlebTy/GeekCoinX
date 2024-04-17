@@ -31,6 +31,9 @@ public class Tinkoff extends Bank implements IBankServicePhysicalPerson {
         tinkoffPhysicalPersonProfile.setLimitCommissionTransferInRUB(3000.00f);
         tinkoffPhysicalPersonProfile.setLimitCommissionTransferInUsdOrEquivalentInOtherCurrency(100.00f);
 
+        //установить процент кэшбэка
+        tinkoffPhysicalPersonProfile.setPercentCashbackOfSumPay(1.0f);
+
         //и привязать профиль клиента к банку
         getClientProfiles().add(tinkoffPhysicalPersonProfile);
 
