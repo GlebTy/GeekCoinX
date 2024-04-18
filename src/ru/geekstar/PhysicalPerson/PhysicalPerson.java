@@ -170,4 +170,8 @@ public class PhysicalPerson {
     public void payByCardBonuses(IBonusCard bonusCard, float sumPay, int bonusesPay, String buyProductOrService, String pinCode) {
         bonusCard.payByCardBonuses(sumPay, bonusesPay, buyProductOrService, pinCode);
     }
+
+    public void payByCardMiles(IAirlinesCard airlinesCard, float sumPay, int milesPay, String buyProductOrService, String pinCode) {
+        airlinesCard.payByCardMiles(sumPay, milesPay, buyProductOrService, pinCode);
+    }
 }
