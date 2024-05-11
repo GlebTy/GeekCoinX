@@ -6,6 +6,14 @@ import ru.geekstar.PhysicalPerson.PhysicalPerson;
 
 public class Sberbank extends Bank implements IBankServicePhysicalPerson {
 
+    public Sberbank () {
+        this("Сбер");
+    }
+
+    public Sberbank (String bankName) {
+        super(bankName);
+    }
+
     // Зарегистрировать профиль физ лица
     @Override
     public PhysicalPersonProfile registerPhysicalPersonProfile(PhysicalPerson physicalPerson) {

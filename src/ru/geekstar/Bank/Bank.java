@@ -15,7 +15,6 @@ public abstract class Bank {
 
     private int countClientProfiles;
 
-
     public String getBankName() {
         return bankName;
     }
@@ -32,6 +31,9 @@ public abstract class Bank {
         this.clientProfiles = clientProfiles;
     }
 
+    public Bank (String bankName) {
+        this.bankName = bankName;
+    }
 
     // Сгенерировать номер карты 3546 0957 9843 7845
     public String generateNumberCard() {

@@ -6,6 +6,14 @@ import ru.geekstar.PhysicalPerson.PhysicalPerson;
 
 public class Tinkoff extends Bank implements IBankServicePhysicalPerson {
 
+    public Tinkoff () {
+        this("Тинькофф");
+    }
+
+    public Tinkoff (String bankName) {
+        super(bankName);
+    }
+
     @Override
     public PhysicalPersonProfile registerPhysicalPersonProfile(PhysicalPerson physicalPerson) {
         //создать профиль клиента

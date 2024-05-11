@@ -16,10 +16,8 @@ public class Main {
         PhysicalPerson friend = new PhysicalPerson("Герман", "Греф", "+79273547845", (byte)58, 'M');
 
         Sberbank sberbank = new Sberbank();
-        sberbank.setBankName("Сбер");
 
         Tinkoff tinkoff = new Tinkoff();
-        tinkoff.setBankName("Тинькофф");
 
         I.registerPhysicalPersonToBank(tinkoff);
         I.registerPhysicalPersonToBank(sberbank);

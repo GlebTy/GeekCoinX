@@ -96,7 +96,6 @@ public class PhysicalPerson {
         this.gender = gender;
     }
 
-
     public void registerPhysicalPersonToBank(IBankServicePhysicalPerson bank) {
         physicalPersonProfiles.add(bank.registerPhysicalPersonProfile(this));
     }
