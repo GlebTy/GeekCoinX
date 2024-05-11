@@ -1,11 +1,8 @@
 package ru.geekstar.Card;
 
 import ru.geekstar.Account.PayCardAccount;
-import ru.geekstar.Account.SberPayCardAccount;
 import ru.geekstar.Account.TinkoffPayCardAccount;
-import ru.geekstar.Bank.Sberbank;
 import ru.geekstar.Bank.Tinkoff;
-import ru.geekstar.ClientProfile.SberPhysicalPersonProfile;
 import ru.geekstar.ClientProfile.TinkoffPhysicalPersonProfile;
 import ru.geekstar.Transaction.PayMilesTransaction;
 

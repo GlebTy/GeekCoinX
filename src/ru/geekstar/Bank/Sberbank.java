@@ -1,9 +1,5 @@
 package ru.geekstar.Bank;
 
-import ru.geekstar.Account.Account;
-import ru.geekstar.Account.PayCardAccount;
-import ru.geekstar.Account.SberPayCardAccount;
-import ru.geekstar.Card.Card;
 import ru.geekstar.ClientProfile.PhysicalPersonProfile;
 import ru.geekstar.ClientProfile.SberPhysicalPersonProfile;
 import ru.geekstar.PhysicalPerson.PhysicalPerson;

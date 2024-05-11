@@ -1,6 +1,5 @@
 package ru.geekstar.Card;
 
-import ru.geekstar.ClientProfile.SberPhysicalPersonProfile;
 import ru.geekstar.ClientProfile.TinkoffPhysicalPersonProfile;
 import ru.geekstar.Transaction.DepositingTransaction;
 

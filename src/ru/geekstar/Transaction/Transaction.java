@@ -1,9 +1,7 @@
 package ru.geekstar.Transaction;
 
 import ru.geekstar.Account.Account;
-import ru.geekstar.Account.SberSavingsAccount;
 import ru.geekstar.Card.Card;
-import ru.geekstar.Card.SberVisaGold;
 
 import java.time.LocalDateTime;
 

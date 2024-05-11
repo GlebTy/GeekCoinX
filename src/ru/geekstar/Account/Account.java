@@ -1,11 +1,8 @@
 package ru.geekstar.Account;
 
 import ru.geekstar.Bank.Bank;
-import ru.geekstar.Bank.Sberbank;
 import ru.geekstar.Card.Card;
-import ru.geekstar.Card.SberVisaGold;
 import ru.geekstar.ClientProfile.PhysicalPersonProfile;
-import ru.geekstar.ClientProfile.SberPhysicalPersonProfile;
 import ru.geekstar.Transaction.DepositingTransaction;
 import ru.geekstar.Transaction.TransferTransaction;
 

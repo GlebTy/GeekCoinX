@@ -1,7 +1,6 @@
 package ru.geekstar.ClientProfile;
 
 import ru.geekstar.Bank.Bank;
-import ru.geekstar.Bank.Sberbank;
 
 public abstract class ClientProfile {
 
