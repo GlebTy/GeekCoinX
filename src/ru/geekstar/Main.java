@@ -12,19 +12,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-        PhysicalPerson I = new PhysicalPerson();
-        I.setFirstName("Игорь");
-        I.setLastName("Коннов");
-        I.setTelephone("+79277394841");
-        I.setAge((byte)32);
-        I.setGender('M');
-
-        PhysicalPerson friend = new PhysicalPerson();
-        friend.setFirstName("Герман");
-        friend.setLastName("Греф");
-        friend.setTelephone("+79273547845");
-        friend.setAge((byte)58);
-        friend.setGender('M');
+        PhysicalPerson I = new PhysicalPerson("Игорь", "Коннов", "+79277394841", (byte)32, 'M');
+        PhysicalPerson friend = new PhysicalPerson("Герман", "Греф", "+79273547845", (byte)58, 'M');
 
         Sberbank sberbank = new Sberbank();
         sberbank.setBankName("Сбер");
