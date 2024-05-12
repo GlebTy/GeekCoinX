@@ -2,7 +2,6 @@ package ru.geekstar.Card;
 
 import ru.geekstar.Account.PayCardAccount;
 import ru.geekstar.Account.TinkoffPayCardAccount;
-import ru.geekstar.Bank.Bank;
 import ru.geekstar.Bank.Tinkoff;
 import ru.geekstar.ClientProfile.PhysicalPersonProfile;
 import ru.geekstar.ClientProfile.TinkoffPhysicalPersonProfile;
@@ -25,8 +24,8 @@ public class TinkoffAirlinesMir extends CardMir implements IMulticurrencyCard, I
         this.multicurrencyAccounts = multicurrencyAccounts;
     }
 
-    public TinkoffAirlinesMir(Bank bank, PhysicalPersonProfile cardHolder, PayCardAccount payCardAccount, String pinCode) {
-        super( bank, cardHolder, payCardAccount, pinCode);
+    public TinkoffAirlinesMir(PhysicalPersonProfile cardHolder, PayCardAccount payCardAccount, String pinCode) {
+        super(cardHolder, payCardAccount, pinCode);
         addAccount("USD");
     }
 

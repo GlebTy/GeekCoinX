@@ -15,11 +15,10 @@ public interface IBankServicePhysicalPerson {
         //открыть платежный счет
         PayCardAccount bankPayCardAccount = (PayCardAccount) openAccount(physicalPersonProfile, payCardAccount, currencyCode);
 
-        Bank bank = physicalPersonProfile.getBank();
         Card card = null;
         try {
-            card = classCard.getConstructor(Bank.class, PhysicalPersonProfile.class, PayCardAccount.class, String.class)
-                    .newInstance( bank, physicalPersonProfile, bankPayCardAccount, pinCode);
+            card = classCard.getConstructor(PhysicalPersonProfile.class, PayCardAccount.class, String.class)
+                    .newInstance(physicalPersonProfile, bankPayCardAccount, pinCode);
         } catch (Exception e) {
             System.out.println(e);
         }

@@ -79,8 +79,8 @@ public abstract class Card implements IPaySystem {
     }
 
 
-    public Card(Bank bank, PhysicalPersonProfile cardHolder, PayCardAccount payCardAccount, String pinCode) {
-        this.bank = bank;
+    public Card(PhysicalPersonProfile cardHolder, PayCardAccount payCardAccount, String pinCode) {
+        this.bank = cardHolder.getBank();
         this.cardHolder = cardHolder;
         this.payCardAccount = payCardAccount;
         setNumberCard(bank.generateNumberCard());
