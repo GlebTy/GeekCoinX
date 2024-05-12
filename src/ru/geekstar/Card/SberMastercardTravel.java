@@ -2,7 +2,9 @@ package ru.geekstar.Card;
 
 import ru.geekstar.Account.PayCardAccount;
 import ru.geekstar.Account.SberPayCardAccount;
+import ru.geekstar.Bank.Bank;
 import ru.geekstar.Bank.Sberbank;
+import ru.geekstar.ClientProfile.PhysicalPersonProfile;
 
 import java.util.ArrayList;
 
@@ -18,6 +20,11 @@ public class SberMastercardTravel extends CardMastercard implements IMulticurren
     @Override
     public void setMulticurrencyAccounts(ArrayList<PayCardAccount> multicurrencyAccounts) {
         this.multiCurrencyAccounts = multicurrencyAccounts;
+    }
+
+    public SberMastercardTravel(Bank bank, PhysicalPersonProfile cardHolder, PayCardAccount payCardAccount, String pinCode) {
+        super(bank, cardHolder, payCardAccount, pinCode);
+        addAccount("USD");
     }
 
     @Override

@@ -10,26 +10,25 @@ public interface IBankServicePhysicalPerson {
 
     PhysicalPersonProfile registerPhysicalPersonProfile (PhysicalPerson physicalPerson);
 
-    default Card openCard(PhysicalPersonProfile physicalPersonProfile, Card card, PayCardAccount payCardAccount, String currencyCode, String pinCode) {
+    default Card openCard(PhysicalPersonProfile physicalPersonProfile, Class<? extends Card> classCard, PayCardAccount payCardAccount, String currencyCode, String pinCode) {
 
-            //установить свойства карты
-            card.setBank(physicalPersonProfile.getBank());
-            card.setNumberCard(physicalPersonProfile.getBank().generateNumberCard());
-            card.setCardHolder(physicalPersonProfile);
+        //открыть платежный счет
+        PayCardAccount bankPayCardAccount = (PayCardAccount) openAccount(physicalPersonProfile, payCardAccount, currencyCode);
 
-            //открыть платежный счет
-            PayCardAccount bankPayCardAccount = (PayCardAccount) openAccount(physicalPersonProfile, payCardAccount, currencyCode);
+        Bank bank = physicalPersonProfile.getBank();
+        Card card = null;
+        try {
+            card = classCard.getConstructor(Bank.class, PhysicalPersonProfile.class, PayCardAccount.class, String.class)
+                    .newInstance( bank, physicalPersonProfile, bankPayCardAccount, pinCode);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
 
-            //привязать карту к платежному счету
-            bankPayCardAccount.getCards().add(card);
+        //привязать карту к платежному счету
+        bankPayCardAccount.getCards().add(card);
 
-            //привязать платежный счет к карте
-            card.setPayCardAccount(bankPayCardAccount);
-            card.setStatusCard("Активна");
-            card.setPinCode(pinCode);
-
-            //привязать карту к профилю клиента
-            physicalPersonProfile.getCards().add(card);
+        //привязать карту к профилю клиента
+        physicalPersonProfile.getCards().add(card);
 
             return card;
         }

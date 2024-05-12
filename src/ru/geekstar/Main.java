@@ -23,14 +23,14 @@ public class Main {
         I.registerPhysicalPersonToBank(sberbank);
         friend.registerPhysicalPersonToBank(sberbank);
 
-        TinkoffAirlinesMir myTinkoffAirlinesMir1 = (TinkoffAirlinesMir) I.openCard(tinkoff, new TinkoffAirlinesMir(), new TinkoffPayCardAccount(), "RUB", "3131");
-        TinkoffBlackMir myTinkoffBlackMir1 = (TinkoffBlackMir) I.openCard(tinkoff, new TinkoffBlackMir(), new TinkoffPayCardAccount(), "RUB", "9292");
+        TinkoffAirlinesMir myTinkoffAirlinesMir1 = (TinkoffAirlinesMir) I.openCard(tinkoff, TinkoffAirlinesMir.class, new TinkoffPayCardAccount(), "RUB", "3131");
+        TinkoffBlackMir myTinkoffBlackMir1 = (TinkoffBlackMir) I.openCard(tinkoff, TinkoffBlackMir.class, new TinkoffPayCardAccount(), "RUB", "9292");
 
-        SberVisaGold mySberVisaGold1 = (SberVisaGold) I.openCard(sberbank, new SberVisaGold(), new SberPayCardAccount(), "RUB", "2864");
-        SberVisaGold mySberVisaGold2 = (SberVisaGold) I.openCard(sberbank, new SberVisaGold(), new SberPayCardAccount(), "RUB", "1234");
+        SberVisaGold mySberVisaGold1 = (SberVisaGold) I.openCard(sberbank, SberVisaGold.class, new SberPayCardAccount(), "RUB", "2864");
+        SberVisaGold mySberVisaGold2 = (SberVisaGold) I.openCard(sberbank, SberVisaGold.class, new SberPayCardAccount(), "RUB", "1234");
 
-        SberMastercardGold sberMastercardGold = (SberMastercardGold) I.openCard(sberbank, new SberMastercardGold(), new SberPayCardAccount(), "RUB", "9672");
-        SberMastercardTravel sberMastercardtravel = (SberMastercardTravel) I.openCard(sberbank, new SberMastercardTravel(), new SberPayCardAccount(), "RUB", "7621");
+        SberMastercardGold sberMastercardGold = (SberMastercardGold) I.openCard(sberbank, SberMastercardGold.class, new SberPayCardAccount(), "RUB", "9672");
+        SberMastercardTravel sberMastercardtravel = (SberMastercardTravel) I.openCard(sberbank, SberMastercardTravel.class, new SberPayCardAccount(), "RUB", "7621");
 
         I.addAccountToMulticurrencyCard(sberMastercardtravel, "USD");
         I.switchAccountOfMulticurrencyCard(sberMastercardtravel, "USD");
@@ -38,7 +38,7 @@ public class Main {
         SberSavingsAccount mySberSavingsAccount1 = (SberSavingsAccount) I.openAccount(sberbank, new SberSavingsAccount(), "RUB");
         SberSavingsAccount mySberSavingsAccount2 = (SberSavingsAccount) I.openAccount(sberbank, new SberSavingsAccount(), "RUB");
 
-        SberVisaGold friendSberVisaGold1 = (SberVisaGold) friend.openCard(sberbank, new SberVisaGold(), new SberPayCardAccount(), "RUB", "9078");
+        SberVisaGold friendSberVisaGold1 = (SberVisaGold) friend.openCard(sberbank, SberVisaGold.class, new SberPayCardAccount(), "RUB", "9078");
 
 
         I.depositingCash2Card(sberMastercardtravel, 10000.00f);
