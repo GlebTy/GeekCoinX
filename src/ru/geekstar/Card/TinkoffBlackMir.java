@@ -1,12 +1,17 @@
 package ru.geekstar.Card;
 
-import ru.geekstar.ClientProfile.SberPhysicalPersonProfile;
+import ru.geekstar.Account.PayCardAccount;
+import ru.geekstar.ClientProfile.PhysicalPersonProfile;
 import ru.geekstar.ClientProfile.TinkoffPhysicalPersonProfile;
 import ru.geekstar.Transaction.DepositingTransaction;
 
 import java.time.LocalDateTime;
 
 public class TinkoffBlackMir extends CardMir implements ICashbackCard {
+
+    public TinkoffBlackMir(PhysicalPersonProfile cardHolder, PayCardAccount payCardAccount, String pinCode) {
+        super(cardHolder, payCardAccount, pinCode);
+    }
 
     @Override
     public void payByCard(float sumPay, String buyProductOrService, String pinCode) {

@@ -1,14 +1,18 @@
 package ru.geekstar.Bank;
 
-import ru.geekstar.Account.Account;
-import ru.geekstar.Account.PayCardAccount;
-import ru.geekstar.Account.SberPayCardAccount;
-import ru.geekstar.Card.Card;
 import ru.geekstar.ClientProfile.PhysicalPersonProfile;
 import ru.geekstar.ClientProfile.SberPhysicalPersonProfile;
 import ru.geekstar.PhysicalPerson.PhysicalPerson;
 
 public class Sberbank extends Bank implements IBankServicePhysicalPerson {
+
+    public Sberbank () {
+        this("Сбер");
+    }
+
+    public Sberbank (String bankName) {
+        super(bankName);
+    }
 
     // Зарегистрировать профиль физ лица
     @Override

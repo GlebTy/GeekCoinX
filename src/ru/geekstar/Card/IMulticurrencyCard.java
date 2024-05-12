@@ -1,8 +1,6 @@
 package ru.geekstar.Card;
 
 import ru.geekstar.Account.PayCardAccount;
-import ru.geekstar.Bank.IBankServicePhysicalPerson;
-import ru.geekstar.ClientProfile.PhysicalPersonProfile;
 
 import java.util.ArrayList;
 

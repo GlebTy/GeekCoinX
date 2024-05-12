@@ -4,8 +4,10 @@ import ru.geekstar.Account.Account;
 import ru.geekstar.Account.PayCardAccount;
 import ru.geekstar.Account.SberSavingsAccount;
 import ru.geekstar.Bank.IBankServicePhysicalPerson;
-import ru.geekstar.Bank.Sberbank;
-import ru.geekstar.Card.*;
+import ru.geekstar.Card.Card;
+import ru.geekstar.Card.IAirlinesCard;
+import ru.geekstar.Card.IBonusCard;
+import ru.geekstar.Card.IMulticurrencyCard;
 import ru.geekstar.ClientProfile.PhysicalPersonProfile;
 
 import java.util.ArrayList;
@@ -82,12 +84,24 @@ public class PhysicalPerson {
        return null;
     }
 
+    public PhysicalPerson(String firstName, String lastName, String telephone) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.telephone = telephone;
+    }
+
+    public PhysicalPerson(String firstName, String lastName, String telephone, byte age, char gender) {
+        this(firstName, lastName, telephone);
+        this.age = age;
+        this.gender = gender;
+    }
+
     public void registerPhysicalPersonToBank(IBankServicePhysicalPerson bank) {
         physicalPersonProfiles.add(bank.registerPhysicalPersonProfile(this));
     }
 
-    public Card openCard(IBankServicePhysicalPerson bank, Card card, PayCardAccount payCardAccount, String currencyCode, String pinCode) {
-        return bank.openCard(getPhysicalPersonProfile(bank), card, payCardAccount, currencyCode, pinCode);
+    public Card openCard(IBankServicePhysicalPerson bank, Class<? extends Card> classCard, PayCardAccount payCardAccount, String currencyCode, String pinCode) {
+        return bank.openCard(getPhysicalPersonProfile(bank), classCard, payCardAccount, currencyCode, pinCode);
     }
 
     public Account openAccount(IBankServicePhysicalPerson bank, Account account, String currencyCode) {

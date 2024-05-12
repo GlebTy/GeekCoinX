@@ -1,8 +1,14 @@
 package ru.geekstar.Card;
 
+import ru.geekstar.Account.PayCardAccount;
 import ru.geekstar.Card.IPaySystem.IMir;
+import ru.geekstar.ClientProfile.PhysicalPersonProfile;
 
 abstract class CardMir extends Card implements IMir {
+
+    public CardMir(PhysicalPersonProfile cardHolder, PayCardAccount payCardAccount, String pinCode) {
+        super(cardHolder, payCardAccount, pinCode);
+    }
 
     @Override
     // Запросить код валюты платёжной системы

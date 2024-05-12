@@ -1,12 +1,9 @@
 package ru.geekstar.Bank;
 
 import ru.geekstar.Account.Account;
-import ru.geekstar.Account.SberSavingsAccount;
 import ru.geekstar.Card.Card;
-import ru.geekstar.Card.SberVisaGold;
 import ru.geekstar.ClientProfile.ClientProfile;
 import ru.geekstar.ClientProfile.PhysicalPersonProfile;
-import ru.geekstar.ClientProfile.SberPhysicalPersonProfile;
 
 import java.util.ArrayList;
 
@@ -17,7 +14,6 @@ public abstract class Bank {
     private ArrayList<ClientProfile> clientProfiles = new ArrayList<>();
 
     private int countClientProfiles;
-
 
     public String getBankName() {
         return bankName;
@@ -35,6 +31,9 @@ public abstract class Bank {
         this.clientProfiles = clientProfiles;
     }
 
+    public Bank (String bankName) {
+        this.bankName = bankName;
+    }
 
     // Сгенерировать номер карты 3546 0957 9843 7845
     public String generateNumberCard() {

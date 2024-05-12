@@ -1,9 +1,7 @@
 package ru.geekstar.ClientProfile;
 
 import ru.geekstar.Account.Account;
-import ru.geekstar.Account.SberSavingsAccount;
 import ru.geekstar.Card.Card;
-import ru.geekstar.Card.SberVisaGold;
 
 public class SberPhysicalPersonProfile extends PhysicalPersonProfile {
     private int bonuses;

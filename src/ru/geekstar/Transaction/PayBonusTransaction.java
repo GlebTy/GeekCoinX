@@ -1,7 +1,5 @@
 package ru.geekstar.Transaction;
 
-import ru.geekstar.Card.Card;
-
 public class PayBonusTransaction extends PayTransaction {
 
     private int payBonuses;

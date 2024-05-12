@@ -1,8 +1,14 @@
 package ru.geekstar.Card;
 
+import ru.geekstar.Account.PayCardAccount;
 import ru.geekstar.Card.IPaySystem.IVisa;
+import ru.geekstar.ClientProfile.PhysicalPersonProfile;
 
 public abstract class CardVisa extends Card implements IVisa {
+
+    public CardVisa(PhysicalPersonProfile cardHolder, PayCardAccount payCardAccount, String pinCode) {
+        super(cardHolder, payCardAccount, pinCode);
+    }
 
 
     @Override

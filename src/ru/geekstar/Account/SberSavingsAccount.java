@@ -1,7 +1,6 @@
 package ru.geekstar.Account;
 
 import ru.geekstar.Card.Card;
-import ru.geekstar.Card.SberVisaGold;
 import ru.geekstar.ClientProfile.SberPhysicalPersonProfile;
 
 public class SberSavingsAccount extends SavingsAccount {
