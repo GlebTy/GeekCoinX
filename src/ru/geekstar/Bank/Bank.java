@@ -233,14 +233,14 @@ public abstract class Bank {
     // Конвертировать в валюту по курсу банка
     public float convertToCurrencyExchangeRateBank(float sum, String fromCurrencyCode, String toCurrencyCode) {
         if(!fromCurrencyCode.equalsIgnoreCase(toCurrencyCode)) {
-            float exchangeRateToCardCurrency = getExchangeRateBank(fromCurrencyCode, toCurrencyCode);
-            sum *= exchangeRateToCardCurrency;
+            ArrayList<Float> exchangeRateToCardCurrency = getExchangeRateBank(fromCurrencyCode, toCurrencyCode);
+            sum *= exchangeRateToCardCurrency.get(0);
         }
         return sum;
     }
 
     // Предоставить обменный курс валют банка. Переопределим в каждом банке, потому что у каждого банка свой курс
-    public abstract float getExchangeRateBank(String currency, String currencyExchangeRate);
+    public abstract ArrayList<Float> getExchangeRateBank(String currency, String currencyExchangeRate);
 
     public float round(float sum) {
         return Math.round(sum * 100) / 100;
