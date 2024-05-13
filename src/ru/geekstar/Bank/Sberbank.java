@@ -6,8 +6,15 @@ import ru.geekstar.PhysicalPerson.PhysicalPerson;
 
 public class Sberbank extends Bank implements IBankServicePhysicalPerson {
 
+    public static final String SBER;
+
+    static {
+        SBER = "Сбер";
+        System.out.println(SBER + " для физических лиц");
+    }
+
     public Sberbank () {
-        this("Сбер");
+        this(SBER);
     }
 
     public Sberbank (String bankName) {
