@@ -36,7 +36,7 @@ public abstract class Bank {
     }
 
     // Сгенерировать номер карты 3546 0957 9843 7845
-    public String generateNumberCard() {
+    public static String generateNumberCard() {
         byte lengthNumberCard = 20;
         StringBuffer numberCardBuffer = new StringBuffer();
         for (byte i = 1; i < lengthNumberCard; i++) {   // i = 1, чтобы не было пробела в начале, потому что при делении 0 на 5 будет 0
@@ -47,7 +47,7 @@ public abstract class Bank {
     }
 
     // Сгенерировать номер счёта 35467095799843178451 (15738 538 9 4736 9745275)
-    public String generateNumberAccount() {
+    public static String generateNumberAccount() {
         byte lengthNumberAccount = 24;
         
         StringBuffer numberAccountBuffer = new StringBuffer();

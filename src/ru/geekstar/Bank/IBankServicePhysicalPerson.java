@@ -36,7 +36,7 @@ public interface IBankServicePhysicalPerson {
     default Account openAccount(PhysicalPersonProfile physicalPersonProfile, Account account, String currencyCode) {
         //становить свойства платежного счета
         account.setBank(physicalPersonProfile.getBank());
-        account.setNumberAccount(physicalPersonProfile.getBank().generateNumberAccount());
+        account.setNumberAccount(Bank.generateNumberAccount());
         account.setAccountHolder(physicalPersonProfile);
         account.setCurrencyCode(currencyCode);
         account.setCurrencySymbol(currencyCode);
