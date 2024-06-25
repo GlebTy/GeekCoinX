@@ -184,6 +184,10 @@ public class PhysicalPerson {
         multicurrencyCard.switchAccount(currencyCodeAccount);
     }
 
+    public void displayMulticurrencyCardTransactions(IMulticurrencyCard multicurrencyCard) {
+        multicurrencyCard.displayMulticurrencyCardTransactions();
+    }
+
     public void payByCardBonuses(IBonusCard bonusCard, float sumPay, int bonusesPay, String buyProductOrService, String pinCode) {
         bonusCard.payByCardBonuses(sumPay, bonusesPay, buyProductOrService, pinCode);
     }

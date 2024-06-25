@@ -79,6 +79,9 @@ public class Main {
         I.depositingAccountFromCard(mySberSavingsAccount1, sberMastercardGold, 390.00f);
         I.depositingAccountFromAccount(mySberSavingsAccount1, mySberSavingsAccount2, 50.00f);
 
+        // Вывод всех операций по всем счетам мультивалютной карты
+        I.displayMulticurrencyCardTransactions(sberMastercardtravel);
+
 /*
         System.out.println("Вывод операций по карте " + sberMastercardGold.getNumberCard());
         I.displayCardTransactions(sberMastercardGold);
