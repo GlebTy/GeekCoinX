@@ -4,6 +4,8 @@ import ru.geekstar.ClientProfile.PhysicalPersonProfile;
 import ru.geekstar.ClientProfile.TinkoffPhysicalPersonProfile;
 import ru.geekstar.PhysicalPerson.PhysicalPerson;
 
+import java.util.ArrayList;
+
 public class Tinkoff extends Bank implements IBankServicePhysicalPerson {
 
     public Tinkoff () {
@@ -55,16 +57,20 @@ public class Tinkoff extends Bank implements IBankServicePhysicalPerson {
     }
 
     @Override
-    public float getExchangeRateBank(String currency, String currencyExchangeRate) {
-        float exchangeRateBank = 0f;
+    public ArrayList<Float> getExchangeRateBank(String currency, String currencyExchangeRate) {
+        ArrayList<Float> exchangeRateBank = new ArrayList<>();
 
         //курс доллара к рублю
-        if(currency.equals("USD") && currencyExchangeRate.equals("RUB")) exchangeRateBank = 84.0f;
+        if(currency.equals("USD") && currencyExchangeRate.equals("RUB")) {
+            exchangeRateBank.add(63.72f); // курс покупки
+            exchangeRateBank.add(60.35f); // курс продажи
+        }
 
         //курс доллара к рублю
-        if(currency.equals("EUR") && currencyExchangeRate.equals("RUB")) exchangeRateBank = 89.65f;
+        if(currency.equals("EUR") && currencyExchangeRate.equals("RUB")) {
+            exchangeRateBank.add(66.14f); // курс покупки
+            exchangeRateBank.add(62.23f); // курс продажи
+        }
         return exchangeRateBank;
-
-
     }
 }
