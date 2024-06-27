@@ -10,8 +10,11 @@ import java.time.LocalDateTime;
 
 public final class SberVisaGold extends CardVisa implements IBonusCard {
 
+    public static int countCards;
+
     public SberVisaGold(PhysicalPersonProfile cardHolder, PayCardAccount payCardAccount, String pinCode) {
         super(cardHolder, payCardAccount, pinCode);
+        countCards++;
     }
 
     @Override
