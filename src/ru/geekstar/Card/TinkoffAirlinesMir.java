@@ -12,6 +12,8 @@ import java.util.ArrayList;
 
 public final class TinkoffAirlinesMir extends CardMir implements IMulticurrencyCard, IAirlinesCard {
 
+    public static int countCards;
+
     private ArrayList<PayCardAccount> multicurrencyAccounts = new ArrayList<>();
 
     @Override
@@ -27,6 +29,7 @@ public final class TinkoffAirlinesMir extends CardMir implements IMulticurrencyC
     public TinkoffAirlinesMir(PhysicalPersonProfile cardHolder, PayCardAccount payCardAccount, String pinCode) {
         super(cardHolder, payCardAccount, pinCode);
         addAccount("USD");
+        countCards++;
     }
 
     @Override
