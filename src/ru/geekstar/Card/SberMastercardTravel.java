@@ -7,7 +7,7 @@ import ru.geekstar.ClientProfile.PhysicalPersonProfile;
 
 import java.util.ArrayList;
 
-public class SberMastercardTravel extends CardMastercard implements IMulticurrencyCard {
+public final class SberMastercardTravel extends CardMastercard implements IMulticurrencyCard {
 
     private ArrayList<PayCardAccount> multiCurrencyAccounts = new ArrayList<>();
 

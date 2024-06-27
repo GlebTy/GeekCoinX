@@ -8,7 +8,7 @@ import ru.geekstar.Transaction.PayBonusTransaction;
 
 import java.time.LocalDateTime;
 
-public class SberVisaGold extends CardVisa implements IBonusCard {
+public final class SberVisaGold extends CardVisa implements IBonusCard {
 
     public SberVisaGold(PhysicalPersonProfile cardHolder, PayCardAccount payCardAccount, String pinCode) {
         super(cardHolder, payCardAccount, pinCode);
