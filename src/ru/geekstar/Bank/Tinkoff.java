@@ -26,9 +26,7 @@ public class Tinkoff extends Bank implements IBankServicePhysicalPerson {
     @Override
     public PhysicalPersonProfile registerPhysicalPersonProfile(PhysicalPerson physicalPerson) {
         //создать профиль клиента
-        TinkoffPhysicalPersonProfile tinkoffPhysicalPersonProfile = new TinkoffPhysicalPersonProfile();
-        tinkoffPhysicalPersonProfile.setBank(this);
-        tinkoffPhysicalPersonProfile.setPhysicalPerson(physicalPerson);
+        TinkoffPhysicalPersonProfile tinkoffPhysicalPersonProfile = new TinkoffPhysicalPersonProfile(this,physicalPerson);
 
         //установить лимиты
         tinkoffPhysicalPersonProfile.setLimitPaymentsTransfersDayInRUB(1000000.00f);

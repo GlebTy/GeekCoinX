@@ -1,5 +1,8 @@
 package ru.geekstar.ClientProfile;
 
+import ru.geekstar.Bank.Bank;
+import ru.geekstar.PhysicalPerson.PhysicalPerson;
+
 public class TinkoffPhysicalPersonProfile extends PhysicalPersonProfile{
 
     private int miles;
@@ -60,6 +63,10 @@ public class TinkoffPhysicalPersonProfile extends PhysicalPersonProfile{
 
     public void setCostMilesInEUR(float costMilesInEUR) {
         this.costMilesInEUR = costMilesInEUR;
+    }
+
+    public TinkoffPhysicalPersonProfile(Bank bank, PhysicalPerson physicalPerson) {
+        super(bank, physicalPerson);
     }
 
     @Override

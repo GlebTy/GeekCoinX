@@ -127,6 +127,10 @@ public abstract class ClientProfile {
         this.limitCommissionTransferInUsdOrEquivalentInOtherCurrency = limitCommissionTransferInUsdOrEquivalentInOtherCurrency;
     }
 
+    public ClientProfile(Bank bank) {
+        this.bank = bank;
+    }
+
     // обнулять сумму оплаты и переводов каждые сутки
     public void zeroingTotalPaymentsTransfersDay() {
         // TODO: если 00:00 каждого дня, то
