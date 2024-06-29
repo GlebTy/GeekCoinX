@@ -1,7 +1,9 @@
 package ru.geekstar.ClientProfile;
 
 import ru.geekstar.Account.Account;
+import ru.geekstar.Bank.Bank;
 import ru.geekstar.Card.Card;
+import ru.geekstar.PhysicalPerson.PhysicalPerson;
 
 public class SberPhysicalPersonProfile extends PhysicalPersonProfile {
     private int bonuses;
@@ -43,6 +45,12 @@ public class SberPhysicalPersonProfile extends PhysicalPersonProfile {
     public void setTotalTransfersToClientSberWithoutCommissionMonthInRUB(float totalTransfersToClientSberWithoutCommissionMonthInRUB) {
         this.totalTransfersToClientSberWithoutCommissionMonthInRUB = totalTransfersToClientSberWithoutCommissionMonthInRUB;
     }
+
+    public SberPhysicalPersonProfile(Bank bank, PhysicalPerson physicalPerson) {
+        super(bank,physicalPerson);
+
+    }
+
 
 
     // Проверить не превышен ли лимит по переводам клиентам Сбера в месяц

@@ -27,7 +27,7 @@ public class Sberbank extends Bank implements IBankServicePhysicalPerson {
     @Override
     public PhysicalPersonProfile registerPhysicalPersonProfile(PhysicalPerson physicalPerson) {
         // создать профиль клиента
-        SberPhysicalPersonProfile sberPhysicalPersonProfile = new SberPhysicalPersonProfile();
+        SberPhysicalPersonProfile sberPhysicalPersonProfile = new SberPhysicalPersonProfile(this, physicalPerson);
         sberPhysicalPersonProfile.setBank(this);
         sberPhysicalPersonProfile.setPhysicalPerson(physicalPerson);
 
