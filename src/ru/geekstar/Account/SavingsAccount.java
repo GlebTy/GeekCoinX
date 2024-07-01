@@ -1,5 +1,7 @@
 package ru.geekstar.Account;
 
+import ru.geekstar.ClientProfile.PhysicalPersonProfile;
+
 public abstract class SavingsAccount extends Account {
 
     private float percentOfBalance = 5.0f;
@@ -13,6 +15,10 @@ public abstract class SavingsAccount extends Account {
 
     public void setPercentOfBalanceDay(float percentOfBalanceDay) {
         this.percentOfBalanceDay = percentOfBalanceDay;
+    }
+
+    public SavingsAccount(PhysicalPersonProfile accountHolder, String currencyCode) {
+        super(accountHolder,currencyCode);
     }
 
     // Рассчитать проценты на остаток в конце дня

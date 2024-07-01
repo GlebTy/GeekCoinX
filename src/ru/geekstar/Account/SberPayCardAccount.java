@@ -1,9 +1,14 @@
 package ru.geekstar.Account;
 
 import ru.geekstar.Card.Card;
+import ru.geekstar.ClientProfile.PhysicalPersonProfile;
 import ru.geekstar.ClientProfile.SberPhysicalPersonProfile;
 
 public class SberPayCardAccount extends PayCardAccount {
+
+    public SberPayCardAccount(PhysicalPersonProfile accountHolder, String currencyCode) {
+        super(accountHolder,currencyCode);
+    }
 
     @Override
     public void transferAccount2Card(Card toCard, float sumTransfer) {
