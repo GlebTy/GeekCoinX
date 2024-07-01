@@ -102,6 +102,13 @@ public abstract class Account {
         this.depositingTransactions = depositingTransactions;
     }
 
+    public Account(PhysicalPersonProfile accountHolder, String currencyCode) {
+        this.bank = accountHolder.getBank();
+        this.accountHolder = accountHolder;
+        this.numberAccount = bank.generateNumberAccount();
+        this.currencyCode = currencyCode;
+        setCurrencySymbol(currencyCode);
+    }
 
     public void transferAccount2Account(Account toAccount, float sumTransfer) {
         // инициализировать транзакцию перевода
