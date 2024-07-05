@@ -6,7 +6,6 @@ import ru.geekstar.ClientProfile.PhysicalPersonProfile;
 import ru.geekstar.Transaction.DepositingTransaction;
 import ru.geekstar.Transaction.TransferTransaction;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -111,14 +110,8 @@ public abstract class Account {
     }
 
     public void transferAccount2Account(Account toAccount, float sumTransfer) {
-        // инициализировать транзакцию перевода
-        TransferTransaction transferTransaction = new TransferTransaction();
-        transferTransaction.setLocalDateTime(LocalDateTime.now());
-        transferTransaction.setFromAccount(this);
-        transferTransaction.setToAccount(toAccount);
-        transferTransaction.setSum(sumTransfer);
-        transferTransaction.setCurrencySymbol(currencySymbol);
-        transferTransaction.setTypeOperation("перевод на аккаунт");
+
+        TransferTransaction transferTransaction = new TransferTransaction(this, toAccount, "Перевод на счет", sumTransfer, currencySymbol);
 
         // определяем валюту счёта списания
         String fromCurrencyCode = getCurrencyCode();
@@ -141,13 +134,8 @@ public abstract class Account {
                     transferTransaction.setStatusOperation("Списание прошло успешно");
 
                     // инициализировать транзакцию пополнения
-                    DepositingTransaction depositingTransaction = new DepositingTransaction();
-                    depositingTransaction.setLocalDateTime(LocalDateTime.now());
-                    depositingTransaction.setFromAccount((SberSavingsAccount) this);
-                    depositingTransaction.setToAccount(toAccount);
-                    depositingTransaction.setTypeOperation("Перевод со счета");
-                    depositingTransaction.setSum(sumTransfer);
-                    depositingTransaction.setCurrencySymbol(toAccount.getCurrencySymbol());
+                    DepositingTransaction depositingTransaction = new DepositingTransaction(this, toAccount, "Перевод со счёта", sumTransfer, currencySymbol);
+
 
                     // определяем валюту счета зачисления
                     String toCurrencyCode = toAccount.getCurrencyCode();
@@ -190,13 +178,7 @@ public abstract class Account {
     // Перевести со счёта на карту
     public void transferAccount2Card(Card toCard, float sumTransfer) {
         // инициализировать транзакцию перевода
-        TransferTransaction transferTransaction = new TransferTransaction();
-        transferTransaction.setLocalDateTime(LocalDateTime.now());
-        transferTransaction.setFromAccount((SberSavingsAccount) this);
-        transferTransaction.setToCard(toCard);
-        transferTransaction.setSum(sumTransfer);
-        transferTransaction.setCurrencySymbol(currencySymbol);
-        transferTransaction.setTypeOperation("Перевод на карту");
+        TransferTransaction transferTransaction = new TransferTransaction(this, toCard, "Перевод на карту", sumTransfer, currencySymbol);
 
         // определяем валюту счёта списания
         String fromCurrencyCode = getCurrencyCode();
@@ -220,13 +202,7 @@ public abstract class Account {
                     transferTransaction.setStatusOperation("Списание прошло успешно");
 
                     // инициализировать транзакцию пополнения
-                    DepositingTransaction depositingTransaction = new DepositingTransaction();
-                    depositingTransaction.setLocalDateTime(LocalDateTime.now());
-                    depositingTransaction.setFromAccount((SberSavingsAccount) this);
-                    depositingTransaction.setToCard(toCard);
-                    depositingTransaction.setTypeOperation("Перевод со счёта");
-                    depositingTransaction.setSum(sumTransfer);
-                    depositingTransaction.setCurrencySymbol(toCard.getPayCardAccount().getCurrencySymbol());
+                    DepositingTransaction depositingTransaction = new DepositingTransaction(this, toCard, "Перевод со счёта", sumTransfer, currencySymbol);
 
                     // определяем валюту счёта зачисления
                     String toCurrencyCode = toCard.getPayCardAccount().getCurrencyCode();

@@ -7,7 +7,6 @@ import ru.geekstar.ClientProfile.PhysicalPersonProfile;
 import ru.geekstar.ClientProfile.TinkoffPhysicalPersonProfile;
 import ru.geekstar.Transaction.PayMilesTransaction;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public final class TinkoffAirlinesMir extends CardMir implements IMulticurrencyCard, IAirlinesCard {
@@ -77,24 +76,23 @@ public final class TinkoffAirlinesMir extends CardMir implements IMulticurrencyC
 
     @Override
     public void payByCardMiles(float sumPay, int milesPay, String buyProductOrService, String pinCode) {
-        PayMilesTransaction payMilesTransaction = new PayMilesTransaction();
-        payMilesTransaction.setLocalDateTime(LocalDateTime.now());
-        payMilesTransaction.setFromCard(this);
-        payMilesTransaction.setTypeOperation("оплата милями");
-        payMilesTransaction.setBuyProductOrService(buyProductOrService);
+
+        PayMilesTransaction payMilesTransaction = new PayMilesTransaction(this, "оплата милями", sumPay, milesPay, buyProductOrService);
 
         //определяем владельца карты, так как бонусы привязаны к клиенту, а не к конкретной карте
         TinkoffPhysicalPersonProfile cardHolder = (TinkoffPhysicalPersonProfile) getCardHolder();
 
-       if(cardHolder.getMiles() >= milesPay) {
+        int balanceMiles = cardHolder.getMiles();
+
+       if(balanceMiles >= milesPay) {
         if(milesPay > sumPay) milesPay = (int) sumPay;
-        cardHolder.setMiles(cardHolder.getMiles() - milesPay);
+        cardHolder.setMiles(balanceMiles- milesPay);
         sumPay -= milesPay;
         payMilesTransaction.setStatusOperation("Оплата милями прошла успешно");
        } else payMilesTransaction.setStatusOperation("Недостаточно миль");
 
        payMilesTransaction.setPayMiles(milesPay);
-       payMilesTransaction.setBalanceMiles(cardHolder.getMiles());
+       payMilesTransaction.setBalanceMiles(balanceMiles);
         this.getPayCardAccount().getPayTransactions().add(payMilesTransaction);
 
         payByCard(sumPay, buyProductOrService, pinCode);

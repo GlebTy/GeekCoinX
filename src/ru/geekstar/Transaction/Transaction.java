@@ -128,6 +128,48 @@ public abstract class Transaction {
         this.fromAccount = fromAccount;
     }
 
+    public Transaction(Card fromCard, Card toCard, String typeOperation, float sum, char currencySymbol) {
+        this(typeOperation, sum, currencySymbol);
+        this.fromCard = fromCard;
+        this.toCard = toCard;
+    }
+
+    public Transaction(Card fromCard, Account toAccount, String typeOperation, float sum, char currencySymbol) {
+        this(typeOperation, sum, currencySymbol);
+        this.fromCard = fromCard;
+        this.toAccount = toAccount;
+    }
+
+    public Transaction(Account fromAccount, Account toAccount, String typeOperation, float sum, char currencySymbol) {
+        this(typeOperation, sum, currencySymbol);
+        this.fromAccount = fromAccount;
+        this.toAccount = toAccount;
+    }
+
+    public Transaction(Account fromAccount, Card toCard, String typeOperation, float sum, char currencySymbol) {
+        this(typeOperation, sum, currencySymbol);
+        this.fromAccount = fromAccount;
+        this.toCard = toCard;
+    }
+
+    public Transaction(Card fromCard, String typeOperation, float sum) {
+        this(typeOperation, sum, fromCard.getPayCardAccount().getCurrencySymbol());
+        this.fromCard = fromCard;
+    }
+
+
+    public Transaction(String typeOperation, Card toCard, float sum) {
+        this(typeOperation, sum, toCard.getPayCardAccount().getCurrencySymbol());
+        this.toCard = toCard;
+    }
+
+    public Transaction(String typeOperation, float sum, char currencySymbol){
+        this.localDateTime = LocalDateTime.now();
+        this.typeOperation = typeOperation;
+        this.sum = sum;
+        this.currencySymbol = currencySymbol;
+    }
+
     public String getRecipient() {
         String recipient = "";
         if (toCard != null) recipient = getNameCard(toCard);

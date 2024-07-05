@@ -1,9 +1,30 @@
 package ru.geekstar.Transaction;
 
+import ru.geekstar.Account.Account;
+import ru.geekstar.Card.Card;
 import ru.geekstar.PhysicalPerson.PhysicalPerson;
 
 public class DepositingTransaction extends Transaction {
 
+    public DepositingTransaction(Card fromCard, Card toCard, String typeOperation, float sum, char currencySymbol) {
+        super(fromCard, toCard, typeOperation, sum, currencySymbol);
+    }
+
+    public DepositingTransaction(Card fromCard, Account toAccount, String typeOperation, float sum, char currencySymbol) {
+        super(fromCard, toAccount, typeOperation, sum, currencySymbol);
+    }
+
+    public DepositingTransaction(Account fromAccount, Account toAccount, String typeOperation, float sum, char currencySymbol) {
+        super(fromAccount, toAccount, typeOperation, sum, currencySymbol);
+    }
+
+    public DepositingTransaction(Account fromAccount, Card toCard, String typeOperation, float sum, char currencySymbol) {
+        super(fromAccount, toCard, typeOperation, sum, currencySymbol);
+    }
+
+    public DepositingTransaction(Card toCard, String typeOperation, float sum) {
+        super(typeOperation, toCard, sum);
+    }
 
     @Override
     public String getSender() {
