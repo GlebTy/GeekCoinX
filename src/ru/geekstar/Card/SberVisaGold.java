@@ -6,8 +6,6 @@ import ru.geekstar.ClientProfile.PhysicalPersonProfile;
 import ru.geekstar.ClientProfile.SberPhysicalPersonProfile;
 import ru.geekstar.Transaction.PayBonusTransaction;
 
-import java.time.LocalDateTime;
-
 public final class SberVisaGold extends CardVisa implements IBonusCard {
 
     public static int countCards;
@@ -28,11 +26,7 @@ public final class SberVisaGold extends CardVisa implements IBonusCard {
     @Override
     public void payByCardBonuses(float sumPay, int bonusesPay, String buyProductOrService, String pinCode) {
         // создаем и вносим данные в транзакцию
-        PayBonusTransaction payBonusTransaction = new PayBonusTransaction();
-        payBonusTransaction.setLocalDateTime(LocalDateTime.now());
-        payBonusTransaction.setFromCard(this);
-        payBonusTransaction.setTypeOperation("Оплата бонусами");
-        payBonusTransaction.setBuyProductOrService(buyProductOrService);
+        PayBonusTransaction payBonusTransaction = new PayBonusTransaction(this,"Оплата бонусами", sumPay, bonusesPay, buyProductOrService);
 
         //определяем владельца карты, так как бонусы привязаны к клиенту, а не к конкретной карте
         SberPhysicalPersonProfile cardHolder = (SberPhysicalPersonProfile) getCardHolder();
@@ -58,7 +52,9 @@ public final class SberVisaGold extends CardVisa implements IBonusCard {
             // и в обоих случаях мы просто списываем bonusesPay
 
             //списываем бонусы, которыми оплачиваем до 99% от стоимости покупки
-            cardHolder.setBonuses(balanceBonuses - bonusesPay);
+            balanceBonuses -= bonusesPay;
+            cardHolder.setBonuses(balanceBonuses);
+
             // рассчитываем остаток от суммы покупки, которую уже нужно будет оплатить картой
             sumPay -= bonusesPay;
             payBonusTransaction.setStatusOperation("Оплата бонусами прошло успешно");

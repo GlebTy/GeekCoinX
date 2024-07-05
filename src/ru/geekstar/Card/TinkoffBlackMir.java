@@ -5,8 +5,6 @@ import ru.geekstar.ClientProfile.PhysicalPersonProfile;
 import ru.geekstar.ClientProfile.TinkoffPhysicalPersonProfile;
 import ru.geekstar.Transaction.DepositingTransaction;
 
-import java.time.LocalDateTime;
-
 public final class TinkoffBlackMir extends CardMir implements ICashbackCard {
 
     public static int countCards;
@@ -37,12 +35,7 @@ public final class TinkoffBlackMir extends CardMir implements ICashbackCard {
     public void depositingCashback2Card() {
         TinkoffPhysicalPersonProfile cardHolder = (TinkoffPhysicalPersonProfile) getCardHolder();
         // инициализировать транзакцию пополнения
-        DepositingTransaction depositingTransaction = new DepositingTransaction();
-        depositingTransaction.setLocalDateTime(LocalDateTime.now());
-        depositingTransaction.setToCard(this);
-        depositingTransaction.setSum(cardHolder.getCashback());
-        depositingTransaction.setCurrencySymbol(getPayCardAccount().getCurrencySymbol());
-        depositingTransaction.setTypeOperation("Зачисление кэшбэка");
+        DepositingTransaction depositingTransaction = new DepositingTransaction(this, "Зачисление кешбека", cardHolder.getCashback());
 
         //выполняем пополнение
         boolean topUpStatus = getPayCardAccount().topUp(cardHolder.getCashback());

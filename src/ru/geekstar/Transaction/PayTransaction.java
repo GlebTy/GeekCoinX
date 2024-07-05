@@ -1,5 +1,7 @@
 package ru.geekstar.Transaction;
 
+import ru.geekstar.Card.Card;
+
 public class PayTransaction extends Transaction {
 
     private String buyProductOrService;
@@ -13,6 +15,10 @@ public class PayTransaction extends Transaction {
         this.buyProductOrService = buyProductOrService;
     }
 
+    public PayTransaction(Card fromCard, String typeOperation, float sumPay, String buyProductOrService) {
+        super(fromCard, typeOperation, sumPay);
+        this.buyProductOrService = buyProductOrService;
+    }
 
     @Override
     public String getStringTransaction() {

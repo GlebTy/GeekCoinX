@@ -1,5 +1,7 @@
 package ru.geekstar.Transaction;
 
+import ru.geekstar.Card.Card;
+
 public class PayBonusTransaction extends PayTransaction {
 
     private int payBonuses;
@@ -20,6 +22,11 @@ public class PayBonusTransaction extends PayTransaction {
 
     public void setBalanceBonuses(int balanceBonuses) {
         this.balanceBonuses = balanceBonuses;
+    }
+
+    public PayBonusTransaction(Card fromCard, String typeOperation, float sumPay, int payBonuses, String buyProductOrService) {
+        super(fromCard, typeOperation, sumPay,buyProductOrService);
+        this.payBonuses = payBonuses;
     }
 
     @Override
