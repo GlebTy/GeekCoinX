@@ -8,6 +8,7 @@ import ru.geekstar.Card.Card;
 import ru.geekstar.Card.IAirlinesCard;
 import ru.geekstar.Card.IBonusCard;
 import ru.geekstar.Card.IMulticurrencyCard;
+import ru.geekstar.Card.IPaySystem.IPaySystem;
 import ru.geekstar.ClientProfile.PhysicalPersonProfile;
 
 import java.util.ArrayList;
@@ -194,5 +195,9 @@ public class PhysicalPerson {
 
     public void payByCardMiles(IAirlinesCard airlinesCard, float sumPay, int milesPay, String buyProductOrService, String pinCode) {
         airlinesCard.payByCardMiles(sumPay, milesPay, buyProductOrService, pinCode);
+    }
+
+    public ArrayList<Float> getExchangeRatePaySystem(IPaySystem paySystemCard, String currency, String currencyExchangeRate) {
+        return paySystemCard.getExchangeRatePaySystem(currency, currencyExchangeRate);
     }
 }
