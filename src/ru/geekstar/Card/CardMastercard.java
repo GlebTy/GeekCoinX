@@ -4,6 +4,8 @@ import ru.geekstar.Account.PayCardAccount;
 import ru.geekstar.Card.IPaySystem.IMastercard;
 import ru.geekstar.ClientProfile.PhysicalPersonProfile;
 
+import java.util.ArrayList;
+
 public abstract class CardMastercard extends Card implements IMastercard {
 
     public CardMastercard(PhysicalPersonProfile cardHolder, PayCardAccount payCardAccount, String pinCode) {
@@ -25,14 +27,23 @@ public abstract class CardMastercard extends Card implements IMastercard {
 
 
     // Запросить обменный курс валют платёжной системы
-    public float getExchangeRatePaySystem(String currency, String currencyExchangeRate) {
+    public ArrayList<Float> getExchangeRatePaySystem(String currency, String currencyExchangeRate) {
         // TODO: Запрос к API Mastercard
-        float exchangeRate = 0;
+        ArrayList<Float> exchangeRatePaySystem = new ArrayList<>();
+
         // курс лиры к доллару
-        if (currency.equals("TRY") && currencyExchangeRate.equals("USD")) exchangeRate = 0.057f;
+        if (currency.equals("TRY") && currencyExchangeRate.equals("USD")) {
+            exchangeRatePaySystem.add(0.057f); //курс покупки
+            exchangeRatePaySystem.add(0.047f); //курс продажи
+        }
+
+
         // курс лиры к евро
-        if (currency.equals("TRY") && currencyExchangeRate.equals("EUR")) exchangeRate = 0.059f;
-        return exchangeRate;
+        if (currency.equals("TRY") && currencyExchangeRate.equals("EUR")) {
+            exchangeRatePaySystem.add(0.059f); //курс покупки
+            exchangeRatePaySystem.add(0.048f); //курс продажи
+        }
+        return exchangeRatePaySystem;
     }
 
 

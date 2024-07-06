@@ -1,14 +1,16 @@
 package ru.geekstar.Card.IPaySystem;
 
+import java.util.ArrayList;
+
 public interface IPaySystem {
 
     // Конвертировать в валюту по курсу платёжной системы
     default float convertToCurrencyExchangeRatePaySystem(float sum, String fromCurrencyCode, String toBillingCurrencyCode) {
         if(!fromCurrencyCode.equalsIgnoreCase(toBillingCurrencyCode)) {
             // запросить курс валюты покупки к курсу валюты биллинга ($) по курсу платёжной системы VISA
-            float exchangeRateCurrencyToBillingCurrency = getExchangeRatePaySystem(fromCurrencyCode, toBillingCurrencyCode);
+           ArrayList<Float> exchangeRateCurrencyToBillingCurrency = getExchangeRatePaySystem(fromCurrencyCode, toBillingCurrencyCode);
             // получаем сумму покупки в валюте биллинга умножив сумму покупки на обменный курс валюты биллинга ($)
-             sum *= exchangeRateCurrencyToBillingCurrency;
+             sum *= exchangeRateCurrencyToBillingCurrency.get(0);
 
         }
         return sum;
@@ -17,5 +19,5 @@ public interface IPaySystem {
     // Запросить код валюты платёжной системы
     String getCurrencyCodePaySystem(String country);
 
-    float getExchangeRatePaySystem(String currency, String currencyExchangeRate);
+    ArrayList<Float> getExchangeRatePaySystem(String currency, String currencyExchangeRate);
 }
