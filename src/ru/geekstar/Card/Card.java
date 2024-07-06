@@ -87,7 +87,7 @@ public abstract class Card implements IPaySystem {
     }
 
     // Оплатить картой
-    public void payByCard(float sumPay, String buyProductOrService, String pinCode) {
+    public void payByCard(final float sumPay, String buyProductOrService, final String pinCode) {
         // инициализировать транзакцию оплаты
         PayTransaction payTransaction = new PayTransaction(this,"Покупка", sumPay, buyProductOrService);
 
@@ -98,7 +98,7 @@ public abstract class Card implements IPaySystem {
         payTransaction.setCommission(commission);
 
         // запросить разрешение банка на проведение операции с блокированием суммы оплаты и комиссии
-        String authorization = bank.authorization(this, payTransaction.getTypeOperation(), sumPay, commission, pinCode);
+        final String authorization = bank.authorization(this, payTransaction.getTypeOperation(), sumPay, commission, pinCode);
         // извлекаем массив строк разделяя их символом @
         String[] authorizationData = authorization.split("@");
         // извлекаем код авторизации
@@ -134,7 +134,7 @@ public abstract class Card implements IPaySystem {
     }
 
     // Оплатить картой за рубежом
-    public void payByCard(float sumPay, String buyProductOrService, String country, String pinCode) {
+    public void payByCard(final float sumPay, String buyProductOrService, String country, final String pinCode) {
         // по названию страны определяем валюту покупки
         String currencyPayCode = bank.getCurrencyCode(country);
         // по названию страны определяем валюту биллинга - это валюта платёжной системы
@@ -170,7 +170,7 @@ public abstract class Card implements IPaySystem {
         transferTransaction.setCommission(commission);
 
         // запросить разрешение банка на проведение операции с блокированием суммы перевода и комиссии
-        String authorization = bank.authorization(this, transferTransaction.getTypeOperation(), sumTransfer, commission, null);
+        final String authorization = bank.authorization(this, transferTransaction.getTypeOperation(), sumTransfer, commission, null);
         String[] authorizationData = authorization.split("@");
         String authorizationCode = authorizationData[0];
         transferTransaction.setAuthorizationCode(authorizationCode);
@@ -289,7 +289,7 @@ public abstract class Card implements IPaySystem {
         DepositingTransaction depositingTransaction = new DepositingTransaction(this,"Внесение наличных", sumDepositing);
 
         // запросить разрешение банка на проведение операции с проверкой статуса карты
-        String authorization = bank.authorizationStatusCard(this);
+        final String authorization = bank.authorizationStatusCard(this);
         // извлекаем массив строк разделяя их символом @
         String[] authorizationData = authorization.split("@");
         // извлекаем код авторизации
