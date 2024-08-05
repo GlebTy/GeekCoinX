@@ -3,6 +3,7 @@ package ru.geekstar.ClientProfile;
 import ru.geekstar.Account.Account;
 import ru.geekstar.Bank.Bank;
 import ru.geekstar.Card.Card;
+import ru.geekstar.IOFile;
 import ru.geekstar.PhysicalPerson.PhysicalPerson;
 
 import java.io.File;
@@ -94,6 +95,7 @@ public abstract class PhysicalPersonProfile extends ClientProfile {
                 getLimitPaymentsTransfersDayInRUB() + "₽");
 
         System.out.println(paymentsTransfersDayInRub);
+        IOFile.write(getPathToTransactionHistoryFile(), paymentsTransfersDayInRub, true);
 
         // для подсчёта всех транзакций по всем счетам и картам клиента
         int countAllTransactions = 0;
@@ -121,12 +123,24 @@ public abstract class PhysicalPersonProfile extends ClientProfile {
 
         // и осталось вывести все транзакции
         for (int idTransaction = 0; idTransaction < countAllTransactions; idTransaction++) {
-            System.out.println("#" + (idTransaction + 1) + " " + allTransactions[idTransaction]);
+            String tranasction = ("#" + (idTransaction + 1) + " " + allTransactions[idTransaction]);
+            System.out.println(tranasction);
+            IOFile.write(getPathToTransactionHistoryFile(), tranasction, true);
         }
 
         System.out.println();
+        IOFile.write(getPathToTransactionHistoryFile(), "", true);
 
     }
+    public void displayTransactionHistory() {
+        System.out.println(IOFile.reader(getPathToTransactionHistoryFile()));
+    }
+
+    public void clearTransactionHistory() {
+        IOFile.write(getPathToTransactionHistoryFile(),"", false);
+    }
+
+
     public String getPathToTransactionHistoryFile() {
         File dirFinance = new File(DIR_FINANCE);
         if (!dirFinance.exists()) dirFinance.mkdir();

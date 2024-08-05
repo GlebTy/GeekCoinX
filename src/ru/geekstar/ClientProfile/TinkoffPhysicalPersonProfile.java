@@ -1,6 +1,7 @@
 package ru.geekstar.ClientProfile;
 
 import ru.geekstar.Bank.Bank;
+import ru.geekstar.IOFile;
 import ru.geekstar.PhysicalPerson.PhysicalPerson;
 
 public class TinkoffPhysicalPersonProfile extends PhysicalPersonProfile{
@@ -73,11 +74,15 @@ public class TinkoffPhysicalPersonProfile extends PhysicalPersonProfile{
     // Вывод всех операций по всем картам и счетам профиля физического лица в тинькове
     public void displayProfileTransactions() {
         // дополним метод уникальной информацией, присуще только тинькову
-        System.out.println("Все операции по картам и счетам клиента " + getPhysicalPerson().getFirstName() + " " + getPhysicalPerson().getLastName() +
+        String allTransactionsPhysicalPerson = ("Все операции по картам и счетам клиента " + getPhysicalPerson().getFirstName() + " " + getPhysicalPerson().getLastName() +
                 " в " + getBank().getBankName() + " Банке");
 
-        System.out.println("Накопленный кэшбэк: " + getCashback());
-        System.out.println("Накопленные мили: " + getMiles());
+        String cashback = ("Накопленный кэшбэк: " + getCashback());
+        String balanceMiles = ("Накопленные мили: " + getMiles());
+
+        String headerProfileTransactions = allTransactionsPhysicalPerson + "\n" + cashback + "\n" + balanceMiles;
+        System.out.println(headerProfileTransactions);
+        IOFile.write(getPathToTransactionHistoryFile(), headerProfileTransactions, true);
 
         // и вызываем родительскую версию метода
         super.displayProfileTransactions();

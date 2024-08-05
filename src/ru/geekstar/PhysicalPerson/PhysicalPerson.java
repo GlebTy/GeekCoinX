@@ -177,6 +177,19 @@ public class PhysicalPerson {
         }
     }
 
+    public void displayTransactionHistory() {
+        for(int idprofile = 0; idprofile < physicalPersonProfiles.size(); idprofile++) {
+            physicalPersonProfiles.get(idprofile).displayTransactionHistory();
+        }
+
+    }
+
+    public void clearTransactionHistory() {
+        for(int idprofile = 0; idprofile < physicalPersonProfiles.size(); idprofile++) {
+            physicalPersonProfiles.get(idprofile).clearTransactionHistory();
+        }
+    }
+
     public void addAccountToMulticurrencyCard(IMulticurrencyCard multicurrencyCard, String currencyCodeAccount) {
         multicurrencyCard.addAccount(currencyCodeAccount);
     }
