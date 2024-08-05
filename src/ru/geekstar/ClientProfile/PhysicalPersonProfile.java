@@ -5,6 +5,7 @@ import ru.geekstar.Bank.Bank;
 import ru.geekstar.Card.Card;
 import ru.geekstar.PhysicalPerson.PhysicalPerson;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -15,6 +16,8 @@ public abstract class PhysicalPersonProfile extends ClientProfile {
     private ArrayList<Card> cards = new ArrayList<>();
 
     private ArrayList<Account> accounts = new ArrayList<>();
+
+    private static final String DIR_FINANCE = "Finance";
 
 
     public PhysicalPerson getPhysicalPerson() {
@@ -86,9 +89,11 @@ public abstract class PhysicalPersonProfile extends ClientProfile {
     @Override
     // Вывод всех операций по всем картам и счетам профиля физического лица
     public void displayProfileTransactions() {
-        System.out.println("Платежей и переводов за текущие сутки выполнено на сумму: " + getTotalPaymentsTransfersDayInRUB() +
+        String paymentsTransfersDayInRub = ("Платежей и переводов за текущие сутки выполнено на сумму: " + getTotalPaymentsTransfersDayInRUB() +
                 "₽ Доступный лимит: " + (getLimitPaymentsTransfersDayInRUB() - getTotalPaymentsTransfersDayInRUB()) + "₽ из " +
                 getLimitPaymentsTransfersDayInRUB() + "₽");
+
+        System.out.println(paymentsTransfersDayInRub);
 
         // для подсчёта всех транзакций по всем счетам и картам клиента
         int countAllTransactions = 0;
@@ -122,5 +127,10 @@ public abstract class PhysicalPersonProfile extends ClientProfile {
         System.out.println();
 
     }
-
+    public String getPathToTransactionHistoryFile() {
+        File dirFinance = new File(DIR_FINANCE);
+        if (!dirFinance.exists()) dirFinance.mkdir();
+        String pathToTransactionHistoryFile = DIR_FINANCE + File.separator + getBank().getBankName() + " " + physicalPerson.getFirstName() + " " + physicalPerson.getLastName() + ".txt";
+        return pathToTransactionHistoryFile;
+    }
 }
