@@ -129,9 +129,18 @@ public abstract class PhysicalPersonProfile extends ClientProfile {
         }
 
         System.out.println();
-        IOFile.write(getPathToTransactionHistoryFile(), "\n", true);
+        IOFile.write(getPathToTransactionHistoryFile(), "", true);
 
     }
+    public void displayTransactionHistory() {
+        System.out.println(IOFile.reader(getPathToTransactionHistoryFile()));
+    }
+
+    public void clearTransactionHistory() {
+        IOFile.write(getPathToTransactionHistoryFile(),"", false);
+    }
+
+
     public String getPathToTransactionHistoryFile() {
         File dirFinance = new File(DIR_FINANCE);
         if (!dirFinance.exists()) dirFinance.mkdir();
