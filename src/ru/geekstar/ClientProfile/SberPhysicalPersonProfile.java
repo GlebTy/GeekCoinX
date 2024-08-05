@@ -3,6 +3,7 @@ package ru.geekstar.ClientProfile;
 import ru.geekstar.Account.Account;
 import ru.geekstar.Bank.Bank;
 import ru.geekstar.Card.Card;
+import ru.geekstar.IOFile;
 import ru.geekstar.PhysicalPerson.PhysicalPerson;
 
 public class SberPhysicalPersonProfile extends PhysicalPersonProfile {
@@ -94,15 +95,19 @@ public class SberPhysicalPersonProfile extends PhysicalPersonProfile {
     // Вывод всех операций по всем картам и счетам профиля физического лица в Сбере
     public void displayProfileTransactions() {
         // дополним метод уникальной информацией, присуще только Сберу
-        System.out.println("Все операции по картам и счетам клиента " + getPhysicalPerson().getFirstName() + " " + getPhysicalPerson().getLastName() +
+        String allTransactionsPhysicalPerson = ("Все операции по картам и счетам клиента " + getPhysicalPerson().getFirstName() + " " + getPhysicalPerson().getLastName() +
                 " в " + getBank().getBankName() + "Банке");
 
-        System.out.println("Переводы клиентам " + getBank().getBankName() +
+        String transfersToClientSberWithoutCommissionMonthInRub = ("Переводы клиентам " + getBank().getBankName() +
                 " без комиссии за текущий месяц: " + getTotalTransfersToClientSberWithoutCommissionMonthInRUB() + "₽ Доступный лимит: " +
                 (getLimitTransfersToClientSberWithoutCommissionMonthInRUB() - getTotalTransfersToClientSberWithoutCommissionMonthInRUB()) + "₽ из " +
                 getLimitTransfersToClientSberWithoutCommissionMonthInRUB() + "₽");
 
-        System.out.println(getBank().getBankName() + "Бонусов: " + getBonuses());
+        String balanceBonuses = (getBank().getBankName() + "Бонусов: " + getBonuses());
+
+        String headerProfileTransactions = allTransactionsPhysicalPerson + "\n" + transfersToClientSberWithoutCommissionMonthInRub + "\n" + balanceBonuses;
+        System.out.println(headerProfileTransactions);
+        IOFile.write(getPathToTransactionHistoryFile(), headerProfileTransactions,true);
 
         // и вызываем родительскую версию метода
         super.displayProfileTransactions();
