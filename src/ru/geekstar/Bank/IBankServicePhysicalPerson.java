@@ -6,6 +6,8 @@ import ru.geekstar.Card.Card;
 import ru.geekstar.ClientProfile.PhysicalPersonProfile;
 import ru.geekstar.PhysicalPerson.PhysicalPerson;
 
+import java.lang.reflect.InvocationTargetException;
+
 public interface IBankServicePhysicalPerson {
 
     PhysicalPersonProfile registerPhysicalPersonProfile (PhysicalPerson physicalPerson);
@@ -19,8 +21,14 @@ public interface IBankServicePhysicalPerson {
         try {
             card = classCard.getConstructor(PhysicalPersonProfile.class, PayCardAccount.class, String.class)
                     .newInstance(physicalPersonProfile, bankPayCardAccount, pinCode);
-        } catch (Exception e) {
-            System.out.println(e);
+        } catch (NoSuchMethodException noSuchMethodExc) {
+            System.out.println("Определенный конструктор не найден " + noSuchMethodExc.getMessage());
+        } catch (InstantiationException instantExc) {
+            System.out.println("Невозможно создать объект абстрактного класса " + instantExc.getMessage());
+        } catch (IllegalAccessException IllegalExc) {
+            System.out.println("Конструктор недоступен " + IllegalExc.getMessage());
+        } catch (InvocationTargetException invocationExc) {
+            System.out.println("Вызываемый конструктор выбросил исключение " + invocationExc.getMessage());
         }
 
         //привязать карту к платежному счету
