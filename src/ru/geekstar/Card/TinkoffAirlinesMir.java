@@ -16,6 +16,11 @@ public final class TinkoffAirlinesMir extends CardMir implements IMulticurrencyC
     private ArrayList<PayCardAccount> multicurrencyAccounts = new ArrayList<>();
 
     @Override
+    public int getMiles() {
+        return ((TinkoffPhysicalPersonProfile)getCardHolder()).getMiles();
+    }
+
+    @Override
     public ArrayList<PayCardAccount> getMulticurrencyAccounts() {
         return multicurrencyAccounts;
     }

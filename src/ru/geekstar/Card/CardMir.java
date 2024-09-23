@@ -6,7 +6,7 @@ import ru.geekstar.ClientProfile.PhysicalPersonProfile;
 
 import java.util.ArrayList;
 
-abstract class CardMir extends Card implements IMir {
+public abstract class CardMir extends Card implements IMir {
 
     public CardMir(PhysicalPersonProfile cardHolder, PayCardAccount payCardAccount, String pinCode) {
         super(cardHolder, payCardAccount, pinCode);

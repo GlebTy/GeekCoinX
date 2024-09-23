@@ -9,6 +9,11 @@ public final class TinkoffBlackMir extends CardMir implements ICashbackCard {
 
     public static int countCards;
 
+    @Override
+    public float getCashback() {
+        return ((TinkoffPhysicalPersonProfile)getCardHolder()).getCashback();
+    }
+
     public TinkoffBlackMir(PhysicalPersonProfile cardHolder, PayCardAccount payCardAccount, String pinCode) {
         super(cardHolder, payCardAccount, pinCode);
         countCards++;
