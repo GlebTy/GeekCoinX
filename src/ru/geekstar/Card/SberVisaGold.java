@@ -7,6 +7,10 @@ import ru.geekstar.ClientProfile.SberPhysicalPersonProfile;
 import ru.geekstar.Transaction.PayBonusTransaction;
 
 public final class SberVisaGold extends CardVisa implements IBonusCard {
+    @Override
+    public int getBonuses() {
+        return ((SberPhysicalPersonProfile)getCardHolder()).getBonuses();
+    }
 
     public static int countCards;
 

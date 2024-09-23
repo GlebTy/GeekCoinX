@@ -2,6 +2,8 @@ package ru.geekstar.Card;
 
 public interface IBonusCard {
 
+    int getBonuses();
+
     // накапливаем бонусы
     void accumulateBonuses(float sumPay);
 

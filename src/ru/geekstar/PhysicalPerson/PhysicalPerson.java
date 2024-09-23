@@ -3,6 +3,7 @@ package ru.geekstar.PhysicalPerson;
 import ru.geekstar.Account.Account;
 import ru.geekstar.Account.PayCardAccount;
 import ru.geekstar.Account.SberSavingsAccount;
+import ru.geekstar.Bank.Bank;
 import ru.geekstar.Bank.IBankServicePhysicalPerson;
 import ru.geekstar.Card.Card;
 import ru.geekstar.Card.IAirlinesCard;
@@ -11,6 +12,7 @@ import ru.geekstar.Card.IMulticurrencyCard;
 import ru.geekstar.Card.IPaySystem.IPaySystem;
 import ru.geekstar.ClientProfile.PhysicalPersonProfile;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class PhysicalPerson {
@@ -78,8 +80,16 @@ public class PhysicalPerson {
         this.physicalPersonProfiles = physicalPersonProfiles;
     }
 
-    public PhysicalPersonProfile getPhysicalPersonProfile (IBankServicePhysicalPerson bank) {
+    public PhysicalPersonProfile getPhysicalPersonProfile(Class<? extends Bank> classBank) {
+        for (int idProfile = 0; idProfile < physicalPersonProfiles.size(); idProfile++) {
+            PhysicalPersonProfile profile = physicalPersonProfiles.get(idProfile);
+            // если объект банка является инстансом (экземпляром класса) classBank, то возвращаем найденный профиль
+            if (classBank.isInstance(profile.getBank())) return profile;
+        }
+        return null;
+    }
 
+    public PhysicalPersonProfile getPhysicalPersonProfile (IBankServicePhysicalPerson bank) {
         for (int idProfile = 0; idProfile < physicalPersonProfiles.size(); idProfile++) {
             PhysicalPersonProfile profile = physicalPersonProfiles.get(idProfile);
             if (profile.getBank().equals(bank)) return profile;
@@ -94,7 +104,7 @@ public class PhysicalPerson {
         this.telephone = telephone;
     }
 
-    public PhysicalPerson(String firstName, String lastName, String telephone, byte age, char gender) {
+    public PhysicalPerson(String firstName, String lastName, String telephone, LocalDate dateOfBirth, char gender) {
         this(firstName, lastName, telephone);
         this.age = age;
         this.gender = gender;
@@ -136,7 +146,7 @@ public class PhysicalPerson {
         fromAccount.transferAccount2Card(toCard, sumTransfer);
     }
 
-    public void transferAccount2Account(Account fromAccount, SberSavingsAccount toAccount, float sumTransfer) {
+    public void transferAccount2Account(Account fromAccount, Account toAccount, float sumTransfer) {
         fromAccount.transferAccount2Account(toAccount, sumTransfer);
     }
 
@@ -148,11 +158,11 @@ public class PhysicalPerson {
         toCard.depositingCardFromAccount(fromAccount, sumDepositing);
     }
 
-    public void depositingAccountFromAccount(SberSavingsAccount toAccount, SberSavingsAccount fromAccount, float sumDepositing) {
+    public void depositingAccountFromAccount(Account toAccount, Account fromAccount, float sumDepositing) {
         toAccount.depositingAccountFromAccount(fromAccount, sumDepositing);
     }
 
-    public void depositingAccountFromCard(SberSavingsAccount toAccount, Card fromCard, float sumDepositing) {
+    public void depositingAccountFromCard(Account toAccount, Card fromCard, float sumDepositing) {
         toAccount.depositingAccountFromCard(fromCard, sumDepositing);
     }
 

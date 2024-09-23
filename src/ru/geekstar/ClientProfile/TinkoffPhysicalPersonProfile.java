@@ -72,7 +72,7 @@ public class TinkoffPhysicalPersonProfile extends PhysicalPersonProfile{
 
     @Override
     // Вывод всех операций по всем картам и счетам профиля физического лица в тинькове
-    public void displayProfileTransactions() {
+    public String displayProfileTransactions() {
         // дополним метод уникальной информацией, присуще только тинькову
         String allTransactionsPhysicalPerson = ("Все операции по картам и счетам клиента " + getPhysicalPerson().getFirstName() + " " + getPhysicalPerson().getLastName() +
                 " в " + getBank().getBankName() + " Банке");
@@ -81,11 +81,13 @@ public class TinkoffPhysicalPersonProfile extends PhysicalPersonProfile{
         String balanceMiles = ("Накопленные мили: " + getMiles());
 
         String headerProfileTransactions = allTransactionsPhysicalPerson + "\n" + cashback + "\n" + balanceMiles;
+
+        String profileTransactions = headerProfileTransactions + "\n" + super.displayProfileTransactions();
+
         System.out.println(headerProfileTransactions);
         IOFile.write(getPathToTransactionHistoryFile(), headerProfileTransactions, true);
 
-        // и вызываем родительскую версию метода
-        super.displayProfileTransactions();
+        return profileTransactions;
 
         }
     }

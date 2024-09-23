@@ -19,7 +19,7 @@ public abstract class Account {
 
     private String currencyCode;
 
-    private char currencySymbol;
+    private String currencySymbol;
 
     private float balance;
 
@@ -60,14 +60,14 @@ public abstract class Account {
         this.currencyCode = currencyCode;
     }
 
-    public char getCurrencySymbol() {
+    public String getCurrencySymbol() {
         return currencySymbol;
     }
 
     public void setCurrencySymbol(String currencyCode) {
-        if (currencyCode.equals("RUB")) this.currencySymbol = '₽';
-        else if (currencyCode.equals("USD")) this.currencySymbol = '$';
-        else if (currencyCode.equals("EUR")) this.currencySymbol = '€';
+        if (currencyCode.equals("RUB")) this.currencySymbol = "₽";
+        else if (currencyCode.equals("USD")) this.currencySymbol = "$";
+        else if (currencyCode.equals("EUR")) this.currencySymbol = "€";
         else System.out.println("Недопустимый код валюты: " + currencyCode);
     }
 

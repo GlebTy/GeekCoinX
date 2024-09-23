@@ -8,12 +8,14 @@ import ru.geekstar.Bank.Tinkoff;
 import ru.geekstar.Card.*;
 import ru.geekstar.PhysicalPerson.PhysicalPerson;
 
+import java.time.LocalDate;
+
 public class Main {
 
     public static void main(String[] args) {
 
-        PhysicalPerson I = new PhysicalPerson("Игорь", "Коннов", "+79277394841", (byte)32, 'M');
-        PhysicalPerson friend = new PhysicalPerson("Герман", "Греф", "+79273547845", (byte)58, 'M');
+        PhysicalPerson I = new PhysicalPerson("Игорь", "Коннов", "+79277394841", LocalDate.of(1990, 6, 7), 'M');
+        PhysicalPerson friend = new PhysicalPerson("Герман", "Греф", "+79273547845", LocalDate.of(1964, 2, 8), 'M');
 
         System.out.println("Физ. лиц в системе " + PhysicalPerson.personCount);
 
@@ -109,8 +111,7 @@ public class Main {
 
         I.displayAllProfileTransactions();
         friend.displayAllProfileTransactions();
-
-      //  I.displayTransactionHistory();
+        I.displayTransactionHistory();
       //  friend.displayTransactionHistory();
 
        // I.clearTransactionHistory();

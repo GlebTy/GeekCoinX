@@ -57,6 +57,15 @@ public abstract class Bank {
         }
         return numberAccountBuffer.toString();
     }
+
+    public static String generatePinCode() {
+        byte lengthPinCode = 4;
+        StringBuffer pinCodeBuffer = new StringBuffer();
+        for (byte i = 1; i < lengthPinCode; i++) {
+            pinCodeBuffer.append((byte) (Math.random() * 10));
+        }
+        return pinCodeBuffer.toString();
+    }
     public String authorizationStatusCard(Card card) {
         // сгенерировать код авторизации
         String authorizationCode = generateAuthorizationCode();
@@ -228,6 +237,15 @@ public abstract class Bank {
         if (country.equalsIgnoreCase("Франция")) currencyPayCode = "EUR";
         if (country.equalsIgnoreCase("Казахстан")) currencyPayCode = "KZT";
         return currencyPayCode;
+    }
+
+    public static String getCurrencySymbol(String currencyCode) {
+        if (currencyCode.equalsIgnoreCase("RUB")) return "₽";
+        if (currencyCode.equalsIgnoreCase("USD")) return "$";
+        if (currencyCode.equalsIgnoreCase("KZT")) return "₸";
+        if (currencyCode.equalsIgnoreCase("TRY")) return "₺";
+        if (currencyCode.equalsIgnoreCase("EUR")) return "€";
+        return "?";
     }
 
     // Конвертировать в валюту по курсу банка

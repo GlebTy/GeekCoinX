@@ -155,5 +155,5 @@ public abstract class ClientProfile {
     }
 
     // Вывод всех операций по всем картам и счетам профиля клиента. Переопределим в дочерних классах
-    public abstract void displayProfileTransactions();
+    public abstract String displayProfileTransactions();
 }

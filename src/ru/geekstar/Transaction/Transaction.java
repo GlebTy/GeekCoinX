@@ -15,7 +15,7 @@ public abstract class Transaction {
 
     private  float commission;
 
-    private char currencySymbol;
+    private String currencySymbol;
 
     private String authorizationCode;
 
@@ -64,11 +64,11 @@ public abstract class Transaction {
         this.commission = commission;
     }
 
-    public char getCurrencySymbol() {
+    public String getCurrencySymbol() {
         return currencySymbol;
     }
 
-    public void setCurrencySymbol(char currencySymbol) {
+    public void setCurrencySymbol(String currencySymbol) {
         this.currencySymbol = currencySymbol;
     }
 
@@ -128,25 +128,25 @@ public abstract class Transaction {
         this.fromAccount = fromAccount;
     }
 
-    public Transaction(Card fromCard, Card toCard, String typeOperation, float sum, char currencySymbol) {
+    public Transaction(Card fromCard, Card toCard, String typeOperation, float sum, String currencySymbol) {
         this(typeOperation, sum, currencySymbol);
         this.fromCard = fromCard;
         this.toCard = toCard;
     }
 
-    public Transaction(Card fromCard, Account toAccount, String typeOperation, float sum, char currencySymbol) {
+    public Transaction(Card fromCard, Account toAccount, String typeOperation, float sum, String currencySymbol) {
         this(typeOperation, sum, currencySymbol);
         this.fromCard = fromCard;
         this.toAccount = toAccount;
     }
 
-    public Transaction(Account fromAccount, Account toAccount, String typeOperation, float sum, char currencySymbol) {
+    public Transaction(Account fromAccount, Account toAccount, String typeOperation, float sum, String currencySymbol) {
         this(typeOperation, sum, currencySymbol);
         this.fromAccount = fromAccount;
         this.toAccount = toAccount;
     }
 
-    public Transaction(Account fromAccount, Card toCard, String typeOperation, float sum, char currencySymbol) {
+    public Transaction(Account fromAccount, Card toCard, String typeOperation, float sum, String currencySymbol) {
         this(typeOperation, sum, currencySymbol);
         this.fromAccount = fromAccount;
         this.toCard = toCard;
@@ -163,7 +163,7 @@ public abstract class Transaction {
         this.toCard = toCard;
     }
 
-    public Transaction(String typeOperation, float sum, char currencySymbol){
+    public Transaction(String typeOperation, float sum, String currencySymbol){
         this.localDateTime = LocalDateTime.now();
         this.typeOperation = typeOperation;
         this.sum = sum;

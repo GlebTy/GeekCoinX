@@ -93,7 +93,7 @@ public class SberPhysicalPersonProfile extends PhysicalPersonProfile {
 
     @Override
     // Вывод всех операций по всем картам и счетам профиля физического лица в Сбере
-    public void displayProfileTransactions() {
+    public String displayProfileTransactions() {
         // дополним метод уникальной информацией, присуще только Сберу
         String allTransactionsPhysicalPerson = ("Все операции по картам и счетам клиента " + getPhysicalPerson().getFirstName() + " " + getPhysicalPerson().getLastName() +
                 " в " + getBank().getBankName() + "Банке");
@@ -106,11 +106,13 @@ public class SberPhysicalPersonProfile extends PhysicalPersonProfile {
         String balanceBonuses = (getBank().getBankName() + "Бонусов: " + getBonuses());
 
         String headerProfileTransactions = allTransactionsPhysicalPerson + "\n" + transfersToClientSberWithoutCommissionMonthInRub + "\n" + balanceBonuses;
+
+        String profileTransactions = headerProfileTransactions + "\n" + super.displayProfileTransactions();
+
         System.out.println(headerProfileTransactions);
         IOFile.write(getPathToTransactionHistoryFile(), headerProfileTransactions,true);
 
-        // и вызываем родительскую версию метода
-        super.displayProfileTransactions();
+       return profileTransactions;
     }
 
 }
