@@ -187,7 +187,7 @@ public class FormPay {
         Card cardFrom = (Card) comboBoxFrom.getSelectedItem();
 
         // если покупка в россии
-        if (country.equals("Россия") && cardFrom.getPayCardAccount().getCurrencyCode().equals("RUB")) {
+        if (country.equals("Россия") && cardFrom !=null && cardFrom.getPayCardAccount().getCurrencyCode().equals("RUB")) {
             // если карта реализует интерфейс бонусной системы, то отображаем данные о бонусах
             if (cardFrom instanceof IBonusCard) {
                 // явно приводим к типу интерфейса бонусной системы
