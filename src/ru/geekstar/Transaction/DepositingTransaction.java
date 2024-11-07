@@ -29,33 +29,36 @@ public class DepositingTransaction extends Transaction {
     @Override
     public String getSender() {
 
-        String sender = "";
+        String sender = super.getSender();
 
-        // если списание происходит с карты
-        if(getFromCard() != null){
+        if (!sender.isEmpty()) {
+            String holder = "";
 
-            //если мы пополняем чужую карту или счет, то добавляем имя отправителя
-            if ((getToCard() != null && !getFromCard().getCardHolder().isClientCard(getToCard())) || (getToAccount() != null && !getFromCard().getCardHolder().isClientAccount(getToAccount()))) {
-
-                PhysicalPerson cardHolder = getFromCard().getCardHolder().getPhysicalPerson();
-                sender = cardHolder.getFirstName() + " " + cardHolder.getLastName().substring(0,1);
+            // если списание происходит с карты
+            if(getFromCard() != null){
+                //если мы пополняем чужую карту или счет, то добавляем имя отправителя
+                if ((getToCard() != null && !getFromCard().getCardHolder().isClientCard(getToCard())) || (getToAccount() != null && !getFromCard().getCardHolder().isClientAccount(getToAccount()))) {
+                    PhysicalPerson cardHolder = getFromCard().getCardHolder().getPhysicalPerson();
+                    holder = cardHolder.getFirstName() + " " + cardHolder.getLastName().substring(0,1);
+                }
             }
 
+            // если списание происходит со счета
+            if(getFromAccount() != null){
+                //если мы пополняем чужую карту или счет, то добавляем имя отправителя
+                if ((getToCard() != null && !getFromAccount().getAccountHolder().isClientCard(getToCard())) || (getToAccount() != null && !getFromAccount().getAccountHolder().isClientAccount(getToAccount()))) {
+                    PhysicalPerson AccountHolder = getFromAccount().getAccountHolder().getPhysicalPerson();
+                    holder = AccountHolder.getFirstName() + " " + AccountHolder.getLastName().substring(0,1);
+                }
+
+                if (!holder.isEmpty()) {
+                    sender += " от " + holder + ".";
+                }
+            }
         }
-        // если списание происходит со счета
-        if(getFromAccount() != null){
 
-            //если мы пополняем чужую карту или счет, то добавляем имя отправителя
-            if ((getToCard() != null && !getFromAccount().getAccountHolder().isClientCard(getToCard())) || (getToAccount() != null && !getFromAccount().getAccountHolder().isClientAccount(getToAccount()))) {
 
-                PhysicalPerson AccountHolder = getFromAccount().getAccountHolder().getPhysicalPerson();
-                sender = AccountHolder.getFirstName() + " " + AccountHolder.getLastName().substring(0,1);
-            }
 
-            if (!sender.isEmpty()) {
-                sender = super.getSender() + " от " + sender + ".";
-            }
-        }
         return sender;
     }
     @Override
