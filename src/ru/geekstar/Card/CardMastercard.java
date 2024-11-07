@@ -31,18 +31,23 @@ public abstract class CardMastercard extends Card implements IMastercard {
         // TODO: Запрос к API Mastercard
         ArrayList<Float> exchangeRatePaySystem = new ArrayList<>();
 
-        // курс лиры к доллару
+        // курс лиры в долларах
         if (currency.equals("TRY") && currencyExchangeRate.equals("USD")) {
-            exchangeRatePaySystem.add(0.057f); //курс покупки
-            exchangeRatePaySystem.add(0.047f); //курс продажи
+            exchangeRatePaySystem.add(0.029f); //курс покупки
+            exchangeRatePaySystem.add(0.032f); //курс продажи
         }
 
-
-        // курс лиры к евро
+        // курс лиры в евро
         if (currency.equals("TRY") && currencyExchangeRate.equals("EUR")) {
-            exchangeRatePaySystem.add(0.059f); //курс покупки
-            exchangeRatePaySystem.add(0.048f); //курс продажи
+            exchangeRatePaySystem.add(0.027f); //курс покупки
+            exchangeRatePaySystem.add(0.030f); //курс продажи
         }
+
+        if (currency.equals("KZT") && currencyExchangeRate.equals("USD")) {
+            exchangeRatePaySystem.add(0.0022f); //курс покупки
+            exchangeRatePaySystem.add(0.0024f); //курс продаж
+        }
+
         return exchangeRatePaySystem;
     }
 
