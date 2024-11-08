@@ -63,18 +63,49 @@ public class Tinkoff extends Bank implements IBankServicePhysicalPerson {
 
     @Override
     public ArrayList<Float> getExchangeRateBank(String currency, String currencyExchangeRate) {
+        // TODO: Запрос к API банка.
         ArrayList<Float> exchangeRateBank = new ArrayList<>();
 
-        //курс доллара к рублю
-        if(currency.equals("USD") && currencyExchangeRate.equals("RUB")) {
-            exchangeRateBank.add(63.72f); // курс покупки
-            exchangeRateBank.add(60.35f); // курс продажи
+        // курс доллара
+        if (currency.equals("USD")) {
+            // в рублях
+            if (currency.equals("RUB")) {
+                exchangeRateBank.add(99.30f);
+                exchangeRateBank.add(90.10f);
+            }
+            // в евро
+            if (currency.equals("EUR")) {
+                exchangeRateBank.add(0.93f);
+                exchangeRateBank.add(0.89f);
+            }
         }
 
-        //курс доллара к рублю
-        if(currency.equals("EUR") && currencyExchangeRate.equals("RUB")) {
-            exchangeRateBank.add(66.14f); // курс покупки
-            exchangeRateBank.add(62.23f); // курс продажи
+        // курс евро
+        if (currency.equals("EUR")) {
+            // в рублях
+            if (currency.equals("RUB")) {
+                exchangeRateBank.add(108.80f);
+                exchangeRateBank.add(100.20f);
+            }
+            // в долларах
+            if (currency.equals("USD")) {
+                exchangeRateBank.add(1.07f);
+                exchangeRateBank.add(1.01f);
+            }
+        }
+
+        // курс рубля
+        if (currency.equals("RUB")) {
+            // в долларах
+            if (currency.equals("USD")) {
+                exchangeRateBank.add(0.010f);
+                exchangeRateBank.add(0.006f);
+            }
+            // в евро
+            if (currency.equals("EUR")) {
+                exchangeRateBank.add(0.0096f);
+                exchangeRateBank.add(0.0083f);
+            }
         }
         return exchangeRateBank;
     }
