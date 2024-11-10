@@ -62,12 +62,12 @@ public class Sberbank extends Bank implements IBankServicePhysicalPerson {
         // курс доллара
         if (currency.equals("USD")) {
             // в рублях
-            if (currency.equals("RUB")) {
+            if (currencyExchangeRate.equals("RUB")) {
                 exchangeRateBank.add(99.30f);
                 exchangeRateBank.add(90.10f);
             }
             // в евро
-            if (currency.equals("EUR")) {
+            if (currencyExchangeRate.equals("EUR")) {
                 exchangeRateBank.add(0.93f);
                 exchangeRateBank.add(0.89f);
             }
@@ -76,12 +76,12 @@ public class Sberbank extends Bank implements IBankServicePhysicalPerson {
         // курс евро
         if (currency.equals("EUR")) {
             // в рублях
-            if (currency.equals("RUB")) {
+            if (currencyExchangeRate.equals("RUB")) {
                 exchangeRateBank.add(108.80f);
                 exchangeRateBank.add(100.20f);
             }
             // в долларах
-            if (currency.equals("USD")) {
+            if (currencyExchangeRate.equals("USD")) {
                 exchangeRateBank.add(1.07f);
                 exchangeRateBank.add(1.01f);
             }
@@ -90,12 +90,12 @@ public class Sberbank extends Bank implements IBankServicePhysicalPerson {
         // курс рубля
         if (currency.equals("RUB")) {
             // в долларах
-            if (currency.equals("USD")) {
+            if (currencyExchangeRate.equals("USD")) {
                 exchangeRateBank.add(0.010f);
                 exchangeRateBank.add(0.006f);
             }
             // в евро
-            if (currency.equals("EUR")) {
+            if (currencyExchangeRate.equals("EUR")) {
                 exchangeRateBank.add(0.0096f);
                 exchangeRateBank.add(0.0083f);
             }

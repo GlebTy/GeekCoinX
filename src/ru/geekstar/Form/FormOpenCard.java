@@ -41,7 +41,7 @@ public class FormOpenCard {
         nameClassCards.add(TinkoffAirlinesMir.class);
         nameClassCards.add(TinkoffBlackMir.class);
 
-        // создвем невидимый компонент фиксированной высоты перед первой картой для отступа от левого края формы
+        // создаем невидимый компонент фиксированной высоты перед первой картой для отступа от левого края формы
         panelCards.add(Box.createHorizontalStrut(15));
 
         // перебираем классы карт
@@ -59,7 +59,7 @@ public class FormOpenCard {
 
             // добавляем созданный labelIconCard с иконкой и названием карты на панель
             panelCards.add(labelIconCard);
-            // создаем невидимый компонент фиксированной высоты между между двумя компонентами для отступа
+            // создаем невидимый компонент фиксированной высоты между двумя компонентами для отступа
             panelCards.add(Box.createHorizontalStrut(15));
 
             labelIconCard.addMouseListener(new MouseAdapter() {
