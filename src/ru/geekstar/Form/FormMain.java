@@ -86,7 +86,7 @@ public class FormMain extends JDialog {
         scrollPaneCardsAccounts.setBorder(null);
 
         // менеджера компоновки BoxLayout
-        // константа Y_AXIS указывает, что компоненты должны рапспологаться вертикально сверху донизу
+        // константа Y_AXIS указывает, что компоненты должны располагаться вертикально сверху донизу
         panelCardsAccounts.setLayout(new BoxLayout(panelCardsAccounts, BoxLayout.Y_AXIS));
 
         // устанавливаем иконки для кнопок
