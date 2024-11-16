@@ -14,8 +14,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
 import java.lang.reflect.InvocationTargetException;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class FormOpenCard {
@@ -49,7 +49,12 @@ public class FormOpenCard {
             // создаем компонент JLabel для визуального отображения иконки и названия карты
             JLabel labelIconCard = new JLabel();
             // устанавливаем иконку для отображения карты
-            ImageIcon iconCard = new ImageIcon(getClass().getResource(File.separator + "resources" + File.separator + nameClassCard.getSimpleName() + ".png"));
+
+            URL gey = getClass().getResource("/" + "resources" + "/" + nameClassCard.getSimpleName() + ".png");
+
+            //String pogba = nameClassCard.getSimpleName();
+
+            ImageIcon iconCard = new ImageIcon(getClass().getResource("/" + "resources" + "/" + nameClassCard.getSimpleName() + ".png"));
             labelIconCard.setIcon(iconCard);
             labelIconCard.setText(nameClassCard.getSimpleName());
 

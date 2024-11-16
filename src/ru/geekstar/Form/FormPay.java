@@ -49,7 +49,6 @@ public class FormPay {
         comboBoxCountry.setModel(new DefaultComboBoxModel(countries));
 
         //слушатель срабатывает, когда пользователь изменяет положение ползунка, выбирая количество доступных бонусов
-
         sliderBonus.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
@@ -118,7 +117,7 @@ public class FormPay {
                 else FormMain.physicalPerson.payByCard(cardFrom, sumPay, buyProductOrService, country, pinCode);
 
                 // отображаем панель со статусом операции
-                FormMain.formMain.displayPanelStatus("Оплата обрабатываеться");
+                FormMain.formMain.displayPanelStatus("Оплата обрабатывается");
             }
         });
         panelPay.addComponentListener(new ComponentAdapter() {
@@ -212,7 +211,7 @@ public class FormPay {
             }
         }
 
-        // устанавливаем положени ползунка
+        // устанавливаем положение ползунка
         sliderBonus.setValue(0);
         // устанавливаем максимальное допустимое значение для ползунка
         sliderBonus.setMaximum(bonuses);

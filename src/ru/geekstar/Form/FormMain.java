@@ -90,19 +90,19 @@ public class FormMain extends JDialog {
         panelCardsAccounts.setLayout(new BoxLayout(panelCardsAccounts, BoxLayout.Y_AXIS));
 
         // устанавливаем иконки для кнопок
-        ImageIcon iconOpenCard = new ImageIcon(getClass().getResource(File.separator + "resources" + File.separator + "OpenCard.png"));
+        ImageIcon iconOpenCard = new ImageIcon(getClass().getResource("/" + "resources" + "/" + "OpenCard.png"));
         buttonOpenCard.setIcon(iconOpenCard);
 
-        ImageIcon iconOpenAccount = new ImageIcon(getClass().getResource(File.separator + "resources" + File.separator + "OpenAccount.png"));
+        ImageIcon iconOpenAccount = new ImageIcon(getClass().getResource("/" + "resources" + "/" + "OpenAccount.png"));
         buttonOpenAccount.setIcon(iconOpenAccount);
 
-        ImageIcon iconPayment = new ImageIcon(getClass().getResource(File.separator + "resources" + File.separator + "Payment.png"));
+        ImageIcon iconPayment = new ImageIcon(getClass().getResource("/" + "resources" + "/" + "Payment.png"));
         buttonPay.setIcon(iconPayment);
 
-        ImageIcon iconTransfer = new ImageIcon(getClass().getResource(File.separator + "resources" + File.separator + "Transfer.png"));
+        ImageIcon iconTransfer = new ImageIcon(getClass().getResource("/" + "resources" + "/" + "Transfer.png"));
         buttonTransfer.setIcon(iconTransfer);
 
-        ImageIcon iconTopup = new ImageIcon(getClass().getResource(File.separator + "resources" + File.separator + "TopUp.png"));
+        ImageIcon iconTopup = new ImageIcon(getClass().getResource("/" + "resources" + "/" + "TopUp.png"));
         buttonDepositing.setIcon(iconTopup);
 
         // делаем иконки недоступными

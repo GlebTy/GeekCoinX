@@ -54,7 +54,7 @@ public class FormRegistration {
         // инициализируем список с месяцами года
         initItemsComboBoxMonth();
 
-        // ининциализируем список с годами
+        // инициализируем список с годами
         initItemsComboBoxYear();
 
         // инициализируем список с днями
@@ -82,20 +82,20 @@ public class FormRegistration {
             @Override
             public void focusGained(FocusEvent e) {
                 super.focusGained(e);
-                hintDisplay(textFieldName, NAME);
+                hintClear(textFieldName, NAME);
             }
 
             @Override
             public void focusLost(FocusEvent e) {
                 super.focusLost(e);
-                hintClear(textFieldName, NAME);
+                hintDisplay(textFieldName, NAME);
             }
         });
         textFieldTelephone.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
                 super.focusGained(e);
-                hintDisplay(textFieldTelephone, TELEPHONE);
+                hintClear(textFieldTelephone, TELEPHONE);
             }
 
             @Override
@@ -175,7 +175,7 @@ public class FormRegistration {
             public void actionPerformed(ActionEvent e) {
                 // проверяем заполнены ли поля
                 boolean checkFields = checkFillFields();
-                // если checkfields() возвращает false то выходим из метода
+                // если checkfields() возвращает false, то выходим из метода
                 if (!checkFields) return;
 
                 // извлекаем данные, которые указал пользователь
@@ -192,7 +192,7 @@ public class FormRegistration {
 
                 PhysicalPerson physicalPerson = new PhysicalPerson(name, surname, telephone, dateOfBirth, gender);
 
-                // выводим на лавной форме имя фамилию пользователя
+                // выводим на главной форме имя фамилию пользователя
                 FormMain.formMain.initPhysicalPerson(physicalPerson);
                 // отображаем панель со статусом операции
                 FormMain.formMain.displayPanelStatus("Регистрация завершена");
@@ -245,7 +245,7 @@ public class FormRegistration {
 
     public void initItemsComboBoxMonth() {
         String[] month = {"Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"};
-        // оздаем модель для полей поиска
+        // создаем модель для полей поиска
         DefaultComboBoxModel<String> modelMonth = new DefaultComboBoxModel<>(month);
         // Устанавливаем созданную модель для списка
         comboBoxMonth.setModel(modelMonth);
@@ -262,12 +262,12 @@ public class FormRegistration {
     }
 
     public void updateItemsComboBoxDay() {
-        // в зависимосости от года и месяца определяем колво дней в месяце
+        // в зависимости от года и месяца определяем колво дней в месяце
         int month = comboBoxMonth.getSelectedIndex() + 1;
         int year = (int) comboBoxYear.getSelectedItem();
         int daysMonth = LocalDate.of(year, month, 1).lengthOfMonth();
 
-        // очищаем выпадающий список с дняими месяца
+        // очищаем выпадающий список с днями месяца
         comboBoxDay.removeAllItems();
 
         // добавляем обновленное колво дней

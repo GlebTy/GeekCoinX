@@ -3,7 +3,6 @@ package ru.geekstar.Form;
 import javax.swing.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-import java.io.File;
 
 public class FormStatus {
     private JPanel panelStatus;
@@ -18,7 +17,7 @@ public class FormStatus {
     }
 
     public FormStatus() {
-        ImageIcon iconStatus = new ImageIcon(getClass().getResource(File.separator + "resourses" + File.separator + "Status.png"));
+        ImageIcon iconStatus = new ImageIcon(getClass().getResource("/" + "resources" + "/" + "Status.png"));
         labelStatus.setIcon(iconStatus);
 
         // слушать срабатывает в момент показа компонента panelStatus
@@ -27,7 +26,7 @@ public class FormStatus {
             public void componentShown(ComponentEvent e) {
                 super.componentShown(e);
                 try {
-                    // панель отображаеться 1 секунду
+                    // панель отображается 1 секунду
                     Thread.sleep(1000);
                 } catch (InterruptedException interruptedEx) {
                     System.out.println("Статус прерванного текущего потока сбрасывается" + interruptedEx.getMessage());
