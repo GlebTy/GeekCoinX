@@ -33,8 +33,8 @@ public class PayMilesTransaction extends PayTransaction {
     public String getStringTransaction() {
         String consumer = getNameCard(getFromCard());
 
-        String transaction = getLocalDateTime() + " " + consumer + " " + getTypeOperation() + " " + getBuyProductOrService() + ": -" + payMiles +
-                " миль Статус: " + getStatusOperation() + " Доступно миль: " + balanceMiles;
+        String transaction = getLocalDateTime() + " " + consumer + "\n" + getTypeOperation() + " " + getBuyProductOrService() + ": -" + payMiles +
+                " миль" + "\nСтатус: " + getStatusOperation() + "\nДоступно миль: " + balanceMiles;
 
         return transaction;
 

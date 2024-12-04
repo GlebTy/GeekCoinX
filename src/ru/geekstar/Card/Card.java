@@ -338,4 +338,10 @@ public abstract class Card implements IPaySystem {
         payCardAccount.displayAccountTransactions();
     }
 
+    @Override
+    public String toString() {
+        return "Карта " + this.getClass().getSimpleName() + " ⦁⦁" + getNumberCard().split(" ")[3] + " "
+                + getPayCardAccount().getBalance() + " " + getPayCardAccount().getCurrencySymbol();
+    }
+
 }

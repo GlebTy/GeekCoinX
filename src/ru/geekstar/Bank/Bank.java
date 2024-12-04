@@ -191,9 +191,7 @@ public abstract class Bank {
         if (!fromCurrencyCode.equals("RUB") && !fromCurrencyCode.equals("USD")) {
             // рассчитать лимит комиссии в другой валюте путём конвертации лимита в $ в эквивалентную сумму в другой валюте
             float limitCommissionTransferInCurrency = convertToCurrencyExchangeRateBank(
-                    clientProfile.getLimitCommissionTransferInUsdOrEquivalentInOtherCurrency(),
-                    "USD",
-                    fromCurrencyCode
+                    clientProfile.getLimitCommissionTransferInUsdOrEquivalentInOtherCurrency(),"USD", fromCurrencyCode
             );
             // если комиссия превышает лимит за перевод в другой валюте, то ограничим комиссию лимитом в этой валюте
             if (commission > limitCommissionTransferInCurrency) commission = limitCommissionTransferInCurrency;

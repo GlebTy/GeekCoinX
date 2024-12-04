@@ -223,4 +223,6 @@ public class PhysicalPerson {
     public ArrayList<Float> getExchangeRatePaySystem(IPaySystem paySystemCard, String currency, String currencyExchangeRate) {
         return paySystemCard.getExchangeRatePaySystem(currency, currencyExchangeRate);
     }
+    @Override
+    public String toString() { return lastName + " " + firstName; }
 }

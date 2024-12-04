@@ -32,7 +32,7 @@ public final class TinkoffAirlinesMir extends CardMir implements IMulticurrencyC
 
     public TinkoffAirlinesMir(PhysicalPersonProfile cardHolder, PayCardAccount payCardAccount, String pinCode) {
         super(cardHolder, payCardAccount, pinCode);
-        addAccount("USD");
+        addAccount("EUR");
         countCards++;
     }
 

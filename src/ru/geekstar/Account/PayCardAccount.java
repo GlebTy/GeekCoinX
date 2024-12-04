@@ -107,4 +107,8 @@ public abstract class PayCardAccount extends Account {
 
         return allPayTransactions;
     }
+    @Override
+    public String toString() {
+        return "Платёжный счёт ⦁⦁" + this.getNumberAccount().substring(20) + " " + getBalance() + getCurrencySymbol();
+    }
 }

@@ -10,6 +10,6 @@ public class TinkoffSavingsAccount extends SavingsAccount {
 
     @Override
     public String toString() {
-        return "Накопительный счёт ⦁⦁" + this.getNumberAccount().substring(20) + " " + getBalance() + " " + getCurrencySymbol();
+        return "Накопительный счёт ⦁⦁" + this.getNumberAccount().substring(20);
     }
 }

@@ -10,7 +10,7 @@ import ru.geekstar.PhysicalPerson.PhysicalPerson;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -122,9 +122,9 @@ public class FormMain extends JDialog {
         buttonAddAccountForCard.setVisible(false);
 
         // заглушка для пропуска формы регистрации
-        // PhysicalPerson I = new PhysicalPerson("Глеб", "Тюрин", "+79277394841", LocalDate.of(2005, 1, 9), 'M');
+         PhysicalPerson I = new PhysicalPerson("Глеб", "Тюрин", "+79277394841", LocalDate.of(2005, 1, 9), 'M');
         // установить и отобразить на главной форме зарегистрированного пользователя
-        // initPhysicalPerson(I);
+         initPhysicalPerson(I);
 
         // call onCancel() when cross is clicked
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -231,8 +231,8 @@ public class FormMain extends JDialog {
     public void initPhysicalPerson(PhysicalPerson physicalPerson) {
         this.physicalPerson = physicalPerson;
 
-        // устанавливаем иконку и отображаем имя и фамилию зарегесрированного пользователя
-        ImageIcon iconUser = new ImageIcon(getClass().getResource(File.separator + "resources" + File.separator + "User.png"));
+        // устанавливаем иконку и отображаем имя и фамилию зарегистрированного пользователя
+        ImageIcon iconUser = new ImageIcon(getClass().getResource("/" + "resources" + "/" + "User.png"));
         labelNameClient.setIcon(iconUser);
         labelNameClient.setText(physicalPerson.getFirstName() + " " + physicalPerson.getLastName());
         labelNameClient.setVisible(true);
@@ -267,10 +267,10 @@ public class FormMain extends JDialog {
             ArrayList<Card> cards = profile.getCards();
             // перебираем все карты профиля
             for (Card card : cards) {
-                // создаем помпонент JLabel для визуального отображения иконки и описания карты
+                // создаем компонент JLabel для визуального отображения иконки и описания карты
                 JLabel labelIconCard = new JLabel();
-                // станавливаем иконку для отображения карты
-                ImageIcon iconCard = new ImageIcon(getClass().getResource(File.separator + "resourses" + File.separator + card.getClass().getSimpleName() + ".png"));
+                // устанавливаем иконку для отображения карты
+                ImageIcon iconCard = new ImageIcon(getClass().getResource("/" + "resources" + "/" + card.getClass().getSimpleName() + ".png"));
                 labelIconCard.setIcon(iconCard);
                 labelIconCard.setText("<html>" + "Карта " + card.getClass().getSimpleName() + " ⦁⦁" + card.getNumberCard().split(" ")[3]  + "<br>" +
                         "Платёжный счёт ⦁⦁" + card.getPayCardAccount().getNumberAccount().substring(20) + "<br>" +
@@ -331,7 +331,7 @@ public class FormMain extends JDialog {
                 // отображаем только сберегательные счета
                 if (account instanceof SavingsAccount) {
                     JLabel labelIconAccount = new JLabel();
-                    ImageIcon iconAccount = new ImageIcon(getClass().getResource(File.separator + "resources" + File.separator + account.getClass().getSimpleName() + ".png"));
+                    ImageIcon iconAccount = new ImageIcon(getClass().getResource("/" + "resources" + "/" + account.getClass().getSimpleName() + ".png"));
                     labelIconAccount.setIcon(iconAccount);
                     labelIconAccount.setText("<html>" + account + "<br>" + "<big>" + account.getBalance() + " " + account.getCurrencySymbol() + "</big></html>");
                     labelIconAccount.setIconTextGap(15);

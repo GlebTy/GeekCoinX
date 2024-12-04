@@ -36,7 +36,7 @@ public class DepositingTransaction extends Transaction {
 
             // если списание происходит с карты
             if(getFromCard() != null){
-                //если мы пополняем чужую карту или счет, то добавляем имя отправителя
+                // и если мы пополняем чужую карту или счёт (или свою карту или счёт, но в другом банке), то добавляем в транзакцию имя отправителя перевода
                 if ((getToCard() != null && !getFromCard().getCardHolder().isClientCard(getToCard())) || (getToAccount() != null && !getFromCard().getCardHolder().isClientAccount(getToAccount()))) {
                     PhysicalPerson cardHolder = getFromCard().getCardHolder().getPhysicalPerson();
                     holder = cardHolder.getFirstName() + " " + cardHolder.getLastName().substring(0,1);
@@ -45,7 +45,7 @@ public class DepositingTransaction extends Transaction {
 
             // если списание происходит со счета
             if(getFromAccount() != null){
-                //если мы пополняем чужую карту или счет, то добавляем имя отправителя
+                // и если мы пополняем чужую карту или счёт (или свою карту или счёт, но в другом банке), то добавляем в транзакцию имя отправителя перевода
                 if ((getToCard() != null && !getFromAccount().getAccountHolder().isClientCard(getToCard())) || (getToAccount() != null && !getFromAccount().getAccountHolder().isClientAccount(getToAccount()))) {
                     PhysicalPerson AccountHolder = getFromAccount().getAccountHolder().getPhysicalPerson();
                     holder = AccountHolder.getFirstName() + " " + AccountHolder.getLastName().substring(0,1);
@@ -64,9 +64,9 @@ public class DepositingTransaction extends Transaction {
     @Override
     public String getStringTransaction() {
 
-        String transaction = getLocalDateTime() + " " + getRecipient() + " " + getTypeOperation() + (!getSender().isEmpty() ? " " + getSender() : "") + ": +" + getSum() + getCurrencySymbol() +
-                " Статус: " +  getStatusOperation() + " Баланс: " + getBalance() + getCurrencySymbol() + " Комиссия составила: " + getCommission() +
-                getCurrencySymbol() + (getAuthorizationCode() != null ? " Код авторизации: " + getAuthorizationCode() : "");
+        String transaction = getLocalDateTime() + " " + getRecipient() + "\n" + getTypeOperation() + (!getSender().isEmpty() ? " " + getSender() : "") + ": +" + getSum() + getCurrencySymbol() +
+                "\nСтатус: " +  getStatusOperation() + "\nБаланс: " + getBalance() + " " + getCurrencySymbol() + "\nКомиссия составила: " + getCommission() +
+                " " + getCurrencySymbol() + (getAuthorizationCode() != null ? " Код авторизации: " + getAuthorizationCode() : "");
 
         return transaction;
     }

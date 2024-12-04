@@ -19,7 +19,8 @@ public abstract class CardVisa extends Card implements IVisa {
         // по умолчанию null, потому что не во всех странах может использоваться данная платёжная система
         String billingCurrencyCode = null;
         // если покупка в Турции, то валюта биллинга в $
-        if (country.equalsIgnoreCase("Турция")) billingCurrencyCode = CURRENCY_CODE_PAY_SYSTEM_USD;
+        if (country.equalsIgnoreCase("Турция") || country.equalsIgnoreCase("Казахстан")
+            || country.equalsIgnoreCase("Франция")) billingCurrencyCode = CURRENCY_CODE_PAY_SYSTEM_USD;
 
         return billingCurrencyCode;
     }
@@ -29,11 +30,24 @@ public abstract class CardVisa extends Card implements IVisa {
     public ArrayList<Float> getExchangeRatePaySystem(String currency, String currencyExchangeRate) {
         // TODO: Запрос к API Visa
         ArrayList<Float> exchangeRatePaySystem = new ArrayList<Float>();
-        // курс лиры к доллару
+
+        // курс лиры в долларах
         if (currency.equals("TRY") && currencyExchangeRate.equals("USD")) {
-            exchangeRatePaySystem.add(0.56f); //курс покупки
-            exchangeRatePaySystem.add(0.46f); //курс продажи
+            exchangeRatePaySystem.add(0.029f); //курс покупки
+            exchangeRatePaySystem.add(0.032f); //курс продажи
         }
+
+        // курс евро к доллару
+        if (currency.equals("EUR") && currencyExchangeRate.equals("USD")) {
+            exchangeRatePaySystem.add(0.95f); //курс покупки
+            exchangeRatePaySystem.add(0.97f); //курс продажи
+        }
+
+        if (currency.equals("KZT") && currencyExchangeRate.equals("USD")) {
+            exchangeRatePaySystem.add(0.0022f); //курс покупки
+            exchangeRatePaySystem.add(0.0024f); //курс продаж
+        }
+
         return exchangeRatePaySystem;
     }
 

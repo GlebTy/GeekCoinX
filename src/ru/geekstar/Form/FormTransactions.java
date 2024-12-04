@@ -8,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-import java.io.File;
 import java.util.ArrayList;
 
 public class FormTransactions {
@@ -62,13 +61,13 @@ public class FormTransactions {
                 // если строка содержит символ номера "#" и одно из ключевых слов, то определяем соответствующую иконку для отображения транзакции
                 if (transaction.contains("#")) {
                     if ((transaction.contains("Покупка") || transaction.contains("Оплата"))) {
-                        iconTransaction = new ImageIcon(getClass().getResource(File.separator + "resources" + File.separator + "Payment.png"));
+                        iconTransaction = new ImageIcon(getClass().getResource("/" + "resources" + "/" + "Payment.png"));
                     }
                     if ((transaction.contains("Перевод"))) {
-                        iconTransaction = new ImageIcon(getClass().getResource(File.separator + "resources" + File.separator + "Transfer.png"));
+                        iconTransaction = new ImageIcon(getClass().getResource("/" + "resources" + "/" + "Transfer.png"));
                     }
                     if ((transaction.contains("Пополнение") || transaction.contains("Внесение"))) {
-                        iconTransaction = new ImageIcon(getClass().getResource(File.separator + "resources" + File.separator + "TopUp.png"));
+                        iconTransaction = new ImageIcon(getClass().getResource("/" + "resources" + "/" + "TopUp.png"));
                     }
                 }
                 // создаём компонент JLabel для визуального отображения транзакции

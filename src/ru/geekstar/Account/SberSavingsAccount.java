@@ -30,4 +30,9 @@ public class SberSavingsAccount extends SavingsAccount {
         ((SberPhysicalPersonProfile)getAccountHolder()).updateTotalTransfersToClientSberWithoutCommissionMonthInRUB(toAccount, sumTransfer);
     }
 
+    @Override
+    public String toString() {
+        return "Cберегательный счёт ⦁⦁" + this.getNumberAccount().substring(20);
+    }
+
 }
