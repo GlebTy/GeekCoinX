@@ -35,7 +35,7 @@ public class DepositingTransaction extends Transaction {
             String holder = "";
 
             // если списание происходит с карты
-            if(getFromCard() != null){
+            if (getFromCard() != null) {
                 // и если мы пополняем чужую карту или счёт (или свою карту или счёт, но в другом банке), то добавляем в транзакцию имя отправителя перевода
                 if ((getToCard() != null && !getFromCard().getCardHolder().isClientCard(getToCard())) || (getToAccount() != null && !getFromCard().getCardHolder().isClientAccount(getToAccount()))) {
                     PhysicalPerson cardHolder = getFromCard().getCardHolder().getPhysicalPerson();
@@ -44,23 +44,20 @@ public class DepositingTransaction extends Transaction {
             }
 
             // если списание происходит со счета
-            if(getFromAccount() != null){
+            if (getFromAccount() != null) {
                 // и если мы пополняем чужую карту или счёт (или свою карту или счёт, но в другом банке), то добавляем в транзакцию имя отправителя перевода
                 if ((getToCard() != null && !getFromAccount().getAccountHolder().isClientCard(getToCard())) || (getToAccount() != null && !getFromAccount().getAccountHolder().isClientAccount(getToAccount()))) {
                     PhysicalPerson AccountHolder = getFromAccount().getAccountHolder().getPhysicalPerson();
-                    holder = AccountHolder.getFirstName() + " " + AccountHolder.getLastName().substring(0,1);
+                    holder = AccountHolder.getFirstName() + " " + AccountHolder.getLastName().substring(0, 1);
                 }
-
+            }
                 if (!holder.isEmpty()) {
                     sender += " от " + holder + ".";
                 }
             }
-        }
-
-
-
         return sender;
     }
+
     @Override
     public String getStringTransaction() {
 

@@ -184,13 +184,12 @@ public abstract class Card implements IPaySystem {
                 // внести в транзакцию перевода статус списания
                 transferTransaction.setStatusOperation("Списание прошло успешно");
 
+                String toCurrencyCode = toCard.getPayCardAccount().getCurrencyCode();
+                sumTransfer = bank.convertToCurrencyExchangeRateBank(sumTransfer, fromCurrencyCode, toCurrencyCode);
+
                 // инициализировать транзакцию пополнения
                 DepositingTransaction depositingTransaction = new DepositingTransaction(this, toCard, "Пополнение с карты", sumTransfer, toCard.payCardAccount.getCurrencySymbol());
                 depositingTransaction.setAuthorizationCode(authorizationCode);
-
-
-                String toCurrencyCode = toCard.getPayCardAccount().getCurrencyCode();
-                sumTransfer = bank.convertToCurrencyExchangeRateBank(sumTransfer, fromCurrencyCode, toCurrencyCode);
 
                 // зачислить на карту
                 boolean topUpStatus = toCard.getPayCardAccount().topUp(sumTransfer);
@@ -248,12 +247,12 @@ public abstract class Card implements IPaySystem {
                 if (withdrawalStatus) {
                     // внести в транзакцию статус списания
                     transferTransaction.setStatusOperation("Списание прошло успешно");
-                    // инициализировать транзакцию пополнения
-                    DepositingTransaction depositingTransaction = new DepositingTransaction(this, toAccount, "Пополнение с карты", sumTransfer, toAccount.getCurrencySymbol());
 
                     String toCurrencyCode = toAccount.getCurrencyCode();
                     if(!fromCurrencyCode.equalsIgnoreCase(toCurrencyCode)) sumTransfer = bank.convertToCurrencyExchangeRateBank(sumTransfer, fromCurrencyCode, toCurrencyCode);
 
+                    // инициализировать транзакцию пополнения
+                    DepositingTransaction depositingTransaction = new DepositingTransaction(this, toAccount, "Пополнение с карты", sumTransfer, toAccount.getCurrencySymbol());
 
                     // и зачислить на счёт
                     boolean topUpStatus = toAccount.topUp(sumTransfer);

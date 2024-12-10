@@ -123,26 +123,26 @@ public abstract class Account {
 
         // проверить баланс счёта и достаточно ли денег
         boolean checkBalance = checkBalance(sumTransfer + commision);
-        if(checkBalance) {
+        if (checkBalance) {
             // проверить не превышен ли лимит по оплатам и переводам в сутки
-            boolean exceededLimitpaymentsTransferDay = accountHolder.exceededLimitPaymentsTransfersDay(sumTransfer, fromCurrencyCode);
-            if(!exceededLimitpaymentsTransferDay) {
+            boolean exceededLimitPaymentsTransferDay = accountHolder.exceededLimitPaymentsTransfersDay(sumTransfer, fromCurrencyCode);
+            if (!exceededLimitPaymentsTransferDay) {
                 // если не превышен, то выполнить списание суммы и комиссии со счёта
                 boolean withdrawalStatus = withdrawal(sumTransfer + commision);
                 if (withdrawalStatus) {
                     // внести в транзакцию перевода статус списания
                     transferTransaction.setStatusOperation("Списание прошло успешно");
 
-                    // инициализировать транзакцию пополнения
-                    DepositingTransaction depositingTransaction = new DepositingTransaction(this, toAccount, "Перевод со счёта", sumTransfer, currencySymbol);
-
-
                     // определяем валюту счета зачисления
                     String toCurrencyCode = toAccount.getCurrencyCode();
+
+                    String depositingTypeOperation = "Пополнение " + (!fromCurrencyCode.equals(toCurrencyCode) ? sumTransfer + " " + currencySymbol : "") + " со счёта";
+
                     // если валюты списания и зачисления не совпадают, то конвертировать сумму перевода в валюту карты зачисления по курсу банка
                     sumTransfer = bank.convertToCurrencyExchangeRateBank(sumTransfer, fromCurrencyCode, toCurrencyCode);
 
-
+                    // инициализировать транзакцию пополнения
+                    DepositingTransaction depositingTransaction = new DepositingTransaction(this, toAccount, depositingTypeOperation, sumTransfer, toAccount.getCurrencySymbol());
 
                     // зачислить на счет
                     boolean topUpStatus = toAccount.topUp(sumTransfer);
@@ -176,7 +176,7 @@ public abstract class Account {
 
 
     // Перевести со счёта на карту
-    public void transferAccount2Card(Card toCard, float sumTransfer) {
+    public void transferAccount2Card (Card toCard, float sumTransfer) {
         // инициализировать транзакцию перевода
         TransferTransaction transferTransaction = new TransferTransaction(this, toCard, "Перевод на карту", sumTransfer, currencySymbol);
 
@@ -201,13 +201,16 @@ public abstract class Account {
                     // внести в транзакцию перевода статус списания
                     transferTransaction.setStatusOperation("Списание прошло успешно");
 
-                    // инициализировать транзакцию пополнения
-                    DepositingTransaction depositingTransaction = new DepositingTransaction(this, toCard, "Перевод со счёта", sumTransfer, currencySymbol);
-
-                    // определяем валюту счёта зачисления
+                    // определяем валюту карты зачисления
                     String toCurrencyCode = toCard.getPayCardAccount().getCurrencyCode();
+
+                    String depositingTypeOperation = "Пополнение " + (!fromCurrencyCode.equals(toCurrencyCode) ? sumTransfer + " " + currencySymbol : "") + " со счёта";
+
                     // если валюты списания и зачисления не совпадают, то конвертировать сумму перевода в валюту счёта зачисления по курсу банка
                     sumTransfer = bank.convertToCurrencyExchangeRateBank(sumTransfer, fromCurrencyCode, toCurrencyCode);
+
+                    // инициализировать транзакцию пополнения
+                    DepositingTransaction depositingTransaction = new DepositingTransaction(this, toCard, depositingTypeOperation, sumTransfer, toCard.getPayCardAccount().getCurrencySymbol());
 
                     // зачислить на карту
                     boolean topUpStatus = toCard.getPayCardAccount().topUp(sumTransfer);
